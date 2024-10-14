@@ -1,7 +1,7 @@
 using NUnit.Framework;
 
 [TestFixture]
-public class TestBusyDisposable
+public class BusyDisposableExample
 {
     private static bool result;
 

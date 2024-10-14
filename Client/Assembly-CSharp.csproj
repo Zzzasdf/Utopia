@@ -45,7 +45,42 @@
     <Analyzer Include="C:\UnityEditor\2022.3.28f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Utility\BusyDisposable.cs" />
+    <Compile Include="Assets\Scripts\Utility\Extensions\UnityEngine\LogExtensions.SourceCode.cs" />
+    <Compile Include="Assets\Scripts\Utility\Helper\CopyHelper.cs" />
+    <Compile Include="Assets\Scripts\Utility\Extensions\System\Collections\Generic\IListExtensions.cs" />
+    <Compile Include="Assets\Scripts\Utility\Selector\ReactivePropertyFunc`1.cs" />
+    <Compile Include="Assets\Scripts\SystemModule\Reddot\Config\ReddotConfig.cs" />
+    <Compile Include="Assets\Scripts\SystemModule\Reddot\Component\ReddotComponent.cs" />
+    <Compile Include="Assets\Scripts\Utility\Singleton.cs" />
+    <Compile Include="Assets\Scripts\Utility\Helper\IOHelper.cs" />
+    <Compile Include="Assets\Scripts\SystemModule\Reddot\Status\IReddotStatus.cs" />
+    <Compile Include="Assets\Scripts\Utility\Selector\ReactiveProperty`1.cs" />
+    <Compile Include="Assets\Scripts\SystemModule\Reddot\Status\ReddotStatusCollectionsLayer2.cs" />
+    <Compile Include="Assets\Scripts\SystemModule\Reddot\ReddotIndexList.cs" />
+    <Compile Include="Assets\Scripts\SystemModule\Reddot\Node\Layer2.cs" />
+    <Compile Include="Assets\Scripts\SystemModule\Reddot\Node\Common.cs" />
+    <Compile Include="Assets\Scripts\SystemModule\Reddot\Status\ReddotStatusCollectionsLayer1.cs" />
+    <Compile Include="Assets\Scripts\SystemModule\Reddot\Status\ReddotStatusCollections.cs" />
+    <Compile Include="Assets\Scripts\Utility\Subscriber\Subscriber`1.cs" />
+    <Compile Include="Assets\Scripts\Utility\Selector\CollectSelector`1.cs" />
+    <Compile Include="Assets\Scripts\Utility\SerializableDictionary.cs" />
+    <Compile Include="Assets\Scripts\Utility\Extensions\System\Threading\Tasks\TasksExtensions.cs" />
+    <Compile Include="Assets\Scripts\Utility\Subscriber\TypeSubscriber`1.cs" />
+    <Compile Include="Assets\Scripts\Utility\Selector\MappingSelector`2.cs" />
+    <Compile Include="Assets\Scripts\SystemModule\Reddot\Constant\ReddotConstant.cs" />
+    <Compile Include="Assets\Scripts\SystemModule\Reddot\Node\Layer1.cs" />
+    <Compile Include="Assets\Scripts\Utility\Helper\CrcHelper.cs" />
+    <Compile Include="Assets\Scripts\Utility\Selector\IReactiveProperty`1.cs" />
+    <Compile Include="Assets\Scripts\SystemModule\Reddot\ReddotHandler.cs" />
+    <Compile Include="Assets\Scripts\SystemModule\Reddot\Status\ReddotStatusCommon.cs" />
+    <Compile Include="Assets\Scripts\SystemModule\Reddot\Config\ReddotConfig.BuiltIn.cs" />
+    <Compile Include="Assets\Scripts\Utility\Extensions\UnityEngine\LogValidator.cs" />
+    <Compile Include="Assets\Scripts\SystemModule\Reddot\Node\IReddotNode.cs" />
+    <Compile Include="Assets\Scripts\SystemModule\Reddot\ReddotTreeManager.cs" />
+    <Compile Include="Assets\Scripts\Utility\Extensions\UnityEngine\LogExtensions.cs" />
+    <Compile Include="Assets\Scripts\SystemModule\Reddot\ReddotTree.cs" />
+    <Compile Include="Assets\Scripts\Utility\BusyDisposable.cs" />
+    <Compile Include="Assets\Scripts\Utility\Subscriber\PackMarkBit`1.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:\UnityEditor\2022.3.28f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -298,6 +333,9 @@
     <Reference Include="ReportGeneratorMerged">
       <HintPath>C:\UnityProject\Utopia\Client\Library\PackageCache\com.unity.testtools.codecoverage@1.2.5\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
     </Reference>
+    <Reference Include="LitJSON">
+      <HintPath>C:\UnityProject\Utopia\Client\Assets\Plugins\LitJSON.dll</HintPath>
+    </Reference>
     <Reference Include="dnlib">
       <HintPath>C:\UnityProject\Utopia\Client\Library\PackageCache\com.code-philosophy.hybridclr@88e20505f8\Plugins\dnlib.dll</HintPath>
     </Reference>
@@ -306,6 +344,9 @@
     </Reference>
     <Reference Include="LZ4">
       <HintPath>C:\UnityProject\Utopia\Client\Library\PackageCache\com.code-philosophy.hybridclr@88e20505f8\Plugins\LZ4.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>C:\UnityProject\Utopia\Client\Assets\Plugins\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:\UnityEditor\2022.3.28f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
