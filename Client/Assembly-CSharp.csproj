@@ -52,6 +52,7 @@
     <Compile Include="Assets\Scripts\SystemModule\Reddot\Config\ReddotConfig.cs" />
     <Compile Include="Assets\Scripts\SystemModule\Reddot\Component\ReddotComponent.cs" />
     <Compile Include="Assets\Scripts\Utility\Singleton.cs" />
+    <Compile Include="Assets\Scripts\Utility\SortBuffer.cs" />
     <Compile Include="Assets\Scripts\Utility\Helper\IOHelper.cs" />
     <Compile Include="Assets\Scripts\SystemModule\Reddot\Status\IReddotStatus.cs" />
     <Compile Include="Assets\Scripts\Utility\Selector\ReactiveProperty`1.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Assets\Scripts\SystemModule\Reddot\ReddotTree.cs" />
     <Compile Include="Assets\Scripts\Utility\BusyDisposable.cs" />
     <Compile Include="Assets\Scripts\Utility\Subscriber\PackMarkBit`1.cs" />
+    <None Include="Assets\ReadMe.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:\UnityEditor\2022.3.28f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
