@@ -49,6 +49,7 @@
     <Compile Include="Assets\Editor\Unit\CopyExample.cs" />
     <Compile Include="Assets\Editor\Unit\ThreadExample.cs" />
     <Compile Include="Assets\Editor\Unit\UniTaskExample.cs" />
+    <Compile Include="Assets\Editor\Unit\LowMemoryBufferExample.cs" />
     <Compile Include="Assets\Editor\Unit\ListExample.cs" />
     <Compile Include="Assets\Editor\Utility\MeshCombine.cs" />
     <Compile Include="Assets\Editor\Unit\RegularExample.cs" />

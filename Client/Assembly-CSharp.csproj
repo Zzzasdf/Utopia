@@ -45,6 +45,7 @@
     <Analyzer Include="C:\UnityEditor\2022.3.28f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Utility\LowMemoryBuffer\KLongVBoolLowMemoryBuffer.cs" />
     <Compile Include="Assets\Scripts\Utility\Extensions\UnityEngine\LogExtensions.SourceCode.cs" />
     <Compile Include="Assets\Scripts\Utility\Helper\CopyHelper.cs" />
     <Compile Include="Assets\Scripts\Utility\Extensions\System\Collections\Generic\IListExtensions.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="Assets\Scripts\SystemModule\Reddot\Component\ReddotComponent.cs" />
     <Compile Include="Assets\Scripts\Utility\Singleton.cs" />
     <Compile Include="Assets\Scripts\Utility\SortBuffer.cs" />
+    <Compile Include="Assets\Scripts\Utility\LowMemoryBuffer\LowMemoryBufferSystemConfig.cs" />
     <Compile Include="Assets\Scripts\Utility\Helper\IOHelper.cs" />
     <Compile Include="Assets\Scripts\SystemModule\Reddot\Status\IReddotStatus.cs" />
     <Compile Include="Assets\Scripts\Utility\Selector\ReactiveProperty`1.cs" />
@@ -60,7 +62,10 @@
     <Compile Include="Assets\Scripts\SystemModule\Reddot\ReddotIndexList.cs" />
     <Compile Include="Assets\Scripts\SystemModule\Reddot\Node\Layer2.cs" />
     <Compile Include="Assets\Scripts\SystemModule\Reddot\Node\Common.cs" />
+    <Compile Include="Assets\Scripts\Utility\LowMemoryBuffer\KLongVBitLowMemoryBuffer.cs" />
+    <Compile Include="Assets\Scripts\Utility\LowMemoryBuffer\KIntVBoolLowMemoryBuffer.cs" />
     <Compile Include="Assets\Scripts\SystemModule\Reddot\Status\ReddotStatusCollectionsLayer1.cs" />
+    <Compile Include="Assets\Scripts\Utility\LowMemoryBuffer\BitmapLowMemoryBuffer.cs" />
     <Compile Include="Assets\Scripts\SystemModule\Reddot\Status\ReddotStatusCollections.cs" />
     <Compile Include="Assets\Scripts\Utility\Subscriber\Subscriber`1.cs" />
     <Compile Include="Assets\Scripts\Utility\Selector\CollectSelector`1.cs" />
@@ -68,15 +73,21 @@
     <Compile Include="Assets\Scripts\Utility\Extensions\System\Threading\Tasks\TasksExtensions.cs" />
     <Compile Include="Assets\Scripts\Utility\Subscriber\TypeSubscriber`1.cs" />
     <Compile Include="Assets\Scripts\Utility\Selector\MappingSelector`2.cs" />
+    <Compile Include="Assets\Scripts\Utility\LowMemoryBuffer\LowMemoryBufferCollector.cs" />
     <Compile Include="Assets\Scripts\SystemModule\Reddot\Constant\ReddotConstant.cs" />
     <Compile Include="Assets\Scripts\SystemModule\Reddot\Node\Layer1.cs" />
+    <Compile Include="Assets\Scripts\Utility\LowMemoryBuffer\LowMemoryBufferSystem.cs" />
+    <Compile Include="Assets\Scripts\Utility\LowMemoryBuffer\ILowMemoryBuffer.cs" />
     <Compile Include="Assets\Scripts\Utility\Helper\CrcHelper.cs" />
     <Compile Include="Assets\Scripts\Utility\Selector\IReactiveProperty`1.cs" />
     <Compile Include="Assets\Scripts\SystemModule\Reddot\ReddotHandler.cs" />
     <Compile Include="Assets\Scripts\SystemModule\Reddot\Status\ReddotStatusCommon.cs" />
+    <Compile Include="Assets\Scripts\Utility\LowMemoryBuffer\KIntVIntLowMemoryBuffer.cs" />
     <Compile Include="Assets\Scripts\SystemModule\Reddot\Config\ReddotConfig.BuiltIn.cs" />
     <Compile Include="Assets\Scripts\Utility\Extensions\UnityEngine\LogValidator.cs" />
     <Compile Include="Assets\Scripts\SystemModule\Reddot\Node\IReddotNode.cs" />
+    <Compile Include="Assets\Scripts\Utility\LowMemoryBuffer\KLongVLongLowMemoryBuffer.cs" />
+    <Compile Include="Assets\Scripts\Utility\LowMemoryBuffer\KIntVBitLowMemoryBuffer.cs" />
     <Compile Include="Assets\Scripts\SystemModule\Reddot\ReddotTreeManager.cs" />
     <Compile Include="Assets\Scripts\Utility\Extensions\UnityEngine\LogExtensions.cs" />
     <Compile Include="Assets\Scripts\SystemModule\Reddot\ReddotTree.cs" />

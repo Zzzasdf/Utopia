@@ -15,7 +15,7 @@ C:/UnityProject/Utopia/Client
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-50672
+58908
 Successfully changed project path to: C:/UnityProject/Utopia/Client
 C:/UnityProject/Utopia/Client
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -49,12 +49,12 @@ C:/UnityProject/Utopia/Client
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [6584] Host "[IP] 192.168.0.103 [Port] 0 [Flags] 2 [Guid] 2334080034 [EditorId] 2334080034 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-PTCAJMMH) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [23240] Host "[IP] 192.168.0.103 [Port] 0 [Flags] 2 [Guid] 3355235892 [EditorId] 3355235892 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-PTCAJMMH) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [6584] Host "[IP] 192.168.0.103 [Port] 0 [Flags] 2 [Guid] 2334080034 [EditorId] 2334080034 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-PTCAJMMH) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [23240] Host "[IP] 192.168.0.103 [Port] 0 [Flags] 2 [Guid] 3355235892 [EditorId] 3355235892 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-PTCAJMMH) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
 [Physics::Module] Initialized MultithreadedJobDispatcher with 31 workers.
-Refreshing native plugins compatible for Editor in 9393.40 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 10.23 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.28f1 (6bae5ce6b222)
 [Subsystems] Discovering subsystems at path C:/UnityEditor/2022.3.28f1/Editor/Data/Resources/UnitySubsystems
@@ -70,51 +70,171 @@ Initialize mono
 Mono path[0] = 'C:/UnityEditor/2022.3.28f1/Editor/Data/Managed'
 Mono path[1] = 'C:/UnityEditor/2022.3.28f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/UnityEditor/2022.3.28f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56488
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56420
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/UnityEditor/2022.3.28f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: C:/UnityEditor/2022.3.28f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll
 Register platform support module: C:/UnityEditor/2022.3.28f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 1.522581 seconds.
-- Loaded All Assemblies, in 25.784 seconds
+Registered in 0.007001 seconds.
+- Loaded All Assemblies, in  0.317 seconds
 Native extension for WindowsStandalone target not found
 [usbmuxd] Start listen thread
 [usbmuxd] Listen thread started
 Native extension for iOS target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 668 ms
+Unable to list connected devices. 
+adb.exe: failed to check server version: protocol fault (couldn't read status): connection reset
+
+UnityEditor.Android.CommandInvokationFailure: Unable to list connected devices. 
+C:\UnityEditor\2022.3.28f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platform-tools\adb.exe devices -l
+
+Environment Variables:
+PROCESSOR_ARCHITECTURE = AMD64
+AMPLITUDE_API_KEY_YELLOWBUCKET_DEV = 48835b4d1f5e342aefe5f016324d296a
+GATEWAY_VM_OPTIONS = C:\Users\lsw13\Desktop\jetbra\vmoptions\gateway.vmoptions
+DriverData = C:\Windows\System32\Drivers\DriverData
+USERDOMAIN = LAPTOP-PTCAJMMH
+CommonProgramFiles(x86) = C:\Program Files (x86)\Common Files
+COMPUTERNAME = LAPTOP-PTCAJMMH
+DEBUG_ENV_VAR = UnityHub
+LOGONSERVER = \\LAPTOP-PTCAJMMH
+AMPLITUDE_TOKEN_GREENBUCKET_PROD = yyzPzalJDwrQcYNuOZam0bhKb26WyyhK
+PUBLIC = C:\Users\Public
+ProgramData = C:\ProgramData
+SESSIONNAME = Console
+AMPLITUDE_TOKEN_YELLOWBUCKET_PROD = Ph-837Q6GNodAkyc2MRkxVPUcjlIET4d
+RegionCode = APJ
+APPDATA = C:\Users\lsw13\AppData\Roaming
+SystemRoot = C:\windows
+windir = C:\windows
+AMPLITUDE_API_KEY_REDBUCKET_DEV = 46b8b46515e7632fc42a504b72e05fd0
+ProgramFiles(x86) = C:\Program Files (x86)
+ProgramW6432 = C:\Program Files
+OS = Windows_NT
+DATAGRIP_VM_OPTIONS = C:\Users\lsw13\Desktop\jetbra\vmoptions\datagrip.vmoptions
+PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 183 Stepping 1, GenuineIntel
+HEAP_CLIENT_TOKEN_STAGING = 3786794399
+HOMEPATH = \Users\lsw13
+FPS_BROWSER_USER_PROFILE_STRING = Default
+CLION_VM_OPTIONS = C:\Users\lsw13\Desktop\jetbra\vmoptions\clion.vmoptions
+AMPLITUDE_TOKEN_REDBUCKET_DEV = U4PSN7S7PuYVRODivvdcFwbu8R6IHGqa
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_2224_SSBOMROAYPLIEEVO
+SystemDrive = C:
+PROCESSOR_LEVEL = 6
+EFC_5136 = 1
+platformcode = M7
+CommonProgramFiles = C:\Program Files\Common Files
+RIDER_VM_OPTIONS = C:\Users\lsw13\Desktop\jetbra\vmoptions\rider.vmoptions
+JETBRAINS_CLIENT_VM_OPTIONS = C:\Users\lsw13\Desktop\jetbra\vmoptions\jetbrains_client.vmoptions
+DEVECOSTUDIO_VM_OPTIONS = C:\Users\lsw13\Desktop\jetbra\vmoptions\devecostudio.vmoptions
+USERDOMAIN_ROAMINGPROFILE = LAPTOP-PTCAJMMH
+TEMP = C:\Users\lsw13\AppData\Local\Temp
+ProgramFiles = C:\Program Files
+CommonProgramW6432 = C:\Program Files\Common Files
+Path = C:\Python\Scripts\;C:\Python\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;C:\Program Files\HP\OMEN-Broadcast\Common;C:\Git\cmd;C:\Program Files\dotnet\;C:\Program Files\TortoiseGit\bin;C:\Users\lsw13\AppData\Local\Microsoft\WindowsApps;;C:\Microsoft VS Code\bin;C:\Users\lsw13\.dotnet\tools;C:\PyCharm\PyCharm 2024.2.3\bin;
+RUBYMINE_VM_OPTIONS = C:\Users\lsw13\Desktop\jetbra\vmoptions\rubymine.vmoptions
+AMPLITUDE_TOKEN_YELLOWBUCKET_DEV = wKi8foVigDditGFvmZewRFWsEbX9Y0YO
+AMPLITUDE_API_KEY_GREENBUCKET_DEV = 3ded2a762163603391a425f688f990c8
+AMPLITUDE_API_KEY_REDBUCKET_PROD = ca12bb461ea96f9bdf5df4ded7d52994
+APPCODE_VM_OPTIONS = C:\Users\lsw13\Desktop\jetbra\vmoptions\appcode.vmoptions
+HOMEDRIVE = C:
+AMPLITUDE_API_KEY_STAGING = 83ee04fccc67e4fcc7dd527c4c6f1e21
+iGame = C:\iGame\
+USERNAME = 六十五
+OneDrive = C:\Users\lsw13\OneDrive
+AMPLITUDE_API_KEY_YELLOWBUCKET_PROD = e03a9bbe92dc38a88cdb068d24c65b46
+IGCCSVC_DB = AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAaasvlVLRc0CtQ4UZIewHgAQAAAACAAAAAAAQZgAAAAEAACAAAACHZd3qVfXfEPikFglWsTpkScpM1GOiQTLNxT1+scq5sAAAAAAOgAAAAAIAACAAAABmsPNeu1tM0WUV8mpUdK8cNdxP7jumL91AZ/BDo8NZN2AAAAACo3nu9rAT9FMkVWu5pQYKbyjhSot3S7E64KB70eNnpggNb03LD9hC0solw6blcfKQcHiKGcA8BrJg/aKhduRsPLdS2wDNX2Oa11Qg86tmKHV/fe3aD2ijiaKkalrlEg9AAAAAiBimcE/IZ85tqw154p7FVQ/nNOsB3Ghpv1yIyA82P5Us9BqF7PGROxHWoTIR+8ybiISpA4r+9aOgDiMMDJK+1w==
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW
+AMPLITUDE_TOKEN_REDBUCKET_PROD = QqyoFpcWPi7V17p80_46CF6-sNGRGbHo
+JAVA_TOOL_OPTIONS = -Dfile.encoding=UTF-8
+NUMBER_OF_PROCESSORS = 32
+PHPSTORM_VM_OPTIONS = C:\Users\lsw13\Desktop\jetbra\vmoptions\phpstorm.vmoptions
+AMPLITUDE_TOKEN_GREENBUCKET_DEV = 84H2gMm_FJzhr3mBaX1lM1JVukmCM7d9
+PYCHARM_VM_OPTIONS = C:\Users\lsw13\Desktop\jetbra\vmoptions\pycharm.vmoptions
+AMPLITUDE_DEPLOYMENT_KEY_RED_BUCKET_DEV = client-wbjHYrmeSR87GmWOE7LDpf7sUySOIKHm
+GOLAND_VM_OPTIONS = C:\Users\lsw13\Desktop\jetbra\vmoptions\goland.vmoptions
+PyCharm = C:\PyCharm\PyCharm 2024.2.3\bin;
+AMPLITUDE_API_KEY_GREENBUCKET_PROD = c86fea37a9e1d3f0878b96e15b111c7c
+ComSpec = C:\windows\system32\cmd.exe
+WEBSTORM_VM_OPTIONS = C:\Users\lsw13\Desktop\jetbra\vmoptions\webstorm.vmoptions
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+ZES_ENABLE_SYSMAN = 1
+PROCESSOR_REVISION = b701
+JETBRAINSCLIENT_VM_OPTIONS = C:\Users\lsw13\Desktop\jetbra\vmoptions\jetbrainsclient.vmoptions
+AMPLITUDE_DEPLOYMENT_KEY_RED_BUCKET_PROD = client-zH8Y7OK1i331EKuG77C6UxN8ygcM6LzS
+TMP = C:\Users\lsw13\AppData\Local\Temp
+IDEA_VM_OPTIONS = C:\Users\lsw13\Desktop\jetbra\vmoptions\idea.vmoptions
+WEBIDE_VM_OPTIONS = C:\Users\lsw13\Desktop\jetbra\vmoptions\webide.vmoptions
+OnlineServices = Online Services
+AMPLITUDE_API_KEY = 28f3cae0b33b8b3702120c9ed1a935aa
+FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
+SENTRY_ACCESS_TOKEN = 3df78d9e53f8456aa90fbae044ce1a6261421ab1d0014674bc2e933477289017
+HEAP_CLIENT_TOKEN = 1717415662
+ALLUSERSPROFILE = C:\ProgramData
+DATASPELL_VM_OPTIONS = C:\Users\lsw13\Desktop\jetbra\vmoptions\dataspell.vmoptions
+STUDIO_VM_OPTIONS = C:\Users\lsw13\Desktop\jetbra\vmoptions\studio.vmoptions
+PSModulePath = C:\Program Files\WindowsPowerShell\Modules;C:\windows\system32\WindowsPowerShell\v1.0\Modules
+LOCALAPPDATA = C:\Users\lsw13\AppData\Local
+USERPROFILE = C:\Users\lsw13
+WOOTRIC_CLIENT_TOKEN = NPS-aa8be4c3
+
+
+stderr[
+adb.exe: failed to check server version: protocol fault (couldn't read status): connection reset
+]
+stdout[
+
+]
+exit code: 1
+  at UnityEditor.Android.Command.WaitForProgramToRun (UnityEditor.Utils.Program p, UnityEditor.Android.Command+WaitingForProcessToExit waitingForProcessToExit, System.String errorMsg) [0x00033] in <eab0d59bd73a4e308f0300c0ea577056>:0 
+  at UnityEditor.Android.Command.Run (System.Diagnostics.ProcessStartInfo psi, UnityEditor.Android.Command+WaitingForProcessToExit waitingForProcessToExit, System.String errorMsg) [0x0002d] in <eab0d59bd73a4e308f0300c0ea577056>:0 
+  at UnityEditor.Android.Command.Run (System.String command, System.String args, System.String workingdir, UnityEditor.Android.Command+WaitingForProcessToExit waitingForProcessToExit, System.String errorMsg) [0x0000a] in <eab0d59bd73a4e308f0300c0ea577056>:0 
+  at UnityEditor.Android.ADB.RunInternal (System.String[] command, UnityEditor.Android.Command+WaitingForProcessToExit waitingForProcessToExit, System.String errorMsg) [0x0001e] in <eab0d59bd73a4e308f0300c0ea577056>:0 
+  at UnityEditor.Android.ADB.Run (System.String[] command, UnityEditor.Android.Command+WaitingForProcessToExit waitingForProcessToExit, System.String errorMsg) [0x00013] in <eab0d59bd73a4e308f0300c0ea577056>:0 
+  at UnityEditor.Android.AndroidDeploymentTargetsExtension.GetKnownTargets (UnityEditor.DeploymentTargets.IDeploymentTargetsMainThreadContext context, UnityEditor.ProgressHandler progressHandler) [0x00117] in <eab0d59bd73a4e308f0300c0ea577056>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogWarning (object)
+UnityEditor.Android.AndroidDeploymentTargetsExtension:GetKnownTargets (UnityEditor.DeploymentTargets.IDeploymentTargetsMainThreadContext,UnityEditor.ProgressHandler)
+UnityEditor.Android.TargetScanWorker:ScanSync ()
+UnityEditor.Android.TargetExtension:OnUsbDevicesChanged (UnityEditor.Hardware.UsbDevice[])
+UnityEditor.Android.TargetExtension:OnLoad ()
+UnityEditor.Modules.ModuleManager:InitializePlatformSupportModules ()
+
+Android Extension - Scanning For ADB Devices 178 ms
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.869 seconds
-Domain Reload Profiling: 27651ms
-	BeginReloadAssembly (17312ms)
+- Finished resetting the current domain, in  0.488 seconds
+Domain Reload Profiling: 804ms
+	BeginReloadAssembly (99ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (1619ms)
-	RebuildNativeTypeToScriptingClass (10ms)
-	initialDomainReloadingComplete (1573ms)
-	LoadAllAssembliesAndSetupDomain (5267ms)
-		LoadAssemblies (17311ms)
+	RebuildCommonClasses (29ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (52ms)
+	LoadAllAssembliesAndSetupDomain (127ms)
+		LoadAssemblies (98ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (5265ms)
-			TypeCache.Refresh (5263ms)
-				TypeCache.ScanAssembly (4316ms)
+		AnalyzeDomain (124ms)
+			TypeCache.Refresh (123ms)
+				TypeCache.ScanAssembly (112ms)
 			ScanForSourceGeneratedMonoScriptInfo (0ms)
 			ResolveRequiredComponents (0ms)
-	FinalizeReload (1869ms)
+	FinalizeReload (488ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1814ms)
+		SetupLoadedEditorAssemblies (436ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (1646ms)
+			InitializePlatformSupportModulesInManaged (288ms)
 			SetLoadedEditorAssemblies (4ms)
 			RefreshPlugins (0ms)
 			BeforeProcessingInitializeOnLoad (2ms)
-			ProcessInitializeOnLoadAttributes (107ms)
-			ProcessInitializeOnLoadMethodAttributes (56ms)
+			ProcessInitializeOnLoadAttributes (101ms)
+			ProcessInitializeOnLoadMethodAttributes (42ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -122,8 +242,8 @@ Domain Reload Profiling: 27651ms
 ========================================================================
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in 23.909 seconds
-Refreshing native plugins compatible for Editor in 4.44 ms, found 3 plugins.
+- Loaded All Assemblies, in  0.662 seconds
+Refreshing native plugins compatible for Editor in 4.59 ms, found 3 plugins.
 Native extension for WindowsStandalone target not found
 Native extension for iOS target not found
 Native extension for Android target not found
@@ -132,47 +252,47 @@ Package Manager log level set to [2]
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.613 seconds
-Domain Reload Profiling: 24518ms
-	BeginReloadAssembly (140ms)
+- Finished resetting the current domain, in  0.524 seconds
+Domain Reload Profiling: 1184ms
+	BeginReloadAssembly (130ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (4ms)
+		DisableScriptedObjects (5ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (19ms)
-	RebuildCommonClasses (31ms)
+		CreateAndSetChildDomain (18ms)
+	RebuildCommonClasses (33ms)
 	RebuildNativeTypeToScriptingClass (10ms)
-	initialDomainReloadingComplete (40ms)
-	LoadAllAssembliesAndSetupDomain (23684ms)
-		LoadAssemblies (21551ms)
+	initialDomainReloadingComplete (44ms)
+	LoadAllAssembliesAndSetupDomain (443ms)
+		LoadAssemblies (291ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (2217ms)
-			TypeCache.Refresh (2191ms)
-				TypeCache.ScanAssembly (2018ms)
-			ScanForSourceGeneratedMonoScriptInfo (19ms)
-			ResolveRequiredComponents (6ms)
-	FinalizeReload (613ms)
+		AnalyzeDomain (229ms)
+			TypeCache.Refresh (202ms)
+				TypeCache.ScanAssembly (183ms)
+			ScanForSourceGeneratedMonoScriptInfo (20ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (525ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (475ms)
+		SetupLoadedEditorAssemblies (394ms)
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (31ms)
-			SetLoadedEditorAssemblies (3ms)
+			SetLoadedEditorAssemblies (4ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (57ms)
-			ProcessInitializeOnLoadAttributes (351ms)
-			ProcessInitializeOnLoadMethodAttributes (27ms)
-			AfterProcessingInitializeOnLoad (6ms)
+			BeforeProcessingInitializeOnLoad (60ms)
+			ProcessInitializeOnLoadAttributes (269ms)
+			ProcessInitializeOnLoadMethodAttributes (25ms)
+			AfterProcessingInitializeOnLoad (5ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (6ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.11 seconds
-Refreshing native plugins compatible for Editor in 5.07 ms, found 3 plugins.
+		AwakeInstancesAfterBackupRestoration (5ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 4.56 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3793 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 49 unused Assets / (62.3 KB). Loaded Objects now: 4248.
+Unloading 3795 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 49 unused Assets / (62.2 KB). Loaded Objects now: 4250.
 Memory consumption went from 146.6 MB to 146.5 MB.
-Total: 3.088000 ms (FindLiveObjects: 0.182800 ms CreateObjectMapping: 0.062100 ms MarkObjects: 2.737400 ms  DeleteObjects: 0.104500 ms)
+Total: 3.709500 ms (FindLiveObjects: 0.184200 ms CreateObjectMapping: 0.076900 ms MarkObjects: 3.351300 ms  DeleteObjects: 0.096100 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
@@ -188,3 +308,11 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 81452.343252 seconds.
+  path: Assets/ReadMe.txt
+  artifactKey: Guid(b4c0a99b5cb5a2f41ae7d37119590732) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ReadMe.txt using Guid(b4c0a99b5cb5a2f41ae7d37119590732) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3bf5ea5016725adab93bd709a931aa6d') in 0.010622 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
