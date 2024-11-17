@@ -22,16 +22,16 @@ public partial class RingScrollGenerator
     
     private class DirectionInfo
     {
-        private Func<EDirection> eGenerateDirFunc;
+        private EDirection eGenerateDir;
         
-        public DirectionInfo(Func<EDirection> eGenerateDirFunc)
+        public void Init(EDirection eGenerateDir)
         {
-            this.eGenerateDirFunc = eGenerateDirFunc;
+            this.eGenerateDir = eGenerateDir;
         }
-
+        
         public EDirection EGenerateDir()
         {
-            return eGenerateDirFunc.Invoke();
+            return eGenerateDir;
         }
 
         public ESequence EScrollSequence(int selectedIndex, int curIndex, int count)

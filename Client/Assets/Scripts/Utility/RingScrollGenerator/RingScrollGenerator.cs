@@ -47,13 +47,12 @@ public partial class RingScrollGenerator : MonoBehaviour
         if (init) return;
         init = !init;
         
-        directionInfo = new DirectionInfo(() => eGenerateDir);
+        directionInfo = new DirectionInfo();
         
         itemContainer = new ItemContainer(transform, itemTmp,
             directionInfo, OnItemClick);
 
         scrollAniInfo = new ScrollAniInfo(itemContainer,
-            () => eShape,() => xAxisRadius, () => yAxisRadius,
             () => eScrollAni, () => onceScrollMillisecond, () => continuousScrollIntervalMillisecond);
 
         optionalParts.Init(itemContainer);
@@ -77,6 +76,8 @@ public partial class RingScrollGenerator : MonoBehaviour
     {
         Init();
         scrollAniInfo.ForceEnd();
+        directionInfo.Init(eGenerateDir);
+        scrollAniInfo.Init(eShape, xAxisRadius, yAxisRadius);
         itemContainer.SetCount(eShape, xAxisRadius, yAxisRadius, startAngle, eGenerateDir,
             count, selectedIndex);
     }

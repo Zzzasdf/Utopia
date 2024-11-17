@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public partial class RingScrollGenerator
@@ -24,14 +25,13 @@ public partial class RingScrollGenerator
     private class ScrollAniInfo
     {
         private readonly ItemContainer itemContainer;
-        
-        private readonly Func<EShape> eShapeFunc;
-        private readonly Func<int> xAxisRadiusFunc;
-        private readonly Func<int> yAxisRadiusFunc;
-        
         private readonly Func<EScrollAni> eScrollAniFunc;
         private readonly Func<int> onceScrollMillisecondFunc;
         private readonly Func<int> continuousScrollIntervalMillisecondFunc;
+
+        private IShape shape;
+        private int xAxisRadius;
+        private int yAxisRadius;
 
         private IScrollAni scrollAni;
         private List<Vector2> itemsOriginPos;
@@ -43,18 +43,25 @@ public partial class RingScrollGenerator
         private int scrollDir;
         private int scrollTargetIndex;
 
-        public ScrollAniInfo(ItemContainer itemContainer,
-            Func<EShape> eShapeFunc, Func<int> xAxisRadiusFunc, Func<int> yAxisRadiusFunc,
+        public ScrollAniInfo(ItemContainer itemContainer, 
             Func<EScrollAni> eScrollAniFunc, Func<int> onceScrollMillisecondFunc, Func<int> continuousScrollIntervalMillisecondFunc)
         {
             this.itemContainer = itemContainer;
-            this.eShapeFunc = eShapeFunc;
-            this.xAxisRadiusFunc = xAxisRadiusFunc;
-            this.yAxisRadiusFunc = yAxisRadiusFunc;
-            
             this.eScrollAniFunc = eScrollAniFunc;
             this.onceScrollMillisecondFunc = onceScrollMillisecondFunc;
             this.continuousScrollIntervalMillisecondFunc = continuousScrollIntervalMillisecondFunc;
+        }
+
+        public void Init(EShape eShape, int xAxisRadius, int yAxisRadius)
+        {
+            if (!shapeMap.TryGetValue(eShape, out IShape shape))
+            {
+                Debug.LogError($"未定义类型 => {eShape}");
+                return;
+            }
+            this.shape = shape;
+            this.xAxisRadius = xAxisRadius;
+            this.yAxisRadius = yAxisRadius;
             eScrollStatus = RingScrollGenerator.EScrollStatus.Freedom;
         }
 
@@ -218,14 +225,6 @@ public partial class RingScrollGenerator
             IReadOnlyList<RingScrollItem> items = itemContainer.Items();
             if (onceScrollProgress < 1)
             {
-                EShape eShape = eShapeFunc.Invoke();
-                if (!shapeMap.TryGetValue(eShape, out IShape shape))
-                {
-                    Debug.LogError($"未定义类型 => {eShape}");
-                    return;
-                }
-                int xAxisRadius = xAxisRadiusFunc.Invoke();
-                int yAxisRadius = yAxisRadiusFunc.Invoke();
                 for (int i = 0; i < items.Count; i++)
                 {
                     RingScrollItem item = items[i];
