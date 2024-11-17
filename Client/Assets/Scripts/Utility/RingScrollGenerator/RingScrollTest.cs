@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class RingScrollTest : MonoBehaviour
 {
     private RingScrollGenerator ringScrollGenerator;
-
+    [SerializeField] private int count = 10;
     private void Awake()
     {
         ringScrollGenerator = GetComponent<RingScrollGenerator>();
@@ -35,15 +35,15 @@ public class RingScrollTest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            ringScrollGenerator.SetCount(10, 5);
+            ringScrollGenerator.SetCount(count, ringScrollGenerator.CurSelectedIndex());
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            ringScrollGenerator.SetCount(3, 1);
+            ringScrollGenerator.SetIndex(8);
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            ringScrollGenerator.SetCount(20, 10);
+            ringScrollGenerator.SetScrollUntilIndex(4);
         }
     }
 }

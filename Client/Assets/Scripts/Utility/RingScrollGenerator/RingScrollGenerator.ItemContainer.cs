@@ -4,7 +4,7 @@ using UnityEngine;
 
 public partial class RingScrollGenerator
 {
-    [Serializable]
+    /// item 容器
     private class ItemContainer
     {
         private readonly Transform parentTra;
@@ -15,12 +15,12 @@ public partial class RingScrollGenerator
         private Action<int, Transform> onItemRender;
         private Action<int> onItemSelected;
         private Action<int> onItemFinalSelected;
-
+        
         public int Count { get; private set; }
         public int CurSelectedIndex { get; private set; }
         
-        private List<RingScrollItem> items = new List<RingScrollItem>();
-        private Queue<RingScrollItem> recycle = new Queue<RingScrollItem>();
+        private List<RingScrollItem> items = new();
+        private Queue<RingScrollItem> recycle = new();
 
         public IReadOnlyList<RingScrollItem> Items() => items;
 
@@ -58,14 +58,14 @@ public partial class RingScrollGenerator
             this.onItemFinalSelected = onItemFinalSelected;
         }
         
-        public void SetCount(int count, int selectedIndex, 
-            float startAngle, float xAxisRadius, float yAxisRadius)
+        public void SetCount(EShape eShape, int xAxisRadius, int yAxisRadius, int startAngle, EDirection eGenerateDir,
+            int count, int selectedIndex)
         {
             this.Count = count;
             SetItemCount();
-            if (count == 0) return;
+            if (count < 0) return;
             CurSelectedIndex = Mathf.Clamp(selectedIndex, 0, count - 1);
-            RefreshItemStatus(startAngle, directionInfo.GenerateDir(), xAxisRadius, yAxisRadius);
+            RefreshItemStatus(eShape, xAxisRadius, yAxisRadius, startAngle, eGenerateDir);
             SetRingSelectedEffect();
             onItemSelected?.Invoke(CurSelectedIndex);
             onItemFinalSelected?.Invoke(CurSelectedIndex);
@@ -111,32 +111,34 @@ public partial class RingScrollGenerator
                 }
             }
             
-            void RefreshItemStatus(float startAngle, Direction generateDir, float xAxisRadius, float yAxisRadius)
+            void RefreshItemStatus(EShape eShape, int xAxisRadius, int yAxisRadius, int startAngle, EDirection eGenerateDir)
             {
                 // 布局
                 float angularSpacing = (float)360 / count;
-                int dir = generateDir == Direction.Clockwise ? -1 : 1;
+                int dir = eGenerateDir == EDirection.Clockwise ? -1 : 1;
+                if (!shapeMap.TryGetValue(eShape, out IShape shape))
+                {
+                    Debug.LogError($"未定义类型 => {eShape}");
+                    return;
+                }
                 for (int i = 0; i < items.Count; i++)
                 {
-                    SetItem(items[i], i, startAngle + dir * angularSpacing * (i - CurSelectedIndex));
+                    SetItem(items[i], i, shape, xAxisRadius, yAxisRadius, startAngle + dir * angularSpacing * (i - CurSelectedIndex));
                 }
                 return;
                 
-                void SetItem(RingScrollItem item, int index, float angle)
+                void SetItem(RingScrollItem item, int index, IShape shape, int xAxisRadius, int yAxisRadius, float angle)
                 {
-                    float angleRadians = angle * Mathf.Deg2Rad;
-                    float x = xAxisRadius * Mathf.Cos(angleRadians);
-                    float y = yAxisRadius * Mathf.Sin(angleRadians);
-                    
-                    item.transform.localPosition = new Vector3Int(Mathf.RoundToInt(x), Mathf.RoundToInt(y));
+                    item.transform.localPosition = shape.GetLocalPos(xAxisRadius, yAxisRadius, angle);
                     item.Refresh(index);
                 }
             }
         }
 
         /// 旋转到对应索引
-        private void SetScrollUntilIndex(int index)
+        public void SetScrollUntilIndex(int index)
         {
+            if (Count == 0) return;
             while (index < 0)
             {
                 index += Count;
@@ -147,9 +149,9 @@ public partial class RingScrollGenerator
         }
         
         /// 向 指定方向 旋转 次数
-        public void SetScroll(Direction turnDir, int time)
+        public void SetScroll(EDirection eScrollDir, int time)
         {
-            SetScrollUntilIndex(directionInfo.GenerateDir() == turnDir ? 
+            SetScrollUntilIndex(directionInfo.EGenerateDir() == eScrollDir ? 
                 CurSelectedIndex - time : CurSelectedIndex + time);
             // SetTurnUntilIndex((generateDirInfo.Direction, turnDir) switch
             // {

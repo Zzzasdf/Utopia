@@ -3,7 +3,7 @@ using System;
 public partial class RingScrollGenerator
 {
     /// 方向
-    private enum Direction
+    private enum EDirection
     {
         // 顺时针
         Clockwise = -1,
@@ -12,7 +12,7 @@ public partial class RingScrollGenerator
     }
 
     /// 排序
-    private enum Sequence
+    private enum ESequence
     {
         /// 反序
         Reverse = -1,
@@ -22,19 +22,19 @@ public partial class RingScrollGenerator
     
     private class DirectionInfo
     {
-        private Func<Direction> generateDirFunc;
+        private Func<EDirection> eGenerateDirFunc;
         
-        public DirectionInfo(Func<Direction> generateDirFunc)
+        public DirectionInfo(Func<EDirection> eGenerateDirFunc)
         {
-            this.generateDirFunc = generateDirFunc;
+            this.eGenerateDirFunc = eGenerateDirFunc;
         }
 
-        public Direction GenerateDir()
+        public EDirection EGenerateDir()
         {
-            return generateDirFunc.Invoke();
+            return eGenerateDirFunc.Invoke();
         }
 
-        public Sequence ScrollSequence(int selectedIndex, int curIndex, int count)
+        public ESequence EScrollSequence(int selectedIndex, int curIndex, int count)
         {
             int downwardTime = 0;
             int upwardCountTime = 0;
@@ -51,14 +51,14 @@ public partial class RingScrollGenerator
 
             if (downwardTime < upwardCountTime)
             {
-                return Sequence.Forward;
+                return ESequence.Forward;
             }
             if (downwardTime > upwardCountTime)
             {
-                return Sequence.Reverse;
+                return ESequence.Reverse;
             }
             // 相等，全部顺时针旋转
-            return GenerateDir() == Direction.Clockwise ? Sequence.Reverse : Sequence.Forward;
+            return EGenerateDir() == EDirection.Clockwise ? ESequence.Reverse : ESequence.Forward;
         }
     }
 }

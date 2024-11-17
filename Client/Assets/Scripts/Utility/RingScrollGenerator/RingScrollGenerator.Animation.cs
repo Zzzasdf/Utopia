@@ -1,36 +1,34 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public partial class RingScrollGenerator
 {
     /// 滚动动画
-    private enum ScrollAni
+    private enum EScrollAni
     {
-        /// 线性，因为是椭圆，所以会 先向内聚拢，再向外分散
+        /// 线性，最短距离
         Linear,
         
-        /// 弧线，绕着椭圆弧边移动
+        /// 弧线，绕着边移动
         Arc,
     }
 
-    private static Dictionary<ScrollAni, IScrollAni> scrollAniMap = new Dictionary<ScrollAni, IScrollAni>
+    private static Dictionary<EScrollAni, IScrollAni> scrollAniMap = new()
     {
-        [ScrollAni.Linear] = new ScrollAniLinear(),
-        [ScrollAni.Arc] = new ScrollAniArc(),
+        [EScrollAni.Linear] = new ScrollAniLinear(),
+        [EScrollAni.Arc] = new ScrollAniArc(),
     };
     
     public interface IScrollAni
     {
-        void MoveAni(Transform itemTra, Vector2 originPos, Vector2 targetPos, float progress, 
-            int scrollDir, float xAxisRadius, float yAxisRadius);
+        void MoveAni(IShape shape, Transform itemTra, Vector2 originPos, Vector2 targetPos, float progress, 
+            int scrollDir, int xAxisRadius, int yAxisRadius);
     }
 
     public class ScrollAniLinear: IScrollAni
     {
-        void IScrollAni.MoveAni(Transform itemTra, Vector2 originPos, Vector2 targetPos, float progress, 
-            int scrollDir, float xAxisRadius, float yAxisRadius)
+        void IScrollAni.MoveAni(IShape shape, Transform itemTra, Vector2 originPos, Vector2 targetPos, float progress, 
+            int scrollDir, int xAxisRadius, int yAxisRadius)
         {
             itemTra.localPosition = originPos + (targetPos - originPos) * progress;
         }
@@ -38,66 +36,54 @@ public partial class RingScrollGenerator
 
     public class ScrollAniArc: IScrollAni
     {
-        void IScrollAni.MoveAni(Transform itemTra, Vector2 originPos, Vector2 targetPos, float progress, 
-            int scrollDir, float xAxisRadius, float yAxisRadius)
+        void IScrollAni.MoveAni(IShape shape, Transform itemTra, Vector2 originPos, Vector2 targetPos, float progress, 
+            int scrollDir, int xAxisRadius, int yAxisRadius)
         {
             if (originPos == Vector2.zero || originPos == targetPos)
             {
                 return;
             }
-            if (progress >= 1)
+
+            float originDeg = GetPositiveDeg(originPos, xAxisRadius, yAxisRadius, shape);
+            float targetDeg = GetPositiveDeg(targetPos, xAxisRadius, yAxisRadius, shape);
+            float diffDeg = GetDiffDeg(originDeg, targetDeg, scrollDir);
+
+            float newDeg = originDeg + diffDeg * progress;
+            itemTra.transform.localPosition = shape.GetLocalPos(xAxisRadius, yAxisRadius, newDeg);
+            return;
+
+            float GetPositiveDeg(Vector2 pos, int xAxisRadius, int yAxisRadius, IShape shape)
             {
-                // 去除误差
-                itemTra.transform.localPosition = targetPos;
-                return;
-            }
-            
-            float originAngeleDeg = Mathf.Acos(originPos.x / xAxisRadius) * Mathf.Rad2Deg;
-            float originYDir = Vector2.Dot(Vector2.up, originPos);
-            float originXDir = Vector2.Dot(Vector2.right, originPos);
-            
-            float targetAngeleDeg = Mathf.Acos(targetPos.x / xAxisRadius) * Mathf.Rad2Deg;
-            float targetYDir = Vector2.Dot(Vector2.up, targetPos);
-            float targetXDir = Vector2.Dot(Vector2.right, targetPos);
-            
-            float diffDeg = 0;
-            if (originYDir * targetYDir > 0)
-            {
-                // 同 y 轴向
-                diffDeg = Mathf.Abs(originAngeleDeg - targetAngeleDeg);
-            }
-            else
-            {
-                if (originAngeleDeg + targetAngeleDeg > 180)
+                float deg = shape.IsCircle() switch
                 {
-                    diffDeg = 360 - originAngeleDeg - targetAngeleDeg;
+                    true =>  Vector2.Angle(Vector2.right, pos / new Vector2(xAxisRadius, yAxisRadius)),
+                    false => Vector2.Angle(Vector2.right, pos),
+                };
+                float targetYDir = Vector2.Dot(Vector2.up, pos);
+                if (targetYDir < 0)
+                {
+                    deg = 360 - deg;
+                }
+                return deg;
+            }
+
+            float GetDiffDeg(float originDeg, float targetDeg, int dir)
+            {
+                float diffAngeleDefAbsDiff = Mathf.Abs(targetDeg - originDeg);
+                if (diffAngeleDefAbsDiff <= 180)
+                {
+                    return Mathf.Abs(targetDeg - originDeg) * dir;
+                }
+                if (originDeg > targetDeg)
+                {
+                    targetDeg += 360;
                 }
                 else
                 {
-                    diffDeg = originAngeleDeg + targetAngeleDeg;
+                    originDeg += 360;
                 }
+                return Mathf.Abs(targetDeg - originDeg) * dir;
             }
-            
-            originAngeleDeg *= (originYDir, originXDir) switch
-            {
-                (0, > 0) => 1,
-                (0, < 0) => -1,
-                (> 0, _) => 1,
-                (< 0, _) => -1,
-            };
-            // targetAngeleDeg *= (targetYDir, targetXDir) switch
-            // {
-            //     (0, > 0) => 1,
-            //     (0, < 0) => -1,
-            //     (> 0, _) => 1,
-            //     (< 0, _) => -1,
-            // };
-
-            float newDeg = originAngeleDeg + scrollDir * diffDeg * progress;
-            float angleRadians = newDeg * Mathf.Deg2Rad;
-            float x = xAxisRadius * Mathf.Cos(angleRadians);
-            float y = yAxisRadius * Mathf.Sin(angleRadians);
-            itemTra.transform.localPosition = new Vector2(x, y);
         }
     }
 }

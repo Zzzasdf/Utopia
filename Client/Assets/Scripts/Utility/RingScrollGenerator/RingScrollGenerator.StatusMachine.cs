@@ -5,7 +5,7 @@ using UnityEngine;
 public partial class RingScrollGenerator
 {
     /// 滚动状态
-    private enum ScrollStatus
+    private enum EScrollStatus
     {
         /// 自由状态
         Freedom = 1 << 0,
@@ -23,84 +23,100 @@ public partial class RingScrollGenerator
 
     private class ScrollAniInfo
     {
-        private readonly Func<ScrollAni> scrollAniFunc;
         private readonly ItemContainer itemContainer;
+        
+        private readonly Func<EShape> eShapeFunc;
+        private readonly Func<int> xAxisRadiusFunc;
+        private readonly Func<int> yAxisRadiusFunc;
+        
+        private readonly Func<EScrollAni> eScrollAniFunc;
         private readonly Func<int> onceScrollMillisecondFunc;
         private readonly Func<int> continuousScrollIntervalMillisecondFunc;
-        private readonly float xAxisRadius;
-        private readonly float yAxisRadius;
 
         private IScrollAni scrollAni;
         private List<Vector2> itemsOriginPos;
         private List<Vector2> itemsTargetPos;
         private float onceScrollProgress;
         private float continuousScrollIntervalProgress;
-        private ScrollStatus scrollStatus;
-        private Direction generatorDir;
-        private Sequence scrollSequence;
+        private EScrollStatus eScrollStatus;
+        private ESequence eScrollSequence;
         private int scrollDir;
         private int scrollTargetIndex;
 
-        public ScrollAniInfo(Func<ScrollAni> scrollAniFunc, ItemContainer itemContainer, 
-            Func<int> onceScrollMillisecondFunc, Func<int> continuousScrollIntervalMillisecondFunc,
-            float xAxisRadius, float yAxisRadius)
+        public ScrollAniInfo(ItemContainer itemContainer,
+            Func<EShape> eShapeFunc, Func<int> xAxisRadiusFunc, Func<int> yAxisRadiusFunc,
+            Func<EScrollAni> eScrollAniFunc, Func<int> onceScrollMillisecondFunc, Func<int> continuousScrollIntervalMillisecondFunc)
         {
-            this.scrollAniFunc = scrollAniFunc;
             this.itemContainer = itemContainer;
+            this.eShapeFunc = eShapeFunc;
+            this.xAxisRadiusFunc = xAxisRadiusFunc;
+            this.yAxisRadiusFunc = yAxisRadiusFunc;
+            
+            this.eScrollAniFunc = eScrollAniFunc;
             this.onceScrollMillisecondFunc = onceScrollMillisecondFunc;
             this.continuousScrollIntervalMillisecondFunc = continuousScrollIntervalMillisecondFunc;
-            this.xAxisRadius = xAxisRadius;
-            this.yAxisRadius = yAxisRadius;
-            scrollStatus = RingScrollGenerator.ScrollStatus.Freedom;
+            eScrollStatus = RingScrollGenerator.EScrollStatus.Freedom;
         }
 
-        public ScrollStatus ScrollStatus()
+        public EScrollStatus EScrollStatus()
         {
-            return scrollStatus;
+            return eScrollStatus;
         }
         
-        public void ResetStart(Direction generatorDir, Sequence scrollSequence, int scrollTargetIndex)
+        public void ResetStart(EDirection eGeneratorDir, ESequence eScrollSequence, int scrollTargetIndex)
         {
-            this.generatorDir = generatorDir;
-            this.scrollSequence = scrollSequence;
-            scrollDir = (generatorDir, scrollSequence) switch
+            this.eScrollSequence = eScrollSequence;
+            scrollDir = (generatorDir: eGeneratorDir, scrollSequence: eScrollSequence) switch
             {
-                (Direction.Clockwise, Sequence.Forward) => 1,
-                (Direction.Clockwise, Sequence.Reverse) => -1,
-                (Direction.Anticlockwise, Sequence.Forward) => -1,
-                (Direction.Anticlockwise, Sequence.Reverse) => 1,
+                (EDirection.Clockwise, ESequence.Forward) => 1,
+                (EDirection.Clockwise, ESequence.Reverse) => -1,
+                (EDirection.Anticlockwise, ESequence.Forward) => -1,
+                (EDirection.Anticlockwise, ESequence.Reverse) => 1,
             };
             this.scrollTargetIndex = scrollTargetIndex;
-            scrollStatus = RingScrollGenerator.ScrollStatus.Start;
+            eScrollStatus = RingScrollGenerator.EScrollStatus.Start;
         }
 
         public void ForceEnd()
         {
             onceScrollProgress = 0;
             continuousScrollIntervalProgress = 0;
-            scrollStatus = RingScrollGenerator.ScrollStatus.Freedom;
+            if (itemsOriginPos != null)
+            {
+                // 还原
+                IReadOnlyList<RingScrollItem> items = itemContainer.Items();
+                for (int i = 0; i < itemsOriginPos.Count; i++)
+                {
+                    RingScrollItem item = items[i];
+                    Vector2 originPos = itemsOriginPos[i];
+                    item.transform.localPosition = originPos;
+                }
+                itemsOriginPos.Clear();
+            }
+            itemsTargetPos?.Clear();
+            eScrollStatus = RingScrollGenerator.EScrollStatus.Freedom;
         }
         
         public void Update(float deltaTime)
         {
-            switch (scrollStatus)
+            switch (eScrollStatus)
             {
-                case RingScrollGenerator.ScrollStatus.Start:
+                case RingScrollGenerator.EScrollStatus.Start:
                 {
                     UpdateScrollStart(deltaTime);
                     break;
                 }
-                case RingScrollGenerator.ScrollStatus.Rolling:
+                case RingScrollGenerator.EScrollStatus.Rolling:
                 {
                     UpdateScrollRolling(deltaTime);
                     break;
                 }
-                case RingScrollGenerator.ScrollStatus.Interval:
+                case RingScrollGenerator.EScrollStatus.Interval:
                 {
                     UpdateScrollInterval(deltaTime);
                     break;
                 }
-                case RingScrollGenerator.ScrollStatus.End:
+                case RingScrollGenerator.EScrollStatus.End:
                 {
                     UpdateScrollEnd();
                     break;
@@ -112,14 +128,14 @@ public partial class RingScrollGenerator
         {
             onceScrollProgress = 0;
             continuousScrollIntervalProgress = 0;
-            if (!scrollAniMap.TryGetValue(scrollAniFunc.Invoke(), out IScrollAni scrollAni))
+            if (!scrollAniMap.TryGetValue(eScrollAniFunc.Invoke(), out IScrollAni scrollAni))
             {
-                Debug.LogError($"未定义类型 => {scrollAniFunc.Invoke()}");
+                Debug.LogError($"未定义类型 => {eScrollAniFunc.Invoke()}");
                 return;
             }
             this.scrollAni = scrollAni;
             ItemsPosGenerator();
-            scrollStatus = RingScrollGenerator.ScrollStatus.Rolling;
+            eScrollStatus = RingScrollGenerator.EScrollStatus.Rolling;
             Update(deltaTime);
         }
 
@@ -137,16 +153,18 @@ public partial class RingScrollGenerator
             {
                 return;
             }
-            itemContainer.SetCurSelectedIndex(itemContainer.CurSelectedIndex + (int)scrollSequence);
+            itemsOriginPos.Clear();
+            itemsTargetPos.Clear();
+            itemContainer.SetCurSelectedIndex(itemContainer.CurSelectedIndex + (int)eScrollSequence);
             if (itemContainer.CurSelectedIndex != scrollTargetIndex)
             {
                 continuousScrollIntervalProgress = 0;
-                scrollStatus = RingScrollGenerator.ScrollStatus.Interval;
+                eScrollStatus = RingScrollGenerator.EScrollStatus.Interval;
                 float extraTime = onceScrollSeconds * (onceScrollProgress - 1);
                 Update(extraTime);
                 return;
             }
-            scrollStatus = RingScrollGenerator.ScrollStatus.End;
+            eScrollStatus = RingScrollGenerator.EScrollStatus.End;
             Update(0);
         }
 
@@ -170,8 +188,7 @@ public partial class RingScrollGenerator
             void ExtraIntervalSeconds(float extraIntervalSeconds)
             {
                 onceScrollProgress = 0;
-                ItemsPosGenerator();
-                scrollStatus = RingScrollGenerator.ScrollStatus.Start;
+                eScrollStatus = RingScrollGenerator.EScrollStatus.Start;
                 Update(extraIntervalSeconds);
             }
         }
@@ -179,7 +196,7 @@ public partial class RingScrollGenerator
         {
             onceScrollProgress = 0;
             continuousScrollIntervalProgress = 0;
-            scrollStatus = RingScrollGenerator.ScrollStatus.Freedom;
+            eScrollStatus = RingScrollGenerator.EScrollStatus.Freedom;
             itemContainer.OnFinalSelectedCallback();
         }
 
@@ -193,19 +210,38 @@ public partial class RingScrollGenerator
             for (int i = 0; i < items.Count; i++)
             {
                 itemsOriginPos.Add(items[i].transform.localPosition);
-                itemsTargetPos.Add(items[(i - (int)scrollSequence + items.Count) % items.Count].transform.localPosition);
+                itemsTargetPos.Add(items[(i - (int)eScrollSequence + items.Count) % items.Count].transform.localPosition);
             }
         }
         private void UpdateItemsPos(float onceScrollProgress)
         {
-            if (onceScrollProgress > 1) onceScrollProgress = 1;
             IReadOnlyList<RingScrollItem> items = itemContainer.Items();
-            for (int i = 0; i < items.Count; i++)
+            if (onceScrollProgress < 1)
             {
-                RingScrollItem item = items[i];
-                Vector2 originPos = itemsOriginPos[i];
-                Vector2 targetPos = itemsTargetPos[i];
-                scrollAni.MoveAni(item.transform, originPos, targetPos, onceScrollProgress, scrollDir, xAxisRadius, yAxisRadius);
+                EShape eShape = eShapeFunc.Invoke();
+                if (!shapeMap.TryGetValue(eShape, out IShape shape))
+                {
+                    Debug.LogError($"未定义类型 => {eShape}");
+                    return;
+                }
+                int xAxisRadius = xAxisRadiusFunc.Invoke();
+                int yAxisRadius = yAxisRadiusFunc.Invoke();
+                for (int i = 0; i < items.Count; i++)
+                {
+                    RingScrollItem item = items[i];
+                    Vector2 originPos = itemsOriginPos[i];
+                    Vector2 targetPos = itemsTargetPos[i];
+                    scrollAni.MoveAni(shape, item.transform, originPos, targetPos, onceScrollProgress, scrollDir, xAxisRadius, yAxisRadius);
+                }
+            }
+            else // 去除误差
+            {
+                for (int i = 0; i < items.Count; i++)
+                {
+                    RingScrollItem item = items[i];
+                    Vector2 targetPos = itemsTargetPos[i];
+                    item.transform.localPosition = targetPos;
+                }
             }
         }
     }
