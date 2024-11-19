@@ -91,6 +91,7 @@
     <Compile Include="Assets\Scripts\SystemModule\Reddot\ReddotHandler.cs" />
     <Compile Include="Assets\Scripts\SystemModule\Reddot\Status\ReddotStatusCommon.cs" />
     <Compile Include="Assets\Scripts\Utility\LowMemoryBuffer\KIntVIntLowMemoryBuffer.cs" />
+    <Compile Include="Assets\Scripts\Utility\RingScrollGenerator\RingScrollGenerator.Utility.cs" />
     <Compile Include="Assets\Scripts\SystemModule\Reddot\Config\ReddotConfig.BuiltIn.cs" />
     <Compile Include="Assets\Scripts\Utility\Extensions\UnityEngine\LogValidator.cs" />
     <Compile Include="Assets\Scripts\SystemModule\Reddot\Node\IReddotNode.cs" />

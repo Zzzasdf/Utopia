@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c0b7f1f1f24ee04fbbb6b8b8dc9e940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  count: 8
+  count: 12
 --- !u!114 &513364673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,14 +269,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemTmp: {fileID: 1308145373}
-  eShape: 1
+  eShape: 3
   xAxisRadius: 500
   yAxisRadius: 300
   startAngle: 270
   eGenerateDir: -1
   eScrollAni: 1
-  onceScrollMillisecond: 500
-  continuousScrollIntervalMillisecond: 200
+  onceScrollMillisecond: 502
+  continuousScrollIntervalMillisecond: 0
   optionalParts:
     btnClockwiseScrollOnce: {fileID: 1799053243}
     btnAnticlockwiseScrollOnce: {fileID: 966026178}

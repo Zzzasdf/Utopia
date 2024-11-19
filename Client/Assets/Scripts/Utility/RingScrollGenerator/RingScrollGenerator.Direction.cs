@@ -3,7 +3,7 @@ using System;
 public partial class RingScrollGenerator
 {
     /// 方向
-    private enum EDirection
+    public enum EDirection
     {
         // 顺时针
         Clockwise = -1,
@@ -34,7 +34,7 @@ public partial class RingScrollGenerator
             return eGenerateDir;
         }
 
-        public ESequence EScrollSequence(int selectedIndex, int curIndex, int count)
+        public ESequence EScrollSequence(int selectedIndex, int curIndex, int count, EDirection? eDirection)
         {
             int downwardTime = 0;
             int upwardCountTime = 0;
@@ -56,6 +56,16 @@ public partial class RingScrollGenerator
             if (downwardTime > upwardCountTime)
             {
                 return ESequence.Reverse;
+            }
+            if (eDirection != null) // 处理只有两个 item 时，点击按钮同向问题
+            {
+                return (EGenerateDir(), eDirection.Value) switch
+                {
+                    (EDirection.Clockwise, EDirection.Clockwise) => ESequence.Reverse,
+                    (EDirection.Clockwise, EDirection.Anticlockwise) => ESequence.Forward,
+                    (EDirection.Anticlockwise, EDirection.Clockwise) => ESequence.Forward,
+                    (EDirection.Anticlockwise, EDirection.Anticlockwise) => ESequence.Reverse,
+                };
             }
             // 相等，全部顺时针旋转
             return EGenerateDir() == EDirection.Clockwise ? ESequence.Reverse : ESequence.Forward;

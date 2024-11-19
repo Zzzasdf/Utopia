@@ -6,7 +6,7 @@ public partial class RingScrollGenerator : MonoBehaviour
 {
     [Header("创建参数 ====================")]
     [SerializeField] [Header("Item模板")] private RingScrollItem itemTmp;
-    [SerializeField] [Header("形状")] private EShape eShape = EShape.Oval;
+    [SerializeField] [Header("形状")] private EShape eShape = EShape.Circle;
     [SerializeField] [Header("x轴半径")] private int xAxisRadius = 500;
     [SerializeField] [Header("y轴半径")] private int yAxisRadius = 300;
     [SerializeField] [Header("起始角度：x轴正方向")] private int startAngle = 270;
@@ -27,7 +27,7 @@ public partial class RingScrollGenerator : MonoBehaviour
 
     public int Count() => itemContainer?.Count ?? 0;
     public int CurSelectedIndex() => itemContainer?.CurSelectedIndex ?? 0;
-    public void SetScrollUntilIndex(int index) => itemContainer?.SetScrollUntilIndex(index);
+    public void SetScrollUntilIndex(int index) => itemContainer?.SetScrollUntilIndex(index, null);
     public void SetIndex(int index)
     {
         if (itemContainer == null) return;
@@ -36,7 +36,7 @@ public partial class RingScrollGenerator : MonoBehaviour
         int continuousScrollIntervalMillisecond = this.continuousScrollIntervalMillisecond;
         this.onceScrollMillisecond = 0;
         this.continuousScrollIntervalMillisecond = 0;
-        itemContainer.SetScrollUntilIndex(index);
+        itemContainer.SetScrollUntilIndex(index, null);
         Update();
         this.onceScrollMillisecond = onceScrollMillisecond;
         this.continuousScrollIntervalMillisecond = continuousScrollIntervalMillisecond;
@@ -82,7 +82,7 @@ public partial class RingScrollGenerator : MonoBehaviour
             count, selectedIndex);
     }
     
-    private void OnItemClick(int index)
+    private void OnItemClick(int index, EDirection? eDirection)
     {
         if (index == itemContainer.CurSelectedIndex)
         {
@@ -94,7 +94,7 @@ public partial class RingScrollGenerator : MonoBehaviour
             return;
         }
         EDirection eGeneratorDir = directionInfo.EGenerateDir();
-        ESequence eScrollESequence = directionInfo.EScrollSequence(index, itemContainer.CurSelectedIndex, itemContainer.Count);
+        ESequence eScrollESequence = directionInfo.EScrollSequence(index, itemContainer.CurSelectedIndex, itemContainer.Count, eDirection);
         scrollAniInfo.ResetStart(eGeneratorDir, eScrollESequence, index);
     }
     
@@ -107,20 +107,35 @@ public partial class RingScrollGenerator : MonoBehaviour
 #if UNITY_EDITOR
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.red; // Gizmo颜色
         // 布局
         int numPoints = 50;
         float angularSpacing = (float)360 / numPoints;
-        // int dir = eGenerateDir == EDirection.Clockwise ? -1 : 1;
+
         if (!shapeMap.TryGetValue(eShape, out IShape shape))
         {
             Debug.LogError($"未定义类型 => {eShape}");
             return;
         }    
-        for (int i = 0; i < numPoints; i++)
+        // 内置矩形
         {
-            DrawSphere(shape, xAxisRadius, yAxisRadius, angularSpacing * i);
-            // DrawSphere(shape, xAxisRadius + i * 10, yAxisRadius + i * 10, startAngle + dir * (angularSpacing * i));
+            if (eShape != EShape.Circle)
+            {
+                Gizmos.color = Color.green;
+                for (int i = 0; i < numPoints; i++)
+                {
+                    DrawSphere(shape, xAxisRadius, yAxisRadius, angularSpacing * i);
+                }
+            }
+        }
+        
+        // 外框圆
+        {
+            Gizmos.color = eShape == EShape.Circle ? Color.green : Color.red;
+            IShape ovalShape = shapeMap[EShape.Circle];
+            for (int i = 0; i < numPoints; i++)
+            {
+                DrawSphere(ovalShape, xAxisRadius, yAxisRadius, angularSpacing * i);
+            }
         }
         return;
         

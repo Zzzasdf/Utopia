@@ -4,30 +4,44 @@ using UnityEngine;
 public partial class RingScrollGenerator
 {
     /// 形状
-    public enum EShape
+    private enum EShape
     {
-        /// 椭圆形
-        Oval = 1,
-        /// 矩形
-        Rectangle = 2,
+        /// 圆形
+        Circle = 1,
+        /// 三角形
+        Triangle = 3, Triangle_Arc = 31,
+        /// 四边形
+        Quadrilateral = 4, Quadrilateral_Arc = 41,
+        /// 五边形
+        Pentagon = 5, Pentagon_Arc = 51,
+        /// 六边形
+        Hexagon = 6, Hexagon_Arc = 61,
+        /// 八边形
+        Octagon = 8, Octagon_Arc = 81,
     }
     
     private static Dictionary<EShape, IShape> shapeMap = new()
     {
-        [EShape.Oval] = new CircleShape(),
-        [EShape.Rectangle] = new SquareShape(),
+        [EShape.Circle] = new CircleShape(),
+        [EShape.Triangle] = new PolygonShape(3, true),
+        [EShape.Triangle_Arc] = new PolygonShape(3, false),
+        [EShape.Quadrilateral] = new PolygonShape(4, true),
+        [EShape.Quadrilateral_Arc] = new PolygonShape(4, false),
+        [EShape.Pentagon] = new PolygonShape(5, true),
+        [EShape.Pentagon_Arc] = new PolygonShape(5, false),
+        [EShape.Hexagon] = new PolygonShape(6, true),
+        [EShape.Hexagon_Arc] = new PolygonShape(6, false),
+        [EShape.Octagon] = new PolygonShape(8, true),
+        [EShape.Octagon_Arc] = new PolygonShape(8, false),
     };
     
     public interface IShape
     {
-        /// 椭圆通过 正圆 长短边比例 实现，非圆是在通过边交点
-        bool IsCircle();
         Vector3Int GetLocalPos(int xAxisRadius, int yAxisRadius, float angle);
     }
 
     public class CircleShape : IShape
     {
-        bool IShape.IsCircle() => true;
         Vector3Int IShape.GetLocalPos(int xAxisRadius, int yAxisRadius, float angle)
         {
             float radians = angle * Mathf.Deg2Rad;
@@ -37,48 +51,24 @@ public partial class RingScrollGenerator
         }
     }
 
-    public class SquareShape : IShape
+    /// 多边形
+    public class PolygonShape : IShape
     {
-        bool IShape.IsCircle() => false;
-        public Vector3Int GetLocalPos(int xAxisRadius, int yAxisRadius, float angle)
+        /// 边数量
+        private int count;
+
+        /// 是否正向
+        private bool positive;
+
+        public PolygonShape(int count, bool positive)
         {
-            while (angle < 0)
-            {
-                angle += 360;
-            }
-            angle %= 360;
-            
-            float radians = angle * Mathf.Deg2Rad;
-            // 对角角度
-            float diagonalAngel = Mathf.Atan2(yAxisRadius, xAxisRadius) * Mathf.Rad2Deg;
-            float x = 0;
-            float y = 0;
-            // 右边
-            if ((angle >= 360 - diagonalAngel && diagonalAngel < 360)
-                || (angle >= 0 && angle < diagonalAngel))
-            {
-                x = xAxisRadius;
-                y = xAxisRadius * Mathf.Tan(radians);
-            }
-            // 上边
-            else if (angle >= diagonalAngel && angle < 180 - diagonalAngel)
-            {
-                y = yAxisRadius;
-                x = yAxisRadius / Mathf.Tan(radians);
-            }
-            // 左边
-            else if (angle >= 180 - diagonalAngel && angle < 180 + diagonalAngel)
-            {
-                x = -xAxisRadius;
-                y = -xAxisRadius * Mathf.Tan(radians);
-            }
-            // 下边
-            else if (angle >= 180 + diagonalAngel && angle < 360 - diagonalAngel)
-            {
-                y = -yAxisRadius;
-                x = -yAxisRadius / Mathf.Tan(radians);
-            }
-            return new Vector3Int(Mathf.RoundToInt(x), Mathf.RoundToInt(y));
+            this.count = count;
+            this.positive = positive;
+        }
+        
+        Vector3Int IShape.GetLocalPos(int xAxisRadius, int yAxisRadius, float angle)
+        {
+            return (Vector3Int)GetIntersection(count, positive, xAxisRadius, yAxisRadius, angle);
         }
     }
 }

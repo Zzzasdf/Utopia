@@ -10,7 +10,7 @@ public partial class RingScrollGenerator
         private readonly Transform parentTra;
         private readonly RingScrollItem itemTmp;
         private readonly DirectionInfo directionInfo;
-        private readonly Action<int> onItemClick;
+        private readonly Action<int, EDirection?> onItemClick;
 
         private Action<int, Transform> onItemRender;
         private Action<int> onItemSelected;
@@ -42,7 +42,7 @@ public partial class RingScrollGenerator
         }
         
         public ItemContainer(Transform parentTra, RingScrollItem itemTmp, 
-            DirectionInfo directionInfo, Action<int> onItemClick)
+            DirectionInfo directionInfo, Action<int, EDirection?> onItemClick)
         {
             this.parentTra = parentTra;
             this.itemTmp = itemTmp; 
@@ -136,7 +136,7 @@ public partial class RingScrollGenerator
         }
 
         /// 旋转到对应索引
-        public void SetScrollUntilIndex(int index)
+        public void SetScrollUntilIndex(int index, EDirection? eScrollDir)
         {
             if (Count == 0) return;
             while (index < 0)
@@ -145,14 +145,14 @@ public partial class RingScrollGenerator
             }
             index %= Count;
             if (index == CurSelectedIndex) return;
-            onItemClick?.Invoke(index);
+            onItemClick?.Invoke(index, eScrollDir);
         }
         
         /// 向 指定方向 旋转 次数
         public void SetScroll(EDirection eScrollDir, int time)
         {
             SetScrollUntilIndex(directionInfo.EGenerateDir() == eScrollDir ? 
-                CurSelectedIndex - time : CurSelectedIndex + time);
+                CurSelectedIndex - time : CurSelectedIndex + time, eScrollDir);
             // SetTurnUntilIndex((generateDirInfo.Direction, turnDir) switch
             // {
             //     (Direction.Clockwise, Direction.Clockwise) => curSelectedIndex - time,

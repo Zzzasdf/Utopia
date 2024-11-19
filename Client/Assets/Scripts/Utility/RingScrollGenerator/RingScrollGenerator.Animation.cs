@@ -44,28 +44,13 @@ public partial class RingScrollGenerator
                 return;
             }
 
-            float originDeg = GetPositiveDeg(originPos, xAxisRadius, yAxisRadius, shape);
-            float targetDeg = GetPositiveDeg(targetPos, xAxisRadius, yAxisRadius, shape);
+            float originDeg = GetPositiveDeg(originPos / new Vector2(xAxisRadius, yAxisRadius));
+            float targetDeg = GetPositiveDeg(targetPos / new Vector2(xAxisRadius, yAxisRadius));
             float diffDeg = GetDiffDeg(originDeg, targetDeg, scrollDir);
 
             float newDeg = originDeg + diffDeg * progress;
             itemTra.transform.localPosition = shape.GetLocalPos(xAxisRadius, yAxisRadius, newDeg);
             return;
-
-            float GetPositiveDeg(Vector2 pos, int xAxisRadius, int yAxisRadius, IShape shape)
-            {
-                float deg = shape.IsCircle() switch
-                {
-                    true =>  Vector2.Angle(Vector2.right, pos / new Vector2(xAxisRadius, yAxisRadius)),
-                    false => Vector2.Angle(Vector2.right, pos),
-                };
-                float targetYDir = Vector2.Dot(Vector2.up, pos);
-                if (targetYDir < 0)
-                {
-                    deg = 360 - deg;
-                }
-                return deg;
-            }
 
             float GetDiffDeg(float originDeg, float targetDeg, int dir)
             {
