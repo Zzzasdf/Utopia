@@ -81,6 +81,11 @@ public partial class RingScrollGenerator : MonoBehaviour
         itemContainer.SetCount(eShape, xAxisRadius, yAxisRadius, startAngle, eGenerateDir,
             count, selectedIndex);
     }
+
+    public void ReRender()
+    {
+        itemContainer.ReRender();
+    }
     
     private void OnItemClick(int index, EDirection? eDirection)
     {

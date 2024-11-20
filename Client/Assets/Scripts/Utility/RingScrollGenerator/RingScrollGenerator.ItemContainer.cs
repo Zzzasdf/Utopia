@@ -169,5 +169,14 @@ public partial class RingScrollGenerator
                 items[i].SetSelectedEffect(i == CurSelectedIndex);
             }
         }
+
+        /// 重新渲染
+        public void ReRender()
+        {
+            for (int i = 0; i < items.Count; i++)
+            {
+                items[i].Refresh(i);
+            }
+        }
     }
 }
