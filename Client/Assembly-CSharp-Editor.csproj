@@ -45,17 +45,30 @@
     <Analyzer Include="C:\UnityEditor\2022.3.28f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Editor\Window\AssetHandlerWindow\AssetHandlerWindow1.cs" />
+    <Compile Include="Assets\Editor\Window\WindowCollectorUtility.List.cs" />
     <Compile Include="Assets\Editor\Unit\MemoryAnalysisExample.cs" />
+    <Compile Include="Assets\Editor\Utility\Utility.IO.cs" />
+    <Compile Include="Assets\Editor\Window\WindowCollectorEntry.cs" />
     <Compile Include="Assets\Editor\Unit\CopyExample.cs" />
     <Compile Include="Assets\Editor\Unit\ThreadExample.cs" />
     <Compile Include="Assets\Editor\Unit\ConverterExample.cs" />
     <Compile Include="Assets\Editor\Unit\UniTaskExample.cs" />
     <Compile Include="Assets\Editor\Unit\ListExample.cs" />
+    <Compile Include="Assets\Editor\Window\AssetHandlerWindow\AssetHandlerWindow2.cs" />
+    <Compile Include="Assets\Editor\Window\AssetHandlerWindow\AssetHandlerWindow3.cs" />
     <Compile Include="Assets\Editor\Utility\MeshCombine.cs" />
     <Compile Include="Assets\Editor\Unit\RegularExample.cs" />
     <Compile Include="Assets\Editor\Unit\LinqExample.cs" />
+    <Compile Include="Assets\Editor\Window\ViewHandlerWindow.cs" />
+    <Compile Include="Assets\Editor\Window\WindowLayoutAttribute.cs" />
+    <Compile Include="Assets\Editor\Window\WindowCollectorUtility.cs" />
     <Compile Include="Assets\Editor\Unit\TaskExample.cs" />
+    <Compile Include="Assets\Editor\Window\AssetHandlerWindow.cs" />
+    <Compile Include="Assets\Editor\Window\TableHandlerWindow.cs" />
+    <Compile Include="Assets\Editor\Utility\Utility.Copy.cs" />
     <Compile Include="Assets\Editor\Unit\BusyDisposableExample.cs" />
+    <Compile Include="Assets\Editor\Utility\Utility.Type.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:\UnityEditor\2022.3.28f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

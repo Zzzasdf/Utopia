@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.IO;
+using DataSaver;
+using Google.Protobuf.Collections;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -6,171 +9,269 @@ using UnityEngine;
 public class ConverterExample
 {
     [Test]
-    public void Foo()
+    public void Save()
+    { 
+        // BitmapConverter bitmapConverter = ClientConverterCollectorSystem.EBitmap.Test_0.GetConverter();
+        // {
+        //     bitmapConverter[1] = true;
+        //     bitmapConverter.AddFlag(64);
+        //     bitmapConverter.SetFlag(2,false);
+        //     bitmapConverter.RemoveFlag(63);
+        //     bitmapConverter.Clear();
+        // }
+        
+        // BitmapReverseConverter bitmapReverseConverter = ClientConverterCollectorSystem.EBitmapReverse.Test_1.GetConverter();
+        // {
+        //     bitmapReverseConverter.RemoveFlag(127);
+        //     bitmapReverseConverter.AddFlag(127);
+        //     bitmapReverseConverter[127] = false;
+        //     bitmapReverseConverter.Fill();
+        // }
+
+        // RepeatedField<int> listInt = ClientConverterCollectorSystem.EListInt.Test_2.GetConverter();
+        // {
+        //     listInt.Add(123456789);
+        //     listInt.Remove(123456789);
+        //     listInt.Add(321);
+        //     listInt.Add(1234);
+        //     listInt.Clear();
+        // }
+
+        // RepeatedField<long> listLong = ClientConverterCollectorSystem.EListLong.Test_3.GetConverter();
+        // {
+        //     listLong.Add(123456789);
+        //     listLong.Remove(123456789);
+        //     listLong.Add(321);
+        //     listLong.Add(1234);
+        //     listLong.Clear();
+        // }
+
+        // HashSet<int> hashSetInt = ClientConverterCollectorSystem.EHashSetInt.Test_4.GetConverter();
+        // {
+        //     hashSetInt.Add(123456789);
+        //     hashSetInt.Remove(123456789);
+        //     hashSetInt.Add(321);
+        //     hashSetInt.Add(1234);
+        //     hashSetInt.Clear();
+        // }
+
+        // HashSetIntReverseConverter hashSetIntReverseConverter = ClientConverterCollectorSystem.EHashSetIntReverse.Test_5.GetConverter();
+        // {
+        //     hashSetIntReverseConverter.Remove(123456789);
+        //     hashSetIntReverseConverter.Add(123456789);
+        //     hashSetIntReverseConverter.Remove(321);
+        //     hashSetIntReverseConverter.Remove(1234);
+        //     hashSetIntReverseConverter.Fill();
+        // }
+
+        // HashSet<long> hashSetLong = ClientConverterCollectorSystem.EHashSetLong.Test_6.GetConverter();
+        // {
+        //     hashSetLong.Add(123456789);
+        //     hashSetLong.Remove(123456789);
+        //     hashSetLong.Add(321);
+        //     hashSetLong.Add(1234);
+        //     hashSetLong.Clear();
+        // }
+
+        // HashSetLongReverseConverter hashSetLongReverseConverter = ClientConverterCollectorSystem.EHashSetLongReverse.Test_7.GetConverter();
+        // {
+        //     hashSetLongReverseConverter.Add(123456789);
+        //     hashSetLongReverseConverter.Remove(123456789);
+        //     hashSetLongReverseConverter.Add(321);
+        //     hashSetLongReverseConverter.Add(1234);
+        //     hashSetLongReverseConverter.Fill();
+        // }
+
+        // MapIntBitConverter mapIntBitConverter = ClientConverterCollectorSystem.EMapIntBit.Test_8.GetConverter();
+        // {
+        //     mapIntBitConverter[1, 31] = true;
+        //     mapIntBitConverter.RemoveFlag(1, 31);
+        //     mapIntBitConverter.AddFlag(3, 30);
+        //     mapIntBitConverter.SetFlag(3, 30, false);
+        //     mapIntBitConverter.Clear();
+        // }
+
+        // MapIntBitReverseConverter mapIntBitReverseConverter = ClientConverterCollectorSystem.EMapIntBitReverse.Test_9.GetConverter();
+        // {
+        //     mapIntBitReverseConverter[1, 31] = true;
+        //     mapIntBitReverseConverter.RemoveFlag(1, 31);
+        //     mapIntBitReverseConverter.AddFlag(3, 30);
+        //     mapIntBitReverseConverter.SetFlag(3, 30, false);
+        //     mapIntBitReverseConverter.Fill();
+        // }
+
+        // Dictionary<int, int> mapIntInt = ClientConverterCollectorSystem.EMapIntInt.Test_10.GetConverter();
+        // {
+        //     mapIntInt.Add(123, 321);
+        //     mapIntInt.Add(123456789, 987654321);
+        // }
+
+        // Dictionary<int, long> mapIntLong = ClientConverterCollectorSystem.EMapIntLong.Test_11.GetConverter();
+        // {
+        //     mapIntLong.Add(123, 321);
+        //     mapIntLong.Add(123456789, 987654321);
+        //     mapIntLong.Add(456, 654);
+        // }
+
+        // MapLongBitConverter mapLongBitConverter = ClientConverterCollectorSystem.EMapLongBit.Test_12.GetConverter();
+        // {
+        //     mapLongBitConverter[1, 63] = true;
+        //     mapLongBitConverter.RemoveFlag(1, 63);
+        //     mapLongBitConverter.AddFlag(3, 62);
+        //     mapLongBitConverter.SetFlag(3, 62, false);
+        //     mapLongBitConverter.Clear();
+        // }
+
+        // MapLongBitReverseConverter mapLongBitReverseConverter = ClientConverterCollectorSystem.EMapLongBitReverse.Test_13.GetConverter();
+        // {
+        //     mapLongBitReverseConverter[1, 63] = true;
+        //     mapLongBitReverseConverter.RemoveFlag(1, 63);
+        //     mapLongBitReverseConverter.AddFlag(3, 62);
+        //     mapLongBitReverseConverter.SetFlag(3, 62, false);
+        //     mapLongBitReverseConverter.Fill();
+        // }
+
+        // Dictionary<long, int> mapLongInt = ClientConverterCollectorSystem.EMapLongInt.Test_14.GetConverter();
+        // {
+        //     mapLongInt.Add(123, 321);
+        //     mapLongInt.Add(123456789, 987654321);
+        //     mapLongInt.Add(456, 654);
+        // }
+
+        // Dictionary<long, long> mapLongLong = ClientConverterCollectorSystem.EMapLongLong.Test_15.GetConverter();
+        // {
+        //     mapLongLong.Add(123, 321);
+        //     mapLongLong.Add(123456789, 987654321);
+        //     mapLongLong.Add(456, 654);
+        // }
+        
+        // ClientDailyFirstRedDotConverter clientDailyFirstRedDotConverter = ClientConverterCollectorSystem.EDailyFirstRedDot.Unique_16.GetConverter();
+        // {
+        //     clientDailyFirstRedDotConverter.AddFlag(EDailyFirstRedDot.Test0);
+        //     clientDailyFirstRedDotConverter.RemoveFlag(EDailyFirstRedDot.Test0);
+        //     clientDailyFirstRedDotConverter.AddFlag(EDailyFirstRedDot.Test100);
+        //     clientDailyFirstRedDotConverter[EDailyFirstRedDot.Test1024] = true;
+        //     clientDailyFirstRedDotConverter.SetFlag(EDailyFirstRedDot.Test1024, false);
+        // }
+        
+        ClientConverterCollectorSystem.Instance.SaveAll();
+        Debug.LogError("保存 => " + ClientConverterCollectorSystem.Instance);
+    }
+
+    [Test]
+    public void Read()
     {
-        ClientConfigConvertSystem.Instance.AddSource(new RepeatedField<RepeatedField<long>>
-        {
-            new RepeatedField<long> // 0
-            {
-                4294967300, // 1L << 32 | 4
-                17179869193, // 4L << 32 | 9
-                8, // 0L << 32 | 8
-                8589934592, // 2L << 32 | 0
-                30064771074, // 7L << 32 | 2
-            },
-            new RepeatedField<long> // 1
-            {
-                1, // 最后一个高位是否有效
-                21, // 1 << 4 | 1 << 2 | 1 << 0
-                4294967296, // 1L << 32 | 0
-                -4294967294, // -1L << 32 | 2 eg! 负数表示最高位有值
-                -8589934594, // -3L << 32 | -2 
-            },
-            new RepeatedField<long> // 2
-            {
-                4294967302, // 1L << 32 | 6 ((1 << 1) | (1 << 2))
-                8589934616, // 2L << 32 | 24 ((1 << 3) | (1 << 4))
-            },
-            new RepeatedField<long> // 3
-            {
-                1,
-                4,
-                4,
-                9,
-                0,
-                8,
-                2,
-                0,
-                7,
-                2
-            },
-            new RepeatedField<long> // 4
-            {
-                2, // false, true, false
-                4, 
-                5,
-                6,
-            },
-            new RepeatedField<long> // 5
-            {
-                1,
-                6, // 1 << 1 | 1 << 2
-                2,
-                24, // 1 << 3 | 1 << 4
-            },
-            new RepeatedField<long> // 6
-            {
-                10, // 1 << 1 | 1 << 3
-                1, // 1L << 64
-            },
-            null,   // 7
-            new RepeatedField<long> // 8
-            {
-                1732383398663, // 当前时间 
-                3, // 1 << 0 | 1 << 1
-                68719476736, // 1L << 100
-                1, // 1L << 128
-            },
-            new RepeatedField<long> // 9
-            {
-                8589934593, // 2L << 32 | 1
-                1,
-                2,
-                3, 
-                3,
-            },
-            new RepeatedField<long> // 10
-            {
-                0,
-                4294967297, // 1L << 32 | 1
-                4294967298, // 1L << 32 | 2
-                3,
-            },
-            new RepeatedField<long> // 11
-            {
-                10001,
-                10002,
-            },
-            new RepeatedField<long> // 12
-            {
-                8589934593, // 2L << 32 | 1
-                1,
-                2,
-                3,
-                3,
-            }
-        });
-        Dictionary<int, int> mapIntInt = ClientConfigConvertSystem.EMapIntInt.Test_0.GetConverter();
-        // mapIntInt.Add(1, 4);
-        // mapIntInt.Add(4, 9);
-        // mapIntInt.Add(0, 8);
-        // mapIntInt.Add(2, 0);
-        // mapIntInt.Add(7, 2);
-        // ClientConfigConvertSystem.EMapIntInt.Test_0.Save();
-        Dictionary<int, bool> mapIntBool = ClientConfigConvertSystem.EMapIntBool.Test_1.GetConverter();
-        // mapIntBool.Add(0, true);
-        // mapIntBool.Add(1, false);
-        // mapIntBool.Add(2, true);
-        // mapIntBool.Add(-1, false);
-        // mapIntBool.Add(-2, true);
-        // mapIntBool.Add(-3, false);
-        // ClientConfigConvertSystem.EMapIntBool.Test_1.Save();
-        MapIntBitConverter mapIntBit = ClientConfigConvertSystem.EMapIntBit.Test_2.GetConverter();
-        // mapIntBit.AddFlag(1, 1);
-        // mapIntBit.AddFlag(1, 2);
-        // mapIntBit.AddFlag(2, 3);
-        // mapIntBit.AddFlag(2, 4);
-        // ClientConfigConvertSystem.EMapIntBit.Test_2.Save();
-        Dictionary<long, long> mapLongLong = ClientConfigConvertSystem.EMapLongLong.Test_3.GetConverter();
-        // mapLongLong.Add(1, 4);
-        // mapLongLong.Add(4, 9);
-        // mapLongLong.Add(0, 8);
-        // mapLongLong.Add(2, 0);
-        // mapLongLong.Add(7, 2);
-        // ClientConfigConvertSystem.EMapLongLong.Test_3.Save();
-        Dictionary<long, bool> mapLongBool = ClientConfigConvertSystem.EMapLongBool.Test_4.GetConverter();
-        // mapLongBool.Add(4, false);
-        // mapLongBool.Add(5, true);
-        // mapLongBool.Add(6, false);
-        // ClientConfigConvertSystem.EMapLongBool.Test_4.Save();
-        MapLongBitConverter long2bit = ClientConfigConvertSystem.EMapLongBit.Test_5.GetConverter();
-        // long2bit.AddFlag(1, 1);
-        // long2bit.AddFlag(1, 2);
-        // long2bit.AddFlag(2, 3);
-        // long2bit.AddFlag(2, 4);
-        // ClientConfigConvertSystem.EMapLongBit.Test_5.Save();
-        BitmapConverter bitmap = ClientConfigConvertSystem.EBitmap.Test_6.GetConverter();
-        // bitmap.AddFlag(3);
-        // bitmap.AddFlag(1);
-        // bitmap.AddFlag(64);
-        // ClientConfigConvertSystem.EBitmap.Test_6.Save();
-        BitmapDailyFirstRedDotConverter bitmapDailyFirstRedDot = ClientConfigConvertSystem.EBitmapDailyFirstRedDot.Unique.GetConverter();
-        // bitmapDailyFirstRedDot.AddFlag(EDailyFirstRedDot.Test0);
-        // bitmapDailyFirstRedDot.AddFlag(EDailyFirstRedDot.Test1);
-        // bitmapDailyFirstRedDot.AddFlag(EDailyFirstRedDot.Test100);
-        // bitmapDailyFirstRedDot.AddFlag(EDailyFirstRedDot.Test128);
-        // ClientConfigConvertSystem.EBitmapDailyFirstRedDot.Unique.Save();
-        Dictionary<int, long> mapIntLong = ClientConfigConvertSystem.EMapIntLong.Test_9.GetConverter();
-        // mapIntLong.Add(1, 1);
-        // mapIntLong.Add(2, 2);
-        // mapIntLong.Add(3, 3);
-        // ClientConfigConvertSystem.EMapIntLong.Test_9.Save();
-        RepeatedField<int> listInt = ClientConfigConvertSystem.EListInt.Test_10.GetConverter();
-        // listInt.Add(1);
-        // listInt.Add(1);
-        // listInt.Add(2);
-        // listInt.Add(1);
-        // listInt.Add(3);
-        // ClientConfigConvertSystem.EListInt.Test_10.Save();
-        RepeatedField<long> listLong = ClientConfigConvertSystem.EListLong.Test_11.GetConverter();
-        // listLong.Add(10001);
-        // listLong.Add(10002);
-        // ClientConfigConvertSystem.EListLong.Test_11.Save();
-        Dictionary<long, int> mapLongInt = ClientConfigConvertSystem.EMapLongInt.Test_12.GetConverter();
-        // mapLongInt.Add(1, 1);
-        // mapLongInt.Add(2, 2);
-        // mapLongInt.Add(3, 3);
-        // ClientConfigConvertSystem.EMapLongInt.Test_12.Save();
-        ClientConfigConvertSystem.Instance.SaveAll();
+        RepeatedField<RepeatedField<long>> data = null;
+        BinaryDataSaver.TryLoadData(BinaryDataSaver.EFile.ClientConverterData, out data);
+        ClientConverterCollectorSystem.Instance.AddSource(data);
+
+        // BitmapConverter bitmapConverter = ClientConverterCollectorSystem.EBitmap.Test_0.GetConverter();
+        // {
+        //     Debug.LogError($"63 Exist => { bitmapConverter.HasFlag(63)}");
+        // }
+        
+        // BitmapReverseConverter bitmapReverseConverter = ClientConverterCollectorSystem.EBitmapReverse.Test_1.GetConverter();
+        // {
+        //     Debug.LogError($"63 Exist => {bitmapReverseConverter.HasFlag(63)}");
+        //     Debug.LogError($"127 Exist => { bitmapReverseConverter.HasFlag(127)}");
+        // }
+       
+        // RepeatedField<int> listInt = ClientConverterCollectorSystem.EListInt.Test_2.GetConverter();
+        // {
+        //     Debug.LogError($"123456789 Exist => {listInt.Contains(123456789)}");
+        //     Debug.LogError($"321 Exist => {listInt.Contains(321)}");
+        //     Debug.LogError($"1234 Exist => {listInt.Contains(1234)}");
+        // }
+        
+        // RepeatedField<long> listLong = ClientConverterCollectorSystem.EListLong.Test_3.GetConverter();
+        // {
+        //     Debug.LogError($"123456789 Exist => {listLong.Contains(123456789)}");
+        //     Debug.LogError($"321 Exist => {listLong.Contains(321)}");
+        //     Debug.LogError($"1234 Exist => {listLong.Contains(1234)}");
+        // }
+        
+        // HashSet<int> hashSetInt = ClientConverterCollectorSystem.EHashSetInt.Test_4.GetConverter();
+        // {
+        //     Debug.LogError($"123456789 Exist => {hashSetInt.Contains(123456789)}");
+        //     Debug.LogError($"321 Exist => {hashSetInt.Contains(321)}");
+        //     Debug.LogError($"1234 Exist => {hashSetInt.Contains(1234)}");
+        // }
+        
+        // HashSetIntReverseConverter hashSetIntReverseConverter = ClientConverterCollectorSystem.EHashSetIntReverse.Test_5.GetConverter();
+        // {
+        //     Debug.LogError($"123456789 Exist => {hashSetIntReverseConverter.Contains(123456789)}");
+        //     Debug.LogError($"321 Exist => {hashSetIntReverseConverter.Contains(321)}");
+        //     Debug.LogError($"1234 Exist => {hashSetIntReverseConverter.Contains(1234)}");
+        // }
+        
+        // HashSet<long> hashSetLong = ClientConverterCollectorSystem.EHashSetLong.Test_6.GetConverter();
+        // {
+        //     Debug.LogError($"123456789 Exist => {hashSetLong.Contains(123456789)}");
+        //     Debug.LogError($"321 Exist => {hashSetLong.Contains(321)}");
+        //     Debug.LogError($"1234 Exist => {hashSetLong.Contains(1234)}");
+        // }
+        
+        // HashSetLongReverseConverter hashSetLongReverseConverter = ClientConverterCollectorSystem.EHashSetLongReverse.Test_7.GetConverter();
+        // {
+        //     Debug.LogError($"123456789 Exist => {hashSetLongReverseConverter.Contains(123456789)}");
+        //     Debug.LogError($"321 Exist => {hashSetLongReverseConverter.Contains(321)}");
+        //     Debug.LogError($"1234 Exist => {hashSetLongReverseConverter.Contains(1234)}");
+        // }
+        
+        // MapIntBitConverter mapIntBitConverter = ClientConverterCollectorSystem.EMapIntBit.Test_8.GetConverter();
+        // {
+        //     Debug.LogError($"1,31 Exist => {mapIntBitConverter.HasFlag(1, 31)}");
+        //     Debug.LogError($"3,30 Exist => {mapIntBitConverter.HasFlag(3, 30)}");
+        // }
+        
+        // MapIntBitReverseConverter mapIntBitReverseConverter = ClientConverterCollectorSystem.EMapIntBitReverse.Test_9.GetConverter();
+        // {
+        //     Debug.LogError($"1,31 Exist => {mapIntBitReverseConverter.HasFlag(1, 31)}");
+        //     Debug.LogError($"3,30 Exist => {mapIntBitReverseConverter.HasFlag(3, 30)}");
+        // }
+        
+        // Dictionary<int, int> mapIntInt = ClientConverterCollectorSystem.EMapIntInt.Test_10.GetConverter();
+        // {
+        //     Debug.LogError($"123 Exist => {mapIntInt[123]}");
+        //     Debug.LogError($"123456789 Exist => {mapIntInt[123456789]}");
+        // }
+        
+        // Dictionary<int, long> mapIntLong = ClientConverterCollectorSystem.EMapIntLong.Test_11.GetConverter();
+        // {
+        //     Debug.LogError($"123 Exist => {mapIntLong[123]}");
+        //     Debug.LogError($"123456789 Exist => {mapIntLong[123456789]}");
+        // }
+        
+        // MapLongBitConverter mapLongBitConverter = ClientConverterCollectorSystem.EMapLongBit.Test_12.GetConverter();
+        // {
+        //     Debug.LogError($"1,63 Exist => {mapLongBitConverter.HasFlag(1, 63)}");
+        //     Debug.LogError($"3,62 Exist => {mapLongBitConverter.HasFlag(3, 62)}");
+        // }
+        
+        // MapLongBitReverseConverter mapLongBitReverseConverter = ClientConverterCollectorSystem.EMapLongBitReverse.Test_13.GetConverter();
+        // {
+        //     Debug.LogError($"1,63 Exist => {mapLongBitReverseConverter.HasFlag(1, 63)}");
+        //     Debug.LogError($"3,62 Exist => {mapLongBitReverseConverter.HasFlag(3, 62)}");
+        // }
+        
+        // Dictionary<long, int> mapLongInt = ClientConverterCollectorSystem.EMapLongInt.Test_14.GetConverter();
+        // {
+        //     Debug.LogError($"123 Exist => {mapLongInt[123]}");
+        //     Debug.LogError($"123456789 Exist => {mapLongInt[123456789]}");
+        // }
+        
+        // Dictionary<long, long> mapLongLong = ClientConverterCollectorSystem.EMapLongLong.Test_15.GetConverter();
+        // {
+        //     Debug.LogError($"123 Exist => {mapLongLong[123]}");
+        //     Debug.LogError($"123456789 Exist => {mapLongLong[123456789]}");
+        // }
+
+        // ClientDailyFirstRedDotConverter clientDailyFirstRedDotConverter = ClientConverterCollectorSystem.EDailyFirstRedDot.Unique_16.GetConverter();
+        // {
+        //     Debug.LogError($"100 Exist => {clientDailyFirstRedDotConverter.HasFlag(EDailyFirstRedDot.Test100)}");
+        //     Debug.LogError($"1024 Exist => {clientDailyFirstRedDotConverter[EDailyFirstRedDot.Test1024]}");
+        // }
+        
+        Debug.LogError("读取 => " + ClientConverterCollectorSystem.Instance);
     }
 }
