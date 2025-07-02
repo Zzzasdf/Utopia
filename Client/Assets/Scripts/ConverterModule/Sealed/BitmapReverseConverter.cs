@@ -1,7 +1,9 @@
-using Converter.List.Long;
 using Google.Protobuf.Collections;
 
-public class BitmapReverseConverter : BitmapReverseConverter<RepeatedField<long>>
+namespace Converter.List.Long
 {
-    
+    public class BitmapReverseConverter : BitmapReverseConverter<RepeatedField<long>>
+    {
+        
+    }
 }

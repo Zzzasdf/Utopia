@@ -153,9 +153,10 @@ public class ConverterExample
         //     clientDailyFirstRedDotConverter[EDailyFirstRedDot.Test1024] = true;
         //     clientDailyFirstRedDotConverter.SetFlag(EDailyFirstRedDot.Test1024, false);
         // }
-        
-        ClientConverterCollectorSystem.Instance.SaveAll();
-        Debug.LogError("保存 => " + ClientConverterCollectorSystem.Instance);
+
+        ClientConverterCollectorSystem converterCollectorSystem = new ClientConverterCollectorSystem();
+        converterCollectorSystem.SaveAll();
+        Debug.LogError("保存 => " + converterCollectorSystem);
     }
 
     [Test]
@@ -163,7 +164,8 @@ public class ConverterExample
     {
         RepeatedField<RepeatedField<long>> data = null;
         BinaryDataSaver.TryLoadData(BinaryDataSaver.EFile.ClientConverterData, out data);
-        ClientConverterCollectorSystem.Instance.AddSource(data);
+        ClientConverterCollectorSystem converterCollectorSystem = new ClientConverterCollectorSystem();
+        converterCollectorSystem.AddSource(data);
 
         // BitmapConverter bitmapConverter = ClientConverterCollectorSystem.EBitmap.Test_0.GetConverter();
         // {
@@ -272,6 +274,6 @@ public class ConverterExample
         //     Debug.LogError($"1024 Exist => {clientDailyFirstRedDotConverter[EDailyFirstRedDot.Test1024]}");
         // }
         
-        Debug.LogError("读取 => " + ClientConverterCollectorSystem.Instance);
+        Debug.LogError("读取 => " + converterCollectorSystem);
     }
 }

@@ -34,7 +34,7 @@ namespace Converter.List.Long
             }
         }
 
-        bool IConverterCollectorSystem<TListList, TList>.TryEncodeMap<TConverterCollector, TConverter>(out Dictionary<int, TList> sourceMap)
+        bool IConverterCollectorSystem<TListList, TList>.TryEncodeMap(out Dictionary<int, TList> sourceMap)
         {
             this.sourceMap ??= new Dictionary<int, TList>();
             this.sourceMap.Clear();
@@ -73,9 +73,7 @@ namespace Converter.List.Long
             return true;
         }
 
-        public bool TryEncode<TConverterCollector, TConverter>(int typeValue, out TList source)
-            where TConverterCollector : class, IConverterCollector<TConverter, TList>
-            where TConverter : class, IConverter<TList>, new()
+        public bool TryEncode(int typeValue, out TList source)
         {
             if (!config.TryGetValue(typeValue, out Type type))
             {
@@ -159,9 +157,7 @@ namespace Converter.List.Long
             return true;
         }
 
-        public abstract void Save<TConverterCollector, TConverter>(int typeValue)
-            where TConverterCollector : class, IConverterCollector<TConverter, TList>
-            where TConverter : class, IConverter<TList>, new();
+        public abstract void Save(int typeValue);
 
         public abstract void SaveAll();
     }

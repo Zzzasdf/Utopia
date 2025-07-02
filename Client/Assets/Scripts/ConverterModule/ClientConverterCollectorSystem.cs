@@ -4,13 +4,11 @@ using System.Text;
 using Converter.List.Long;
 using Google.Protobuf.Collections;
 using DataSaver;
+using UnityEngine;
 
 /// 客户端配置 的 转换系统
-public class ClientConverterCollectorSystem : ConverterCollectorSystem<RepeatedField<RepeatedField<long>>, RepeatedField<long>>
+public class ClientConverterCollectorSystem : ConverterCollectorSystem<RepeatedField<RepeatedField<long>>, RepeatedField<long>>, IManager
 {
-    private static ClientConverterCollectorSystem _instance;
-    public static ClientConverterCollectorSystem Instance => _instance ??= new ClientConverterCollectorSystem();
-
     /// 收集器类型
     protected override Dictionary<Type, IConverterCollector<RepeatedField<long>>> converterCollectors { get; } = new()
     {
@@ -39,7 +37,7 @@ public class ClientConverterCollectorSystem : ConverterCollectorSystem<RepeatedF
         [typeof(EMapLongLong)] = new ConverterCollector<MapLongLongConverter>(),
 
         // Custom
-        [typeof(EDailyFirstRedDot)] = new ConverterCollector<ClientDailyFirstRedDotConverter>(),
+        [typeof(EDailyFirstRedDot)] = new ConverterCollector<ClientDailyFirstRedPointConverter>(),
     };
 
     /// 配置表
@@ -64,14 +62,20 @@ public class ClientConverterCollectorSystem : ConverterCollectorSystem<RepeatedF
         [(int)EDailyFirstRedDot.Unique_16] = typeof(EDailyFirstRedDot),
     };
 
-    public override void Save<TConverterCollector, TConverter>(int typeValue)
+    void IManager.Clear()
     {
-        // Debug.LogError($"保存类型 => {typeValue}");
-        // if (!TryEncode<TConverterCollector, TConverter>(typeValue, out RepeatedField<long> source))
-        // {
-        //     Debug.LogWarning($"没有数据");
-        //     return;
-        // }
+    }
+    
+    public override void Save(int typeValue)
+    {
+        Debug.LogError($"保存类型 => {typeValue}");
+        if (!TryEncode(typeValue, out RepeatedField<long> source))
+        {
+            // Debug.LogError("保存点");
+            SaveAll();
+            return;
+        }
+        // Debug.LogError("保存点");
         SaveAll();
     }
 
@@ -80,9 +84,11 @@ public class ClientConverterCollectorSystem : ConverterCollectorSystem<RepeatedF
         // Debug.LogError("保存所有");
         if (!TryEncode(out RepeatedField<RepeatedField<long>> source))
         {
+            // Debug.LogError("保存点");
             BinaryDataSaver.TrySaveData<RepeatedField<RepeatedField<long>>>(BinaryDataSaver.EFile.ClientConverterData, null);
             return;
         }
+        // Debug.LogError("保存点");
         BinaryDataSaver.TrySaveData(BinaryDataSaver.EFile.ClientConverterData, source);
     }
 
@@ -157,84 +163,35 @@ public class ClientConverterCollectorSystem : ConverterCollectorSystem<RepeatedF
     #region Custom
     public enum EDailyFirstRedDot { Unique_16 = UniqueRefCollector.Test_16, }
     #endregion
-}
-
-/// 枚举扩展
-public static class ClientConfigConvertSystemExtend
-{
-    private static TConverter GetConverter<TCollector, TConverter>(int self)
+    
+    #region Converter
+    public BitmapConverter GetConverter(EBitmap self) => GetConverter<ConverterCollector<BitmapConverter>, BitmapConverter>((int)self);
+    public BitmapReverseConverter GetConverter(EBitmapReverse self) => GetConverter<ConverterCollector<BitmapReverseConverter>, BitmapReverseConverter>((int)self);
+    public RepeatedField<int> GetConverter(EListInt self) => GetConverter<ConverterCollector<ListIntConverter>, ListIntConverter>((int)self);
+    public RepeatedField<long> GetConverter(EListLong self) => GetConverter<ConverterCollector<ListLongConverter>, ListLongConverter>((int)self);
+    public HashSet<int> GetConverter(EHashSetInt self) => GetConverter<ConverterCollector<HashSetIntConverter>, HashSetIntConverter>((int)self);
+    public HashSetIntReverseConverter GetConverter(EHashSetIntReverse self) => GetConverter<ConverterCollector<HashSetIntReverseConverter>, HashSetIntReverseConverter>((int)self);
+    public HashSetLongConverter GetConverter(EHashSetLong self) => GetConverter<ConverterCollector<HashSetLongConverter>, HashSetLongConverter>((int)self);
+    public HashSetLongReverseConverter GetConverter(EHashSetLongReverse self) => GetConverter<ConverterCollector<HashSetLongReverseConverter>, HashSetLongReverseConverter>((int)self);
+    public MapIntBitConverter GetConverter(EMapIntBit self) => GetConverter<ConverterCollector<MapIntBitConverter>, MapIntBitConverter>((int)self);
+    public MapIntBitReverseConverter GetConverter(EMapIntBitReverse self) => GetConverter<ConverterCollector<MapIntBitReverseConverter>, MapIntBitReverseConverter>((int)self);
+    public Dictionary<int, int> GetConverter(EMapIntInt self) => GetConverter<ConverterCollector<MapIntIntConverter>, MapIntIntConverter>((int)self);
+    public Dictionary<int, long> GetConverter(EMapIntLong self) => GetConverter<ConverterCollector<MapIntLongConverter>, MapIntLongConverter>((int)self);
+    public MapLongBitConverter GetConverter(EMapLongBit self) => GetConverter<ConverterCollector<MapLongBitConverter>, MapLongBitConverter>((int)self);
+    public MapLongBitReverseConverter GetConverter(EMapLongBitReverse self) => GetConverter<ConverterCollector<MapLongBitReverseConverter>, MapLongBitReverseConverter>((int)self);
+    public Dictionary<long, int> GetConverter(EMapLongInt self) => GetConverter<ConverterCollector<MapLongIntConverter>, MapLongIntConverter>((int)self);
+    public Dictionary<long, long> GetConverter(EMapLongLong self) => GetConverter<ConverterCollector<MapLongLongConverter>, MapLongLongConverter>((int)self);
+    public ClientDailyFirstRedPointConverter GetConverter(EDailyFirstRedDot self) => GetConverter<ConverterCollector<ClientDailyFirstRedPointConverter>, ClientDailyFirstRedPointConverter>((int)self);
+    #endregion
+    
+    private TConverter GetConverter<TCollector, TConverter>(int self)
         where TCollector: ConverterCollector<TConverter, RepeatedField<long>>
         where TConverter: class, IConverter<RepeatedField<long>>, new()
     {
-        if(!ClientConverterCollectorSystem.Instance.TryGetConverter<TCollector, TConverter>(self, out TConverter converter))
+        if(!TryGetConverter<TCollector, TConverter>(self, out TConverter converter))
         {
             throw new Exception("配置有问题，请检查");
         }
         return converter;
     }
-    private static void Save<TCollector, TConverter>(int self) 
-        where TCollector: ConverterCollector<TConverter, RepeatedField<long>>
-        where TConverter: class, IConverter<RepeatedField<long>>, new()
-        => ClientConverterCollectorSystem.Instance.Save<TCollector, TConverter>(self);
-    
-#region Bitmap
-    public static BitmapConverter GetConverter(this ClientConverterCollectorSystem.EBitmap self) => GetConverter<ConverterCollector<BitmapConverter>, BitmapConverter>((int)self);
-    public static void Save(this ClientConverterCollectorSystem.EBitmap self) => Save<ConverterCollector<BitmapConverter>, BitmapConverter>((int)self);
-
-    public static BitmapReverseConverter GetConverter(this ClientConverterCollectorSystem.EBitmapReverse self) => GetConverter<ConverterCollector<BitmapReverseConverter>, BitmapReverseConverter>((int)self);
-    public static void Save(this ClientConverterCollectorSystem.EBitmapReverse self) => Save<ConverterCollector<BitmapReverseConverter>, BitmapReverseConverter>((int)self);
-#endregion
-
-#region List
-    public static RepeatedField<int> GetConverter(this ClientConverterCollectorSystem.EListInt self) => GetConverter<ConverterCollector<ListIntConverter>, ListIntConverter>((int)self);
-    public static void Save(this ClientConverterCollectorSystem.EListInt self) => Save<ConverterCollector<ListIntConverter>, ListIntConverter>((int)self);
-
-    public static RepeatedField<long> GetConverter(this ClientConverterCollectorSystem.EListLong self) => GetConverter<ConverterCollector<ListLongConverter>, ListLongConverter>((int)self);
-    public static void Save(this ClientConverterCollectorSystem.EListLong self) => Save<ConverterCollector<ListLongConverter>, ListLongConverter>((int)self);
-#endregion
-
-#region HashSet
-    public static HashSet<int> GetConverter(this ClientConverterCollectorSystem.EHashSetInt self) => GetConverter<ConverterCollector<HashSetIntConverter>, HashSetIntConverter>((int)self);
-    public static void Save(this ClientConverterCollectorSystem.EHashSetInt self) => Save<ConverterCollector<HashSetIntConverter>, HashSetIntConverter>((int)self);
-    
-    public static HashSetIntReverseConverter GetConverter(this ClientConverterCollectorSystem.EHashSetIntReverse self) => GetConverter<ConverterCollector<HashSetIntReverseConverter>, HashSetIntReverseConverter>((int)self);
-    public static void Save(this ClientConverterCollectorSystem.EHashSetIntReverse self) => Save<ConverterCollector<HashSetIntReverseConverter>, HashSetIntReverseConverter>((int)self);
-    
-    public static HashSetLongConverter GetConverter(this ClientConverterCollectorSystem.EHashSetLong self) => GetConverter<ConverterCollector<HashSetLongConverter>, HashSetLongConverter>((int)self);
-    public static void Save(this ClientConverterCollectorSystem.EHashSetLong self) => Save<ConverterCollector<HashSetLongConverter>, HashSetLongConverter>((int)self);
-
-    public static HashSetLongReverseConverter GetConverter(this ClientConverterCollectorSystem.EHashSetLongReverse self) => GetConverter<ConverterCollector<HashSetLongReverseConverter>, HashSetLongReverseConverter>((int)self);
-    public static void Save(this ClientConverterCollectorSystem.EHashSetLongReverse self) => Save<ConverterCollector<HashSetLongReverseConverter>, HashSetLongReverseConverter>((int)self);
-#endregion
-
-#region Map
-    public static MapIntBitConverter GetConverter(this ClientConverterCollectorSystem.EMapIntBit self) => GetConverter<ConverterCollector<MapIntBitConverter>, MapIntBitConverter>((int)self);
-    public static void Save(this ClientConverterCollectorSystem.EMapIntBit self) => Save<ConverterCollector<MapIntBitConverter>, MapIntBitConverter>((int)self);
-    
-    public static MapIntBitReverseConverter GetConverter(this ClientConverterCollectorSystem.EMapIntBitReverse self) => GetConverter<ConverterCollector<MapIntBitReverseConverter>, MapIntBitReverseConverter>((int)self);
-    public static void Save(this ClientConverterCollectorSystem.EMapIntBitReverse self) => Save<ConverterCollector<MapIntBitReverseConverter>, MapIntBitReverseConverter>((int)self);
-
-    public static Dictionary<int, int> GetConverter(this ClientConverterCollectorSystem.EMapIntInt self) => GetConverter<ConverterCollector<MapIntIntConverter>, MapIntIntConverter>((int)self);
-    public static void Save(this ClientConverterCollectorSystem.EMapIntInt self) => Save<ConverterCollector<MapIntIntConverter>, MapIntIntConverter>((int)self);
-
-    public static Dictionary<int, long> GetConverter(this ClientConverterCollectorSystem.EMapIntLong self) => GetConverter<ConverterCollector<MapIntLongConverter>, MapIntLongConverter>((int)self);
-    public static void Save(this ClientConverterCollectorSystem.EMapIntLong self) => Save<ConverterCollector<MapIntLongConverter>, MapIntLongConverter>((int)self);
-
-    public static MapLongBitConverter GetConverter(this ClientConverterCollectorSystem.EMapLongBit self) => GetConverter<ConverterCollector<MapLongBitConverter>, MapLongBitConverter>((int)self);
-    public static void Save(this ClientConverterCollectorSystem.EMapLongBit self) => Save<ConverterCollector<MapLongBitConverter>, MapLongBitConverter>((int)self);
-    
-    public static MapLongBitReverseConverter GetConverter(this ClientConverterCollectorSystem.EMapLongBitReverse self) => GetConverter<ConverterCollector<MapLongBitReverseConverter>, MapLongBitReverseConverter>((int)self);
-    public static void Save(this ClientConverterCollectorSystem.EMapLongBitReverse self) => Save<ConverterCollector<MapLongBitReverseConverter>, MapLongBitReverseConverter>((int)self);
-
-    public static Dictionary<long, int> GetConverter(this ClientConverterCollectorSystem.EMapLongInt self) => GetConverter<ConverterCollector<MapLongIntConverter>, MapLongIntConverter>((int)self);
-    public static void Save(this ClientConverterCollectorSystem.EMapLongInt self) => Save<ConverterCollector<MapLongIntConverter>, MapLongIntConverter>((int)self);
-
-    public static Dictionary<long, long> GetConverter(this ClientConverterCollectorSystem.EMapLongLong self) => GetConverter<ConverterCollector<MapLongLongConverter>, MapLongLongConverter>((int)self);
-    public static void Save(this ClientConverterCollectorSystem.EMapLongLong self) => Save<ConverterCollector<MapLongLongConverter>, MapLongLongConverter>((int)self);
-#endregion
-
-#region Custom
-    public static ClientDailyFirstRedDotConverter GetConverter(this ClientConverterCollectorSystem.EDailyFirstRedDot self) => GetConverter<ConverterCollector<ClientDailyFirstRedDotConverter>, ClientDailyFirstRedDotConverter>((int)self);
-    public static void Save(this ClientConverterCollectorSystem.EDailyFirstRedDot self) => Save<ConverterCollector<ClientDailyFirstRedDotConverter>, ClientDailyFirstRedDotConverter>((int)self);
-#endregion
 }

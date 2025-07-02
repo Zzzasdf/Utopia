@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 
 namespace Converter.List.Long
 {
@@ -17,7 +16,10 @@ namespace Converter.List.Long
                 return;
             }
             this.source ??= new TList();
-            this.source.AddRange(source);
+            for (int i = 0; i < source.Count; i++)
+            {
+                this.source.Add(source[i]);
+            }
         }
 
         bool IConverter<TList>.TryEncode(out TList source)

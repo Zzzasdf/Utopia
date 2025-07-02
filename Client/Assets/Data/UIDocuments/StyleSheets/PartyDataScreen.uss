@@ -1,0 +1,8 @@
+Label {
+    font-size: 25px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.54);
+    -unity-text-outline-color: rgba(0, 0, 0, 0.85);
+    color: rgb(255, 255, 255);
+    -unity-text-outline-width: 0;
+    -unity-text-align: upper-center;
+}

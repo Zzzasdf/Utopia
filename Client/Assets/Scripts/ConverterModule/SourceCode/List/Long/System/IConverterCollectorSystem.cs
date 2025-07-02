@@ -8,16 +8,12 @@ namespace Converter.List.Long
     {
         /// 添加源数据
         void AddSource(TListList source);
-        
+
         /// 编码字典
-        bool TryEncodeMap<TConverterCollector, TConverter>(out Dictionary<int, TList> sourceMap) 
-            where TConverterCollector : class, IConverterCollector<TConverter, TList>
-            where TConverter : class, IConverter<TList>, new();
+        bool TryEncodeMap(out Dictionary<int, TList> sourceMap);
 
         /// 编码
-        bool TryEncode<TConverterCollector, TConverter>(int typeValue, out TList source) 
-            where TConverterCollector : class, IConverterCollector<TConverter, TList>
-            where TConverter : class, IConverter<TList>, new();
+        bool TryEncode(int typeValue, out TList source);
 
         /// 编码
         bool TryEncode(out TListList source);
@@ -26,11 +22,9 @@ namespace Converter.List.Long
         bool TryGetConverter<TConverterCollector, TConverter>(int typeValue, out TConverter converter) 
             where TConverterCollector : class, IConverterCollector<TConverter, TList>
             where TConverter : class, IConverter<TList>, new();
-        
+
         /// 保存单体
-        void Save<TConverterCollector, TConverter>(int typeValue)
-            where TConverterCollector : class, IConverterCollector<TConverter, TList>
-            where TConverter : class, IConverter<TList>, new();
+        void Save(int typeValue);
 
         /// 保存所有
         void SaveAll();

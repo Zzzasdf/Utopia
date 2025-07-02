@@ -26,7 +26,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\Bin\Debug\Assembly-CSharp\</OutputPath>
-    <DefineConstants>UNITY_2022_3_28;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_STANDALONE;TEXTCORE_1_0_OR_NEWER;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_NVIDIA;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;PLATFORM_INITIALIZES_MEMORY_MANAGER_EXPLICITLY;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>UNITY_2022_3_28;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_STANDALONE;TEXTCORE_1_0_OR_NEWER;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_NVIDIA;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;PLATFORM_INITIALIZES_MEMORY_MANAGER_EXPLICITLY;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;DOTWEEN;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169,0649</NoWarn>
@@ -46,117 +46,191 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Utility\Extensions\UnityEngine\LogExtensions.SourceCode.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Ring\Mono\Component\SelectedScroll\Test.cs" />
+    <Compile Include="Assets\Scripts\ConditionModule\FuncOpenSelfControl.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Linear\Core\Optional\Tween\Param\Position\PositionLerpDecreaseParam.cs" />
+    <Compile Include="Assets\Scripts\LoaderModule\AssetLoader.cs" />
+    <Compile Include="Assets\Scripts\GeneratorModule\CommonGenerator.cs" />
     <Compile Include="Assets\Scripts\Utility\Helper\CopyHelper.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Linear\Core\Optional\Tween\Param\Scale\ScaleLerpDecreaseParam.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\Sealed\MapIntLongConverter.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Linear\Core\Optional\Parts\BtnClickMoveSelectedTrigger\BtnClickMoveSelectedTriggerCollectorCore.cs" />
+    <Compile Include="Assets\Scripts\Utility\PatchVersion.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\RepeatedField.cs" />
+    <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Int\Conveter\Bitmap\BitmapReverseConverter.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Long\System\IConverterCollectorSystem.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Linear\Core\ILinearSelectorCore.cs" />
+    <Compile Include="Assets\Scripts\Utility\Pool\PooledListTest1.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\Sealed\ConverterCollector.cs" />
-    <Compile Include="Assets\Scripts\Utility\Generator\Ring\Component\SelectedScroll\Test.cs" />
+    <Compile Include="Assets\Scripts\GameEntry.cs" />
+    <Compile Include="Assets\UIToolkitScripts\PartyDataScreen.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\Sealed\MapIntBitConverter.cs" />
-    <Compile Include="Assets\Scripts\ConverterModule\Client\ClientDailyFirstRedDotConverter.Constant.cs" />
+    <Compile Include="Assets\Scripts\EnumModule\EnumIntFlagsGroup.cs" />
     <Compile Include="Assets\Scripts\Utility\Extensions\System\Collections\Generic\IListExtensions.cs" />
     <Compile Include="Assets\Scripts\Utility\Generator1\Ring\Generator.ItemContainer.cs" />
+    <Compile Include="Assets\Scripts\ChatModule\Model\Room\Unit\IChatRoomUnit.cs" />
+    <Compile Include="Assets\Scripts\UIViewModule\Driver\UIViewDriver.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\Sealed\MapLongBitReverseConverter.cs" />
-    <Compile Include="Assets\Scripts\Utility\Selector\ReactivePropertyFunc`1.cs" />
-    <Compile Include="Assets\Scripts\SystemModule\Reddot\Config\ReddotConfig.cs" />
+    <Compile Include="Assets\Scripts\StatusModule\Translate\TranslateFieldStatus.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\Utility\CBitmap.cs" />
+    <Compile Include="Assets\Scripts\StatusModule\Transform\TransformFieldStatus.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Ring\Mono\Generator.ItemContainer.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Long\Conveter\Map\MapLongIntConverter.cs" />
-    <Compile Include="Assets\Scripts\SystemModule\Reddot\Component\ReddotComponent.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Ring\Mono\Component\SelectedScroll\Generator.StatusMachine.cs" />
+    <Compile Include="Assets\Scripts\RedPointModule\RedPointNode.cs" />
+    <Compile Include="Assets\Scripts\ChatModule\ChatManager.Spacec.cs" />
+    <Compile Include="Assets\Scripts\UIViewModule\Checker\UICheckTest.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Ring\Mono\Generator.cs" />
     <Compile Include="Assets\Scripts\Utility\Generator1\Ring\Item.cs" />
     <Compile Include="Assets\Scripts\Utility\Singleton\LazySingleton.cs" />
     <Compile Include="Assets\Scripts\Utility\Generator1\Ring\Generator.Direction.cs" />
     <Compile Include="Assets\Scripts\Utility\Singleton.cs" />
-    <Compile Include="Assets\Scripts\Utility\Generator\Ring\Component\SelectedScroll\Generator.StatusMachine.cs" />
     <Compile Include="Assets\Scripts\Utility\SortBuffer.cs" />
+    <Compile Include="Assets\Scripts\ConditionModule\ConditionManager.cs" />
+    <Compile Include="Assets\Scripts\ChatModule\ChatManager.ChannelConfigure.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\Sealed\ListLongConverter.cs" />
-    <Compile Include="Assets\Scripts\ConverterModule\Client\ClientDailyFirstRedDotConverter.cs" />
-    <Compile Include="Assets\Scripts\Utility\Generator\Ring\Component\SelectedScroll\Generator.Animation.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Linear\Core\Optional\Parts\IOptionalPartsCore.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Long\Conveter\Map\MapIntLongConverter.cs" />
-    <Compile Include="Assets\Scripts\Utility\Generator\Ring\Component\SelectedScroll\Item.cs" />
+    <Compile Include="Assets\Scripts\SplitterModule\Mono\DisplaySplitterReverseSubscriber.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Linear\Core\Optional\Tween\TweenUnitCore.cs" />
+    <Compile Include="Assets\Scripts\GeneratorModule\GeneratorBase.cs" />
+    <Compile Include="Assets\Scripts\Utility\TransformStatus1.cs" />
     <Compile Include="Assets\Scripts\DataSaverModule\Binary\BinaryDataSaver.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\Sealed\HashSetLongConverter.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Long\Conveter\Variant\TimingReset\BitmapTimingResetConverter.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Long\Conveter\Bitmap\BitmapConverter.cs" />
     <Compile Include="Assets\Scripts\Utility\Helper\IOHelper.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Ring\Mono\Component\Component.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Long\System\ConverterCollectorSystem.cs" />
-    <Compile Include="Assets\Scripts\SystemModule\Reddot\Status\IReddotStatus.cs" />
+    <Compile Include="Assets\Scripts\ChatModule\View\UIChatMessageLoopScrollRect.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\Sealed\MapIntIntConverter.cs" />
-    <Compile Include="Assets\Scripts\Utility\Selector\ReactiveProperty`1.cs" />
-    <Compile Include="Assets\Scripts\SystemModule\Reddot\Status\ReddotStatusCollectionsLayer2.cs" />
-    <Compile Include="Assets\Scripts\SystemModule\Reddot\ReddotIndexList.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Linear\Core\Item\LinearSelectorItemCore.cs" />
+    <Compile Include="Assets\Scripts\RedPointModule\RedPointTreeManager.cs" />
+    <Compile Include="Assets\Scripts\RedPointModule\RedPointTree.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Long\Conveter\Map\MapLongBitConverter.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Long\Conveter\HashSet\HashSetLongReverseConverter.cs" />
-    <Compile Include="Assets\Scripts\Utility\Generator\Ring\Generator.ItemContainer.cs" />
-    <Compile Include="Assets\Scripts\SystemModule\Reddot\Node\Layer2.cs" />
-    <Compile Include="Assets\Scripts\SystemModule\Reddot\Node\Common.cs" />
-    <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Long\IConverter.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Linear\Core\Optional\Tween\Param\Position\PositionParam.cs" />
+    <Compile Include="Assets\Scripts\ConverterModule\Client\ClientDailyFirstRedPointConverter.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Linear\Core\Optional\Tween\Param\Duration\DurationLerpDecreaseParam.cs" />
+    <Compile Include="Assets\Scripts\GeneratorModule\TestCommonGenerator.cs" />
+    <Compile Include="Assets\Scripts\Utility\Selector1\ReactivePropertyFunc`1.cs" />
+    <Compile Include="Assets\Scripts\ConverterModule\Client\ClientDailyFirstRedPointConverter.Constant.cs" />
     <Compile Include="Assets\Scripts\Utility\Generator1\Ring\Generator.Shape.cs" />
-    <Compile Include="Assets\Scripts\SystemModule\Reddot\Status\ReddotStatusCollectionsLayer1.cs" />
+    <Compile Include="Assets\Scripts\WrapperModule\TestAwake.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Long\Collector\ConverterCollector.cs" />
+    <Compile Include="Assets\Scripts\Utility\Pool\PooledListTest.cs" />
     <Compile Include="Assets\Scripts\Utility\Generator1\Ring\Test.cs" />
+    <Compile Include="Assets\Scripts\StatusModule\Transform\TransformStatus.cs" />
+    <Compile Include="Assets\Scripts\Utility\Selector1\CollectSelector`1.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\Sealed\MapIntBitReverseConverter.cs" />
-    <Compile Include="Assets\Scripts\SystemModule\Reddot\Status\ReddotStatusCollections.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Linear\Core\Optional\Tween\Param\Scale\ScaleLerpDecreaseMinParam.cs" />
+    <Compile Include="Assets\Scripts\ChatModule\Model\Room\ChatMessageEntity.cs" />
     <Compile Include="Assets\Scripts\Utility\Subscriber\Subscriber`1.cs" />
-    <Compile Include="Assets\Scripts\Utility\Selector\CollectSelector`1.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Long\Conveter\Map\MapLongBitReverseConverter.cs" />
-    <Compile Include="Assets\Scripts\Utility\Generator\Ring\Generator.Direction.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Ring\Mono\Component\SelectedScroll\Generator.OptionalParts.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Long\Conveter\HashSet\HashSetLongConverter.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\Sealed\HashSetIntConverter.cs" />
+    <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Int\Conveter\Bitmap\BitmapConverter.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Linear\Core\LinearSelectorCore.cs" />
+    <Compile Include="Assets\Scripts\ChatModule\TestChatData.cs" />
     <Compile Include="Assets\Scripts\Utility\Generator1\Ring\Generator.OptionalParts.cs" />
+    <Compile Include="Assets\Scripts\ChatModule\Model\Room\ChatRoom.cs" />
     <Compile Include="Assets\Scripts\Utility\SerializableDictionary.cs" />
+    <Compile Include="Assets\Scripts\ChatModule\ChatMessage.cs" />
+    <Compile Include="Assets\Scripts\Utility\DataStructure\Heap.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Long\Conveter\HashSet\HashSetIntReverseConverter.cs" />
     <Compile Include="Assets\Scripts\Utility\Generator1\Ring\Generator.StatusMachine.cs" />
-    <Compile Include="Assets\Scripts\Utility\Generator\Ring\Generator.cs" />
     <Compile Include="Assets\Scripts\Utility\Extensions\System\Threading\Tasks\TasksExtensions.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Long\Conveter\Map\MapIntIntConverter.cs" />
+    <Compile Include="Assets\Scripts\UIViewModule\UIManager.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\Sealed\MapLongLongConverter.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Linear\Core\IndexParam\LimitRangeItemDataIndexParamCore.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Long\Conveter\Collections\ListLongConverter.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Linear\Core\Optional\Tween\Selected\ZoomSelectedContainer.cs" />
+    <Compile Include="Assets\Scripts\StatusModule\Translate\TranslateStatus.cs" />
     <Compile Include="Assets\Scripts\Utility\Subscriber\TypeSubscriber`1.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Linear\Core\Optional\Tween\Param\Scale\ScaleParam.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\RuntimeConverterCollectorSystem.cs" />
-    <Compile Include="Assets\Scripts\Utility\Generator\Ring\Component\SelectedScroll\SelectedScroll.cs" />
+    <Compile Include="Assets\Scripts\ChatModule\Model\Room\Unit\EditContentStorage.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Ring\Mono\Component\SelectedScroll\Generator.Utility.cs" />
+    <Compile Include="Assets\Scripts\ChatModule\Verify\Tablet\ChatRoomTablet.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\Sealed\HashSetIntReverseConverter.cs" />
-    <Compile Include="Assets\Scripts\Utility\Selector\MappingSelector`2.cs" />
+    <Compile Include="Assets\Scripts\ConditionModule\FuncOpenSelfControlReverseSubscriber.cs" />
+    <Compile Include="Assets\Scripts\RedPointModule\RedPointTreeManager.Configure.cs" />
+    <Compile Include="Assets\Scripts\ChatModule\Model\Room\ChatMessageEntityBase.cs" />
     <Compile Include="Assets\Scripts\Utility\Generator1\Ring\Generator.Utility.cs" />
     <Compile Include="Assets\Scripts\Utility\Generator1\Ring\Helper\SelectedScroll\SelectedScrollHelper.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Long\Conveter\HashSet\HashSetIntConverter.cs" />
-    <Compile Include="Assets\Scripts\SystemModule\Reddot\Constant\ReddotConstant.cs" />
-    <Compile Include="Assets\Scripts\SystemModule\Reddot\Node\Layer1.cs" />
     <Compile Include="Assets\Scripts\Utility\Generator1\Ring\Generator.cs" />
+    <Compile Include="Assets\Scripts\ChatModule\ChatManager.cs" />
+    <Compile Include="Assets\Scripts\StatusModule\Status.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\Sealed\HashSetLongReverseConverter.cs" />
-    <Compile Include="Assets\Scripts\Utility\Generator\Ring\Generator.Shape.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Linear\LinearGenerator.cs" />
+    <Compile Include="Assets\Scripts\UIViewModule\Driver\UIMonoDriver.cs" />
+    <Compile Include="Assets\Scripts\SplitterModule\Core\DisplaySplitterCore.cs" />
+    <Compile Include="Assets\Scripts\ChatModule\Verify\Gate\ChatHouseGate.cs" />
+    <Compile Include="Assets\Scripts\Utility\Pool\PooledList.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Ring\Mono\Generator.Direction.cs" />
     <Compile Include="Assets\Scripts\Utility\Helper\CrcHelper.cs" />
+    <Compile Include="Assets\Scripts\ChatModule\View\UIChatRoomLoopScrollRect.cs" />
     <Compile Include="Assets\Scripts\Utility\Generator1\Ring\Generator.Animation.cs" />
     <Compile Include="Assets\Scripts\Utility\Time\SystemTime.cs" />
-    <Compile Include="Assets\Scripts\Utility\Selector\IReactiveProperty`1.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Linear\Core\Optional\Tween\Param\Duration\DurationLerpDecreaseMinParam.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\Sealed\BitmapConverter.cs" />
-    <Compile Include="Assets\Scripts\SystemModule\Reddot\ReddotHandler.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Linear\Core\Optional\Parts\BtnClickMoveSelectedTrigger\BtnClickMoveSelectedTriggerCore.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Linear\Core\Optional\Tween\Enter\FlyInEnterTweenCore.cs" />
+    <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Int\Conveter\IConverter.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\Sealed\Variant\BitmapTimingResetConverter.cs" />
-    <Compile Include="Assets\Scripts\SystemModule\Reddot\Status\ReddotStatusCommon.cs" />
+    <Compile Include="Assets\Scripts\ConditionModule\ConditionManager.Responder.cs" />
+    <Compile Include="Assets\Scripts\UIViewModule\Driver\UIDriverBase.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Linear\Core\Optional\Tween\Param\Duration\DurationParam.cs" />
+    <Compile Include="Assets\Scripts\Utility\Selector1\MappingSelector`2.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\Sealed\BitmapReverseConverter.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Long\Conveter\Collections\ListIntConverter.cs" />
-    <Compile Include="Assets\Scripts\Utility\Generator\Ring\Component\SelectedScroll\Generator.Utility.cs" />
-    <Compile Include="Assets\Scripts\Utility\Generator\Ring\Component\SelectedScroll\Generator.OptionalParts.cs" />
+    <Compile Include="Assets\Scripts\ConditionModule\ConditionManager.BufferQueue.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\Sealed\ListIntConverter.cs" />
+    <Compile Include="Assets\Scripts\UIViewModule\View\UIViewUnitTest.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\ClientConverterCollectorSystem.cs" />
+    <Compile Include="Assets\Scripts\SplitterModule\Core\IDisplaySplitterCore.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\Sealed\MapLongBitConverter.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Long\Collector\IConverterCollector.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Linear\Core\LinearSelectorCore.EventSubscriber.cs" />
+    <Compile Include="Assets\Scripts\SplitterModule\Mono\DisplayChildSplitter.cs" />
+    <Compile Include="Assets\Scripts\Utility\Selector1\ReactiveProperty`1.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Long\Conveter\Bitmap\BitmapReverseConverter.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\Sealed\MapLongIntConverter.cs" />
-    <Compile Include="Assets\Scripts\SystemModule\Reddot\Config\ReddotConfig.BuiltIn.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Ring\Mono\Component\SelectedScroll\SelectedScroll.cs" />
     <Compile Include="Assets\Scripts\Utility\Extensions\UnityEngine\LogValidator.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Long\Conveter\Map\MapLongLongConverter.cs" />
-    <Compile Include="Assets\Scripts\SystemModule\Reddot\Node\IReddotNode.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Linear\Core\Optional\Tween\IOptionalTweenCore.cs" />
+    <Compile Include="Assets\Scripts\GeneratorModule\IGenerator.cs" />
+    <Compile Include="Assets\Scripts\ChatModule\Model\House\ChatHouse.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Ring\Mono\Component\SelectedScroll\Item.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Long\Conveter\Map\MapIntBitConverter.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Long\System\ConverterCollectorSystem.Config.cs" />
-    <Compile Include="Assets\Scripts\Utility\Generator\Ring\Component\Component.cs" />
+    <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Long\Conveter\IConverter.cs" />
+    <Compile Include="Assets\Scripts\UIViewModule\Base\UIViewUnitBase.cs" />
+    <Compile Include="Assets\Scripts\SplitterModule\Mono\DisplaySplitterMonoBase.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\ServerConverterCollectorSystem.cs" />
-    <Compile Include="Assets\Scripts\SystemModule\Reddot\ReddotTreeManager.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Ring\Mono\Generator.Shape.cs" />
+    <Compile Include="Assets\Scripts\SplitterModule\Mono\DisplaySplitter.cs" />
+    <Compile Include="Assets\Scripts\Utility\Selector1\IReactiveProperty`1.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Linear\Core\IndexParam\CenterItemDataIndexParamCore.cs" />
+    <Compile Include="Assets\Scripts\UIViewModule\UIManager.Config.cs" />
+    <Compile Include="Assets\Scripts\ChatModule\ChatManager.Parser.cs" />
+    <Compile Include="Assets\Scripts\TimerModule\TimerManager.cs" />
     <Compile Include="Assets\Scripts\Utility\Extensions\UnityEngine\LogExtensions.cs" />
-    <Compile Include="Assets\Scripts\SystemModule\Reddot\ReddotTree.cs" />
+    <Compile Include="Assets\Scripts\SelectorModule\Ring\Mono\Component\SelectedScroll\Generator.Animation.cs" />
+    <Compile Include="Assets\Scripts\IManager.cs" />
+    <Compile Include="Assets\Scripts\UIViewModule\Base\UICheckerBase.cs" />
+    <Compile Include="Assets\Scripts\WrapperModule\UtilityWrapper.cs" />
     <Compile Include="Assets\Scripts\Utility\BusyDisposable.cs" />
     <Compile Include="Assets\Scripts\Utility\Subscriber\PackMarkBit`1.cs" />
+    <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Int\Conveter\DailyRedPointManager.cs" />
     <Compile Include="Assets\Scripts\ConverterModule\SourceCode\List\Long\Conveter\Map\MapIntBitReverseConverter.cs" />
+    <None Include="Assets\Data\UIDocuments\PartyDataScreen.uxml" />
     <None Include="Assets\ReadMe.txt" />
+    <None Include="Assets\Data\UIDocuments\StyleSheets\PartyDataScreen.uss" />
     <Reference Include="UnityEngine">
       <HintPath>C:\UnityEditor\2022.3.28f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -406,8 +480,14 @@
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>C:\UnityEditor\2022.3.28f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Collections.LowLevel.ILSupport">
+      <HintPath>C:\UnityProject\Utopia\Client\Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+    </Reference>
     <Reference Include="ReportGeneratorMerged">
       <HintPath>C:\UnityProject\Utopia\Client\Library\PackageCache\com.unity.testtools.codecoverage@1.2.5\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>C:\UnityProject\Utopia\Client\Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
     </Reference>
     <Reference Include="LitJSON">
       <HintPath>C:\UnityProject\Utopia\Client\Assets\Plugins\LitJSON.dll</HintPath>
@@ -805,20 +885,35 @@
     <Reference Include="System.Xml.Serialization">
       <HintPath>C:\UnityEditor\2022.3.28f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.MemoryProfiler">
+      <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.MemoryProfiler.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.EditorCoroutines.Editor">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll</HintPath>
     </Reference>
     <Reference Include="HybridCLR.Runtime">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\HybridCLR.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.PlasticSCM.Editor">
-      <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+    <Reference Include="Unity.MemoryProfiler.Editor.MemoryProfilerModule">
+      <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.MemoryProfiler.Editor.MemoryProfilerModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Editor">
+      <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst">
+      <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
     </Reference>
     <Reference Include="UniTask.TextMeshPro">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\UniTask.TextMeshPro.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.PlasticSCM.Editor">
+      <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="YooAsset">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\YooAsset.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.ResourceManager.dll</HintPath>
     </Reference>
     <Reference Include="HybridCLR.Editor">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\HybridCLR.Editor.dll</HintPath>
@@ -847,9 +942,6 @@
     <Reference Include="Unity.VisualScripting.Core">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VisualScripting.Core.Editor">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll</HintPath>
     </Reference>
@@ -859,11 +951,17 @@
     <Reference Include="UniTask.Linq">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\UniTask.Linq.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow.Editor">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics.Editor">
+      <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
@@ -874,6 +972,9 @@
     <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.MemoryProfiler.Editor">
+      <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.MemoryProfiler.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Performance.Profile-Analyzer.Editor">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll</HintPath>
     </Reference>
@@ -883,8 +984,17 @@
     <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Model">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Collections">
+      <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables.Editor">
+      <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.Addressables.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.State.Editor">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
@@ -907,8 +1017,18 @@
     <Reference Include="Unity.ScriptableBuildPipeline.Editor">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Profiling.Core">
+      <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.Profiling.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.Addressables.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{8e399d07-fc4a-7ecd-7881-f923d075ebd1}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
