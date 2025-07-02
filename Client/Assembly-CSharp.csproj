@@ -55,7 +55,6 @@
     <Compile Include="Assets\UIToolkitScripts\PartyDataScreen.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\Sealed\MapLongBitReverseConverter.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\Sealed\MapLongBitConverter.cs" />
-    <Compile Include="Assets\Scripts\UtilityModule\Pool\PooledListTest1.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Core\UIManager.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Disposable\BusyDisposable.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Splitter\Core\DisplaySplitterCore.cs" />
@@ -69,6 +68,7 @@
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Int\Conveter\DailyRedPointManager.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Condition\FuncOpenSelfControl.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\Conveter\Variant\TimingReset\BitmapTimingResetConverter.cs" />
+    <Compile Include="Assets\Scripts\UtilityModule\Pool\PooledDictionary.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\Optional\Tween\Param\Duration\DurationLerpDecreaseParam.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Splitter\Mono\DisplaySplitter.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\Optional\Tween\Param\Duration\DurationParam.cs" />
@@ -99,12 +99,14 @@
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\Collector\ConverterCollector.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\Optional\Tween\Selected\ZoomSelectedContainer.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\Conveter\Map\MapIntLongConverter.cs" />
+    <Compile Include="Assets\Scripts\UtilityModule\Pool\Test\PooledListTest1.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Ring\Mono\Component\Component.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\Optional\Tween\Param\Position\PositionLerpDecreaseParam.cs" />
     <Compile Include="Assets\Scripts\DataStructureModule\SortBuffer.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\Optional\Tween\Enter\FlyInEnterTweenCore.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\IndexParam\CenterItemDataIndexParamCore.cs" />
     <Compile Include="Assets\Scripts\UnknownModule\Generator1\Ring\Generator.Utility.cs" />
+    <Compile Include="Assets\Scripts\UtilityModule\Pool\Test\PooledListTest.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\Conveter\Map\MapIntIntConverter.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Generator\CommonGenerator.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\Conveter\HashSet\HashSetIntConverter.cs" />
@@ -115,6 +117,7 @@
     <Compile Include="Assets\Scripts\UtilityModule\Subscriber\TypeSubscriber`1.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\Sealed\MapLongLongConverter.cs" />
     <Compile Include="Assets\Scripts\AssetModule\Helper\IOHelper.cs" />
+    <Compile Include="Assets\Scripts\UtilityModule\Pool\PooledHashSet.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Chat\ChatMessage.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Chat\Model\Room\Unit\IChatRoomUnit.cs" />
     <Compile Include="Assets\Scripts\UnknownModule\Generator1\Ring\Helper\SelectedScroll\SelectedScrollHelper.cs" />
@@ -146,7 +149,6 @@
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Ring\Mono\Component\SelectedScroll\Generator.OptionalParts.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\LinearSelectorCore.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\Optional\Parts\BtnClickMoveSelectedTrigger\BtnClickMoveSelectedTriggerCore.cs" />
-    <Compile Include="Assets\Scripts\UtilityModule\Pool\PooledListTest.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\System\IConverterCollectorSystem.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Ring\Mono\Component\SelectedScroll\Item.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Condition\ConditionManager.Responder.cs" />
@@ -187,6 +189,7 @@
     <Compile Include="Assets\Scripts\UtilityModule\Converter\Sealed\BitmapConverter.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\View\UIViewUnitTest.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Ring\Mono\Generator.cs" />
+    <Compile Include="Assets\Scripts\UtilityModule\Pool\PooledObject.cs" />
     <Compile Include="Assets\Scripts\AssetModule\LoaderModule\AssetLoader.cs" />
     <Compile Include="Assets\Scripts\UnknownModule\Generator1\Ring\Generator.ItemContainer.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\Item\LinearSelectorItemCore.cs" />
