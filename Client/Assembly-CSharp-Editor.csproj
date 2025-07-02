@@ -48,7 +48,6 @@
     <Compile Include="Assets\Editor\Window\AssetHandlerWindow\AssetHandlerWindow1.cs" />
     <Compile Include="Assets\Editor\Window\WindowCollectorUtility.List.cs" />
     <Compile Include="Assets\Editor\Unit\MemoryAnalysisExample.cs" />
-    <Compile Include="Assets\Scripts\EnumModule\Editor\EnumModuleEditUnit.cs" />
     <Compile Include="Assets\Editor\Utility\Utility.IO.cs" />
     <Compile Include="Assets\Editor\Unit\UIViewExample.cs" />
     <Compile Include="Assets\Editor\Window\WindowCollectorEntry.cs" />
@@ -58,12 +57,13 @@
     <Compile Include="Assets\Editor\Unit\ThreadExample.cs" />
     <Compile Include="Assets\Editor\Unit\ConverterExample.cs" />
     <Compile Include="Assets\Editor\Unit\UniTaskExample.cs" />
+    <Compile Include="Assets\Scripts\UtilityModule\Enum\Editor\EnumModuleEditUnit.cs" />
     <Compile Include="Assets\Editor\Unit\TryFinallyExample.cs" />
     <Compile Include="Assets\Editor\Unit\PatchVersionExample.cs" />
     <Compile Include="Assets\Editor\Unit\ListExample.cs" />
     <Compile Include="Assets\Editor\Window\AssetHandlerWindow\AssetHandlerWindow2.cs" />
-    <Compile Include="Assets\Scripts\ChatModule\Editor\UIChatMessageLoopScrollRectInspector.cs" />
     <Compile Include="Assets\Editor\Window\AssetHandlerWindow\AssetHandlerWindow3.cs" />
+    <Compile Include="Assets\Scripts\UIViewModule\Chat\Editor\UIChatMessageLoopScrollRectInspector.cs" />
     <Compile Include="Assets\Editor\Unit\OOPExample.cs" />
     <Compile Include="Assets\Editor\Utility\MeshCombine.cs" />
     <Compile Include="Assets\Editor\Unit\RegularExample.cs" />
