@@ -4,39 +4,57 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a967d55f-6ae8-4869-a5a9-e2ab076bd761" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Client/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assembly-CSharp-Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp-Editor.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assembly-CSharp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PooledListTestObj (1).prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PooledListTestObj (1).prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PooledListTestObj.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PooledListTestObj.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pool.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pool/PooledDictionary.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pool/PooledDictionary.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pool/PooledHashSet.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pool/PooledHashSet.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pool/PooledList.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pool/PooledList.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pool/PooledObject.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pool/PooledObject.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pool/Test.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pool/Test/PooledListTest.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pool/Test/PooledListTest.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pool/Test/PooledListTest1.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pool/Test/PooledListTest1.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Utility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Utility.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestPoolListScence.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestPoolListScence.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0-prev.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker0-prev.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker1-prev.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker1-prev.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker1.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker1.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe0.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" afterDir="false" />
+    <list default="true" id="a967d55f-6ae8-4869-a5a9-e2ab076bd761" name="更改" comment="..">
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Coroutine.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Coroutine/CoroutineTest.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Coroutine/CoroutineTest.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Layout.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Layout/LayoutTest.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Layout/LayoutTest.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Pooled.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Pooled/PooledTest.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Pooled/PooledTest.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Coroutine.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Coroutine/Test.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Coroutine/Test/CoroutineTest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Coroutine/Test/CoroutineTest.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Coroutine/WaitForSecondsValue.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Coroutine/WaitForSecondsValue.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Layout.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Layout/Editor.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Layout/HVLayoutGroup.Utility.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Layout/HVLayoutGroup.Utility.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Layout/HVLayoutGroup.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Layout/HVLayoutGroup.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Layout/LayoutNode.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Layout/LayoutNode.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Layout/LeafSizeFitter.Utility.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Layout/LeafSizeFitter.Utility.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Layout/LeafSizeFitter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Layout/LeafSizeFitter.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pooled.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pooled/Editor.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pooled/Editor/MonitoredObjectPoolMemoryWindow.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pooled/Editor/MonitoredObjectPoolMemoryWindow.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pooled/MonitoredObjectPool.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pooled/MonitoredObjectPool.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pooled/PooledDictionary.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pooled/PooledDictionary.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pooled/PooledHashSet.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pooled/PooledHashSet.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pooled/PooledList.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pooled/PooledList.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pooled/PooledObject.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pooled/PooledObject.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pooled/Test.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pooled/Test/PooledTest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pooled/Test/PooledTest.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Logs/AssetImportWorker2-prev.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Logs/AssetImportWorker3-prev.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Logs/AssetImportWorker4-prev.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Logs/AssetImportWorker5-prev.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Logs/AssetImportWorker6-prev.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Logs/AssetImportWorker7-prev.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,6 +158,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/55fbbbd17b724c15b6abe8c1a3e3289c175c00/a1/aee3da3f/RectTransform.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/55fbbbd17b724c15b6abe8c1a3e3289c175c00/a1/eeddbe99/HashSetPool`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/55fbbbd17b724c15b6abe8c1a3e3289c175c00/a4/9886698c/UnityAction`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/55fbbbd17b724c15b6abe8c1a3e3289c175c00/af/23f529ae/Coroutine.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/55fbbbd17b724c15b6abe8c1a3e3289c175c00/b4/016eabeb/AnimationCurve.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/55fbbbd17b724c15b6abe8c1a3e3289c175c00/b4/6dfaa9c3/UnityEvent`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/55fbbbd17b724c15b6abe8c1a3e3289c175c00/b9/69e747e9/Time.cs" root0="SKIP_HIGHLIGHTING" />
@@ -510,7 +529,7 @@
       <workItem from="1751461329168" duration="7313000" />
       <workItem from="1751468881408" duration="4483000" />
       <workItem from="1753704185298" duration="94000" />
-      <workItem from="1753704291494" duration="9241000" />
+      <workItem from="1753704291494" duration="9662000" />
     </task>
     <task id="LOCAL-00001" summary="..master">
       <option name="closed" value="true" />
@@ -520,7 +539,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751379642271</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="..master">
+      <option name="closed" value="true" />
+      <created>1753714152544</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1753714152544</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -543,7 +570,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="..master" />
-    <option name="LAST_COMMIT_MESSAGE" value="..master" />
+    <MESSAGE value=".." />
+    <option name="LAST_COMMIT_MESSAGE" value=".." />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
