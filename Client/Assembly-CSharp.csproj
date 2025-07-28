@@ -63,8 +63,8 @@
     <Compile Include="Assets\Scripts\DataStructureModule\Heap.cs" />
     <Compile Include="Assets\Scripts\DataStructureModule\SerializableDictionary.cs" />
     <Compile Include="Assets\Scripts\ExtensionsModule\UnityEngine\LogExtensions.cs" />
-    <Compile Include="Assets\Scripts\UIViewModule\RedPoint\RedPointNode.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Layout\HVLayoutGroup.Utility.cs" />
+    <Compile Include="Assets\Scripts\UIViewModule\RedPoint\RedPointNode.cs" />
     <Compile Include="Assets\Scripts\AssetModule\DataSaverModule\Binary\BinaryDataSaver.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Subscriber\Subscriber`1.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Int\Conveter\DailyRedPointManager.cs" />

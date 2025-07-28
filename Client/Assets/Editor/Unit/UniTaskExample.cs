@@ -81,11 +81,24 @@
 //    => TextMeshPro
 //  => 注意事项  每个 UniTask 只能 await 一次
 
+using Cysharp.Threading.Tasks;
 using NUnit.Framework;
+using UnityEngine;
 
 [TestFixture]
 public class UniTaskExample: UnityEditor.Editor
-{   
-    
+{
+    [Test]
+    public async void Foo()
+    {
+        await UniTask.Delay(1);
+        int f = await Foo2();
+        Debug.Log(f);
+    }
+
+    private UniTask<int> Foo2()
+    {
+        return new UniTask<int>(1);
+    }
 }
 
