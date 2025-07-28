@@ -42,6 +42,7 @@ public class CoroutineTest : MonoBehaviour
             {
                 yield return new WaitForSecondsValue(delayTime);
             }
+            stopwatch.Stop();
             milliseconds = stopwatch.ElapsedMilliseconds;
         }
         long after = GC.GetTotalMemory(true);
@@ -61,6 +62,7 @@ public class CoroutineTest : MonoBehaviour
             {
                 yield return new WaitForSeconds(delayTime);
             }
+            stopwatch.Stop();
             milliseconds = stopwatch.ElapsedMilliseconds;
         }
         long after = GC.GetTotalMemory(true);
@@ -81,6 +83,7 @@ public class CoroutineTest : MonoBehaviour
                 yield return waitForSeconds;
                 yield return null;
             }
+            stopwatch.Stop();
             milliseconds = stopwatch.ElapsedMilliseconds;
         }
         long after = GC.GetTotalMemory(true);

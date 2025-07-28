@@ -58,6 +58,7 @@ public class PooledTest : MonoBehaviour
                     } 
                 }
             }
+            stopwatch.Stop();
             milliseconds = stopwatch.ElapsedMilliseconds;
         }
         long after = GC.GetTotalMemory(true);
@@ -80,6 +81,7 @@ public class PooledTest : MonoBehaviour
                     l.Add(1);
                 }
             }
+            stopwatch.Stop();
             milliseconds = stopwatch.ElapsedMilliseconds;
         }
         long after = GC.GetTotalMemory(true);

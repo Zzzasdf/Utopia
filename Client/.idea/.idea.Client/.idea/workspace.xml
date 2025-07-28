@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a967d55f-6ae8-4869-a5a9-e2ab076bd761" name="更改" comment="..">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Client/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Editor/Unit/UniTaskExample.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Editor/Unit/UniTaskExample.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Coroutine/Test/CoroutineTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Coroutine/Test/CoroutineTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pooled/Test/PooledTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pooled/Test/PooledTest.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,8 +44,10 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pooled/Test/PooledTest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UtilityModule/Utility.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/UIToolkitScripts/PartyDataScreen.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.cysharp.unitask@fbe0bf8515/Runtime/IUniTaskSource.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.cysharp.unitask@fbe0bf8515/Runtime/Internal/ContinuationQueue.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.cysharp.unitask@fbe0bf8515/Runtime/Internal/PlayerLoopRunner.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.cysharp.unitask@fbe0bf8515/Runtime/UniTask.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.tuyoogame.yooasset@2.1.2/Editor/AssetBundleBuilder/BuildParameters.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.tuyoogame.yooasset@2.1.2/Editor/AssetBundleBuilder/BuildPipeline/BuiltinBuildPipeline/BuiltinBuildParameters.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.tuyoogame.yooasset@2.1.2/Editor/AssetBundleCollector/DisplayNameAttribute.cs" root0="SKIP_HIGHLIGHTING" />
@@ -481,7 +484,7 @@
       <workItem from="1751461329168" duration="7313000" />
       <workItem from="1751468881408" duration="4483000" />
       <workItem from="1753704185298" duration="94000" />
-      <workItem from="1753704291494" duration="10236000" />
+      <workItem from="1753704291494" duration="11700000" />
     </task>
     <task id="LOCAL-00001" summary="..master">
       <option name="closed" value="true" />
@@ -515,7 +518,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753714245763</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="..">
+      <option name="closed" value="true" />
+      <created>1753715201293</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1753715201293</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
