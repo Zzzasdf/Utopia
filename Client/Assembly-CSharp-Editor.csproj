@@ -62,6 +62,7 @@
     <Compile Include="Assets\Editor\Unit\PatchVersionExample.cs" />
     <Compile Include="Assets\Editor\Unit\ListExample.cs" />
     <Compile Include="Assets\Editor\Window\AssetHandlerWindow\AssetHandlerWindow2.cs" />
+    <Compile Include="Assets\Scripts\UtilityModule\Pooled\Editor\MonitoredObjectPoolMemoryWindow.cs" />
     <Compile Include="Assets\Editor\Window\AssetHandlerWindow\AssetHandlerWindow3.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Chat\Editor\UIChatMessageLoopScrollRectInspector.cs" />
     <Compile Include="Assets\Editor\Unit\OOPExample.cs" />
