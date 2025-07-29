@@ -18,7 +18,7 @@ public class MonitoredObjectPool
         {
             var onGet = OnGet(actionOnGet, maxSize);
             var onRelease = OnRelease(actionOnRelease);
-#if POOL_RELEASES
+#if POOL_PERFORNANCE
             collectionCheck = false;
 #endif
             s_Pool = new ObjectPool<TItem>(createFunc, onGet, onRelease, actionOnDestroy, collectionCheck, defaultCapacity, maxSize);
