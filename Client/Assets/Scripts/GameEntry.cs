@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ChatModule;
 using ConditionModule;
+using System;
 
 public class GameEntry : MonoBehaviour
 {
@@ -19,25 +20,55 @@ public class GameEntry : MonoBehaviour
 
     private void Awake()
     {
-        lifeCycles = new LifeCycleCollections();
-        lifeCycles.Add(ConditionManager = new ConditionManager());
-        lifeCycles.Add(TimerManager = new TimerManager());
-        lifeCycles.Add(ChatManager = new ChatManager());
-        lifeCycles.Add(ClientConverterCollectorSystem = new ClientConverterCollectorSystem());
-        lifeCycles.Add(ServerConverterCollectorSystem = new ServerConverterCollectorSystem());
+        playerLoops = new PlayerLoopCollections();
+        playerLoops.Add(ConditionManager = new ConditionManager());
+        playerLoops.Add(TimerManager = new TimerManager());
+        playerLoops.Add(ChatManager = new ChatManager());
+        playerLoops.Add(ClientConverterCollectorSystem = new ClientConverterCollectorSystem());
+        playerLoops.Add(ServerConverterCollectorSystem = new ServerConverterCollectorSystem());
 
-        lifeCycles.OnInit();
-        lifeCycles.OnSubscribe();
-        lifeCycles.OnEnable();
+        playerLoops.OnInit();
+        playerLoops.OnSubscribe();
+        playerLoops.OnEnable();
     }
 
     /// 生命周期集合
-    private LifeCycleCollections lifeCycles;
-    private void Update() => lifeCycles.OnUpdate(Time.deltaTime);
-    private void LateUpdate() => lifeCycles.OnLateUpdate(Time.deltaTime);
-    private void FixedUpdate() => lifeCycles.OnFixedUpdate(Time.fixedTime);
+    private PlayerLoopCollections playerLoops;
+    private void Update()
+    {
+        try
+        {
+            playerLoops.OnUpdate(Time.deltaTime);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+        }
+    }
+    private void LateUpdate()
+    {
+        try
+        {
+            playerLoops.OnLateUpdate(Time.deltaTime);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+        }
+    }
+    private void FixedUpdate()
+    {
+        try
+        {
+            playerLoops.OnFixedUpdate(Time.fixedTime);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+        }
+    }
 
-    private class LifeCycleCollections
+    private class PlayerLoopCollections
     {
         private HashSet<IInit> inits;
         private HashSet<IReset> resets;
@@ -50,7 +81,7 @@ public class GameEntry : MonoBehaviour
         private HashSet<ILateUpdate> lateUpdates;
         private HashSet<IFixedUpdate> fixedUpdates;
         
-        public LifeCycleCollections()
+        public PlayerLoopCollections()
         {
             inits = new HashSet<IInit>();
             resets = new HashSet<IReset>();

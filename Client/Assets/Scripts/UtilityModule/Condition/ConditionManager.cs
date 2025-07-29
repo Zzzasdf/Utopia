@@ -30,7 +30,7 @@ namespace ConditionModule
 
         void IDestroy.OnDestroy()
         {
-            throw new NotImplementedException();
+            
         }
 
         public void Subscribe(List<uint> key, Action<bool> callback) => commonResponder.Subscribe(key, callback);

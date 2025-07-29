@@ -7,28 +7,7 @@ public sealed class PooledHashSet<T> : HashSet<T>, IDisposable
     private static readonly int defaultCapacity = 10;
     // 能够精确定位未回收的类型，有且只能通过内部池创建、回收
     private static readonly int maxSize = 10000;
-    
-#if UNITY_EDITOR
-    private static readonly MonitoredObjectPool.ObjectPool<PooledHashSet<T>, T> s_Pool = 
-        new("PooledHash", () => new PooledHashSet<T>(), 
-            OnGet,
-            OnRelease,
-            null,
-            collectionCheck,
-            defaultCapacity, maxSize);
-    private static void OnGet(PooledHashSet<T> hashSet)
-    {
-        GC.ReRegisterForFinalize(hashSet);
-        if (s_Pool.CountAll <= maxSize) return;
-        UnityEngine.Debug.LogError($"pool maxsize eg!! {hashSet.GetType()} => 当前 active:{s_Pool.CountActive} + inactive:{s_Pool.CountInactive} > maxSize:{maxSize}, " +
-                                   $"当所有 active 对象回收时，将存在销毁，若前无集合重复回收报错，则请将最大容量至少提高到 {s_Pool.CountAll}");
-    }
-    private static void OnRelease(PooledHashSet<T> hashSet)
-    {
-        hashSet.Clear();
-        GC.SuppressFinalize(hashSet);
-    }
-#else
+
     private static readonly MonitoredObjectPool.ObjectPool<PooledHashSet<T>, T> s_Pool = 
         new("PooledHash", () => new PooledHashSet<T>(), 
             null,
@@ -36,7 +15,6 @@ public sealed class PooledHashSet<T> : HashSet<T>, IDisposable
             null,
             collectionCheck,
             defaultCapacity, maxSize);
-#endif
 
     public static UnityEngine.Pool.PooledObject<PooledHashSet<T>> Get(out PooledHashSet<T> value) => s_Pool.Get(out value);
     public static PooledHashSet<T> Get() => s_Pool.Get();
@@ -47,7 +25,7 @@ public sealed class PooledHashSet<T> : HashSet<T>, IDisposable
         s_Pool.Release(this);
     }
 
-#if UNITY_EDITOR
+#if !POOL_RELEASES
     ~PooledHashSet()
     {
         UnityEngine.Debug.LogError($"pool item gc eg!! {GetType()} => 当前对象被销毁，代码中存在未回收该类型的地方");

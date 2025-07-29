@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class PooledTest : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class PooledTest : MonoBehaviour
         ((IDisposable)list).Dispose();
     }
     
-    [SerializeField][Header("迭代次数")] private int Iterations = 100_000; // 十万次迭代
+    [SerializeField][Header("迭代次数")] private int Iterations = 1_000_000; // 百万次迭代
     [SerializeField][Header("性能测试 KeyCode")] private KeyCode keyCode = KeyCode.Space;
     
     private void Update()
@@ -39,6 +40,10 @@ public class PooledTest : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.N))
         {
             NormalTest();
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            PNormalTest();
         }
     }
 
@@ -86,6 +91,29 @@ public class PooledTest : MonoBehaviour
         }
         long after = GC.GetTotalMemory(true);
         StringBuilder sb = new StringBuilder("Normal");
+        sb.AppendLine($"耗时 => {Iterations}次，{milliseconds}毫秒");
+        sb.AppendLine($"GC分配总量: {after - before} bytes");
+        Debug.Log(sb.ToString());
+    }
+    private void PNormalTest()
+    {
+        long milliseconds;
+        long before = GC.GetTotalMemory(true);
+        {
+            System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
+            {
+                for (int i = 0; i < Iterations; i++)
+                {
+                    List<int> l = ListPool<int>.Get();
+                    l.Add(1);
+                    ListPool<int>.Release(l);
+                }
+            }
+            stopwatch.Stop();
+            milliseconds = stopwatch.ElapsedMilliseconds;
+        }
+        long after = GC.GetTotalMemory(true);
+        StringBuilder sb = new StringBuilder("PNormal");
         sb.AppendLine($"耗时 => {Iterations}次，{milliseconds}毫秒");
         sb.AppendLine($"GC分配总量: {after - before} bytes");
         Debug.Log(sb.ToString());
