@@ -83,6 +83,7 @@
 
 using Cysharp.Threading.Tasks;
 using NUnit.Framework;
+using System.Threading.Tasks;
 using UnityEngine;
 
 [TestFixture]
@@ -91,8 +92,13 @@ public class UniTaskExample: UnityEditor.Editor
     [Test]
     public async void Foo()
     {
-        await UniTask.Delay(1);
+        Debug.Log(Time.frameCount);
+        await UniTask.DelayFrame(0, PlayerLoopTiming.LastUpdate);
+        Debug.Log(Time.frameCount);
+        await UniTask.Delay(1000);
+        Debug.Log(Time.frameCount);
         int f = await Foo2();
+        Debug.Log(Time.frameCount);
         Debug.Log(f);
     }
 
@@ -100,5 +106,10 @@ public class UniTaskExample: UnityEditor.Editor
     {
         return new UniTask<int>(1);
     }
+
+    // public async VTask Foo3()
+    // {
+    //     await new VTask();
+    // }
 }
 
