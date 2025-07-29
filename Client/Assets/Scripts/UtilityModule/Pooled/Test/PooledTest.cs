@@ -8,7 +8,7 @@ public class PooledTest : MonoBehaviour
     private PooledList<int> list;
     private PooledHashSet<int> hashSet;
     private PooledDictionary<int, int> dict;
-    
+
     private void Awake()
     {
         list = PooledList<int>.Get();

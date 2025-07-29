@@ -1,26 +1,25 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine.Pool;
+using UnityEngine;
 
 public class TimerManager: ITimerManager
 {
-    private long CurrentTime => 0; // TODO ZZZ 当前时间
+    private long CurrentTime => (long)(Time.time *1000); // TODO ZZZ 当前时间
     
     // 自增 id
     private int incrementId;
-    private TimerSpanPool pool;
-    private TimerHeap heap;
-    private Dictionary<int, TimerSpan> dic;
+    private TimerSpanHeap spanHeap;
+    private Dictionary<int, TimerSpan> dict;
 
     void IInit.OnInit()
     {
-        heap = new TimerHeap();
-        dic = new Dictionary<int, TimerSpan>();
+        spanHeap = new TimerSpanHeap();
+        dict = new Dictionary<int, TimerSpan>();
     }
     void IReset.OnReset()
     {
-        dic.Clear();
-        heap.Clear();
+        dict.Clear();
+        spanHeap.Clear();
     }
     void IDestroy.OnDestroy()
     {
@@ -29,28 +28,40 @@ public class TimerManager: ITimerManager
 
     void IUpdate.OnUpdate(float deltaTime)
     {
-        while (!heap.IsEmpty)
+        while (!spanHeap.IsEmpty)
         {
-            TimerSpan timerSpan = heap.Peek();
+            TimerSpan timerSpan = spanHeap.Peek();
             if (CurrentTime < timerSpan.Time) return;
-            timerSpan.Callback?.Invoke();
-            heap.Pop();
-            dic.Remove(timerSpan.Id);
+            spanHeap.Pop();
+            dict.Remove(timerSpan.Id);
+            timerSpan.Callback.Invoke(true);
+            ((IDisposable)timerSpan).Dispose();
         }
     }
     
     /// <summary>
     /// 创建定时器
     /// </summary>
-    /// <param name="time">触发的时点</param>
-    /// <param name="callback">触发的回调</param>
+    /// <param name="millisecond">当前时间经过毫秒数后执行</param>
+    /// <param name="callback">触发的回调 (true => 成功触发，false => 取消)</param>
     /// <returns>唯一id</returns>
-    public int Create(long time, Action callback)
+    public int GetAfterMillisecond(long millisecond, Action<bool> callback)
+    {
+        long time = CurrentTime + millisecond;
+        return Get(time, callback);
+    }
+    /// <summary>
+    /// 创建定时器
+    /// </summary>
+    /// <param name="time">触发的时点</param>
+    /// <param name="callback">触发的回调 (true => 成功触发，false => 取消)</param>
+    /// <returns>唯一id</returns>
+    public int Get(long time, Action<bool> callback)
     {
         int id = CreateUniqueId();
-        TimerSpan timerSpan = pool.Get(id, time, callback);
-        heap.Push(timerSpan);
-        dic.Add(id, timerSpan);
+        TimerSpan timerSpan = TimerSpan.Get(id, time, callback);
+        spanHeap.Push(timerSpan);
+        dict.Add(id, timerSpan);
         return id;
     }
 
@@ -60,8 +71,10 @@ public class TimerManager: ITimerManager
     /// <param name="id"></param>
     public void Cancel(int id)
     {
-        if (!dic.Remove(id, out TimerSpan timerSpan)) return;
-        heap.Remove(timerSpan);
+        if (!dict.Remove(id, out TimerSpan timerSpan)) return;
+        spanHeap.Remove(timerSpan);
+        timerSpan.Callback.Invoke(false);
+        ((IDisposable)timerSpan).Dispose();
     }
 
     /// 生成唯一 id
@@ -70,53 +83,87 @@ public class TimerManager: ITimerManager
         do
         {
             incrementId++;
-        } while (!dic.ContainsKey(incrementId));
+        } while (!dict.ContainsKey(incrementId));
         return incrementId;
     }
 
-    private class TimerHeap : Heap<TimerSpan>
+    private class TimerSpanHeap : Heap<TimerSpan>
     {
         public void Remove(TimerSpan timerSpan)
         {
             heap.Remove(timerSpan);
         }
     }
-
-    private class TimerSpanPool
+    
+    private class TimerSpan: IDisposable, IComparable<TimerSpan>
     {
-        private readonly ObjectPool<TimerSpan> s_Pool = new ObjectPool<TimerSpan>
-        (
-            () => new TimerSpan(), 
-            null, 
-            x => x.Clear()
-        );
-        public TimerSpan Get(int id, long time, Action callback)
+        private static readonly bool collectionCheck = true; 
+        private static readonly int defaultCapacity = 10;
+        // 能够精确定位未回收的类型，有且只能通过内部池创建、回收
+        private static readonly int maxSize = 10000;
+        
+#if UNITY_EDITOR
+        private static readonly MonitoredObjectPool.ObjectPool<TimerSpan, TimerSpan> s_Pool = 
+            new(nameof(TimerSpan), () => new TimerSpan(), 
+                OnGet,
+                OnRelease,
+                null,
+                collectionCheck,
+                defaultCapacity, maxSize);
+        private static void OnGet(TimerSpan timerSpan)
         {
-            TimerSpan result = s_Pool.Get();
-            result.Init(id, time, callback);
-            return result;
+            GC.ReRegisterForFinalize(timerSpan);
+            if (s_Pool.CountAll <= maxSize) return;
+            UnityEngine.Debug.LogError($"pool maxsize eg!! {timerSpan.GetType()} => 当前 active:{s_Pool.CountActive} + inactive:{s_Pool.CountInactive} > maxSize:{maxSize}, " +
+                $"当所有 active 对象回收时，将存在销毁，若前无集合重复回收报错，则请将最大容量至少提高到 {s_Pool.CountAll}");
         }
-        public void Release(TimerSpan toRelease) => s_Pool.Release(toRelease);
-    }
+        private static void OnRelease(TimerSpan timerSpan)
+        {
+            timerSpan.Callback = null;
+            timerSpan.Time = 0;
+            timerSpan.Id = 0;
+            GC.SuppressFinalize(timerSpan);
+        }
+#else
+    private static readonly MonitoredObjectPool.ObjectPool<TimerSpan, TimerSpan> s_Pool = 
+        new(nameof(TimerSpan), () => new TimerSpan(), 
+            null,
+            t =>
+            {
+                t.Callback = null;
+                t.Time = 0;
+                t.Id = 0;
+            },
+            null,
+            collectionCheck,
+            defaultCapacity, maxSize);
+#endif
 
-    private class TimerSpan: IComparable<TimerSpan>
-    {
+        public static TimerSpan Get(int id, long time, Action<bool> callback)
+        {
+            TimerSpan timerSpan = s_Pool.Get();
+            timerSpan.Id = id;
+            timerSpan.Time = time;
+            timerSpan.Callback = callback ?? throw new ArgumentNullException();
+            return timerSpan;
+        }
+        private TimerSpan() { }
+
+        void IDisposable.Dispose()
+        {
+            s_Pool.Release(this);
+        }
+
+#if UNITY_EDITOR
+        ~TimerSpan()
+        {
+            UnityEngine.Debug.LogError($"pool item gc eg!! {GetType()} => 当前对象被销毁，代码中存在未回收该类型的地方");
+        }
+#endif
+        
         public int Id { get; private set; }
         public long Time { get; private set; }
-        public Action Callback { get; private set; }
-
-        public void Init(int id, long time, Action callback)
-        {
-            Id = id;
-            Time = time;
-            Callback = callback;
-        }
-        public void Clear()
-        {
-            Callback = null;
-            Time = 0;
-            Id = 0;
-        }
+        public Action<bool> Callback { get; private set; }
 
         public int CompareTo(TimerSpan other)
         {

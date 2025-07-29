@@ -5,7 +5,7 @@ public class BusyDisposableExample
 {
     private static bool result;
 
-    private static BusyDisposable NewBusyDisposable => new BusyDisposable(() => result = false);
+    private static BusyDisposable NewBusyDisposable => BusyDisposable.Get(() => result = false);
 
     [Test] 
     public static void Foo()
