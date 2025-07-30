@@ -4,12 +4,19 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class AssetLoader<TObject> : MonoBehaviour
 {
+    private bool _isActivePlayLoop; // 是否激活了 Unity 的循环系统
+
     private AsyncOperationHandle<TObject> _handle;
     private string _resName; // 当前使用中的资源名
     private bool _completedCalled; // 资源是否被 Completed回调 处理过
-    
+
     public void Load(string resName)
     {
+        if (!_isActivePlayLoop)
+        {
+            Debug.LogError("未先激活 Unity 的循环系统！！");
+            return;
+        }
         if (string.IsNullOrEmpty(resName))
         {
             // 资源名为空，不加载，直接隐藏
@@ -87,6 +94,10 @@ public class AssetLoader<TObject> : MonoBehaviour
         _completedCalled = true;
     }
     
+    private void Awake()
+    {
+        _isActivePlayLoop = true;
+    }
     private void OnDestroy()
     {
         UnLoadBuiltIn();

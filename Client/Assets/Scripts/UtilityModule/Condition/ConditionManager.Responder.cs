@@ -10,18 +10,17 @@ namespace ConditionModule
         void Fire(EConditionType eConditionType);
     }
     /// 条件响应器
-    public class ConditionResponder<TList>: IConditionResponder
-        where TList: List<uint>
+    public class ConditionResponder: IConditionResponder
     {
-        /// id 映射 配置
-        private Dictionary<TList, ConditionDataWrapper<TList>> key2Data;
+        /// key 映射 配置
+        private Dictionary<IConditionTypeGroup, ConditionDataWrapper> key2Data;
         /// 条件类型 映射 配置集 （检测）
-        private Dictionary<EConditionType, List<ConditionDataWrapper<TList>>> conditionType2Data;
+        private Dictionary<EConditionType, List<ConditionDataWrapper>> conditionType2Data;
         
         public ConditionResponder()
         {
-            key2Data = new Dictionary<TList, ConditionDataWrapper<TList>>();
-            conditionType2Data = new Dictionary<EConditionType, List<ConditionDataWrapper<TList>>>();
+            key2Data = new Dictionary<IConditionTypeGroup, ConditionDataWrapper>();
+            conditionType2Data = new Dictionary<EConditionType, List<ConditionDataWrapper>>();
         }
         public void Clear()
         {
@@ -33,13 +32,13 @@ namespace ConditionModule
         {
             foreach (var pair in key2Data)
             {
-                ConditionDataWrapper<TList> wrapper = pair.Value;
+                ConditionDataWrapper wrapper = pair.Value;
                 wrapper.Fire();
             }
         }
         public void Fire(EConditionType eConditionType)
         {
-            if (!conditionType2Data.TryGetValue(eConditionType, out List<ConditionDataWrapper<TList>> wrappers))
+            if (!conditionType2Data.TryGetValue(eConditionType, out List<ConditionDataWrapper> wrappers))
             {
                 return;
             }
@@ -50,9 +49,9 @@ namespace ConditionModule
         }
 
         // 订阅
-        public void Subscribe(TList key, Action<bool> callback)
+        public void Subscribe(IConditionTypeGroup key, Action<bool> callback)
         {
-            if (!key2Data.TryGetValue(key, out ConditionDataWrapper<TList> wrapper))
+            if (!key2Data.TryGetValue(key, out ConditionDataWrapper wrapper))
             {
                 AddData(key, out wrapper);
             }
@@ -61,9 +60,9 @@ namespace ConditionModule
             callback.Invoke(wrapper.Status());
         }
         /// 取消订阅
-        public void Unsubscribe(TList key, Action<bool> callback)
+        public void Unsubscribe(IConditionTypeGroup key, Action<bool> callback)
         {
-            if (!key2Data.TryGetValue(key, out ConditionDataWrapper<TList> wrapper))
+            if (!key2Data.TryGetValue(key, out ConditionDataWrapper wrapper))
             {
                 return;
             }
@@ -72,18 +71,18 @@ namespace ConditionModule
             RemoveData(wrapper);
         }
         /// 状态
-        public bool Status(TList key)
+        public bool Status(IConditionTypeGroup key)
         {
-            if (!key2Data.TryGetValue(key, out ConditionDataWrapper<TList> wrapper))
+            if (!key2Data.TryGetValue(key, out ConditionDataWrapper wrapper))
             {
                 AddData(key, out wrapper);
             }
             return wrapper.Status();
         }
 
-        private void AddData(TList key, out ConditionDataWrapper<TList> wrapper)
+        private void AddData(IConditionTypeGroup key, out ConditionDataWrapper wrapper)
         {
-            wrapper = ConditionDataWrapperPool<TList>.Get(key);
+            wrapper = ConditionDataWrapperPool.Get(key);
             // 加入 id 映射
             key2Data.Add(key, wrapper);
             // 归入 条件类型检测字典
@@ -91,22 +90,22 @@ namespace ConditionModule
             for (int i = 0; i < conditionTypes.Count; i++)
             {
                 EConditionType eConditionType = conditionTypes[i];
-                if (!conditionType2Data.TryGetValue(eConditionType, out List<ConditionDataWrapper<TList>> wrappers))
+                if (!conditionType2Data.TryGetValue(eConditionType, out List<ConditionDataWrapper> wrappers))
                 {
-                    conditionType2Data.Add(eConditionType, wrappers = new List<ConditionDataWrapper<TList>>());
+                    conditionType2Data.Add(eConditionType, wrappers = new List<ConditionDataWrapper>());
                 }
                 wrappers.Add(wrapper);
             }
             ListPool<EConditionType>.Release(conditionTypes);
         }
-        private void RemoveData(ConditionDataWrapper<TList> wrapper)
+        private void RemoveData(ConditionDataWrapper wrapper)
         {
             // 从 条件类型字典 中删除
             List<EConditionType> conditionTypes = wrapper.EConditionTypes();
             for (int i = 0; i < conditionTypes.Count; i++)
             {
                 EConditionType eConditionType = conditionTypes[i];
-                List<ConditionDataWrapper<TList>> wrappers = conditionType2Data[eConditionType];
+                List<ConditionDataWrapper> wrappers = conditionType2Data[eConditionType];
                 for (int j = wrappers.Count - 1; j >= 0; j--)
                 {
                     if(wrappers[j] != wrapper) continue;
@@ -116,21 +115,20 @@ namespace ConditionModule
             }
             ListPool<EConditionType>.Release(conditionTypes);
             // 从 id 字典中 删除
-            key2Data.Remove(wrapper);
-            ConditionDataWrapperPool<TList>.Release(wrapper);
+            key2Data.Remove(wrapper.GetTypeGroup());
+            ConditionDataWrapperPool.Release(wrapper);
         }
         
-        private class ConditionDataWrapper<TList>
-            where TList: IList<uint>
+        private class ConditionDataWrapper
         {
-            private TList list;
+            private IConditionTypeGroup typeGroup;
             private bool isDirty;
             private bool status;
             private Action<bool> callback;
         
-            public void Init(TList list)
+            public void Init(IConditionTypeGroup list)
             {
-                this.list = list;
+                typeGroup = list;
                 isDirty = true;
                 status = false;
                 callback = null;
@@ -140,7 +138,6 @@ namespace ConditionModule
                 callback = null;
                 status = false;
                 isDirty = true;
-                list.Clear();
             }
             public List<EConditionType> EConditionTypes()
             {
@@ -180,26 +177,25 @@ namespace ConditionModule
                 return callback == null;
             }
             
-            public static implicit operator TList(ConditionDataWrapper<TList> wrapper)
+            public IConditionTypeGroup GetTypeGroup()
             {
-                return wrapper.list;
+                return typeGroup;
             }
         }
 
-        private class ConditionDataWrapperPool<TList>
-            where TList: IList<uint>
+        private class ConditionDataWrapperPool
         {
-            private static readonly ObjectPool<ConditionDataWrapper<TList>> s_Pool = new ObjectPool<ConditionDataWrapper<TList>>(
-                () => new ConditionDataWrapper<TList>(), 
+            private static readonly ObjectPool<ConditionDataWrapper> s_Pool = new ObjectPool<ConditionDataWrapper>(
+                () => new ConditionDataWrapper(), 
                 null, 
                 x => x.Release());
-            public static ConditionDataWrapper<TList> Get(TList key)
+            public static ConditionDataWrapper Get(IConditionTypeGroup key)
             {
-                ConditionDataWrapper<TList> result = s_Pool.Get();
+                ConditionDataWrapper result = s_Pool.Get();
                 result.Init(key);
                 return result;
             }
-            public static void Release(ConditionDataWrapper<TList> toRelease) => s_Pool.Release(toRelease);
+            public static void Release(ConditionDataWrapper toRelease) => s_Pool.Release(toRelease);
         }
     }
 }

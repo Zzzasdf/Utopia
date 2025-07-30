@@ -165,6 +165,7 @@
     <Compile Include="Assets\Scripts\ExtensionsModule\System\Threading\Tasks\TasksExtensions.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Subscriber\PackMarkBit`1.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Chat\Model\House\ChatHouse.cs" />
+    <Compile Include="Assets\Scripts\PlayerLoop.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\System\ConverterCollectorSystem.cs" />
     <Compile Include="Assets\Scripts\ExtensionsModule\UnityEngine\LogValidator.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\Sealed\HashSetIntReverseConverter.cs" />
@@ -173,7 +174,6 @@
     <Compile Include="Assets\Scripts\UtilityModule\Pooled\Test\PooledTest.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Splitter\Mono\DisplaySplitterMonoBase.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Chat\ChatManager.cs" />
-    <Compile Include="Assets\Scripts\LifeCycle.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Condition\FuncOpenSelfControlReverseSubscriber.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\Sealed\Variant\BitmapTimingResetConverter.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\Sealed\MapLongIntConverter.cs" />

@@ -1,11 +1,10 @@
 #region 定制化 Manager
-
-using System;
-using System.Collections.Generic;
-
 public interface ITimerManager : IManager, IUpdate { }
 public interface IChatManager : IManager { }
+public interface IRedPointTreeManager : IManager { }
+
 public interface IConverterCollectorSystemManager: IManager { }
+
 public interface IManager: IInit, IReset, IDestroy { }
 #endregion
 

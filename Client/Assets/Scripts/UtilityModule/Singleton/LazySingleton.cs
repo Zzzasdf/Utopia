@@ -1,6 +1,17 @@
+
 public class LazySingleton<T>
-    where T: new()
+    where T: new() 
 {
     private static T _instance;
-    public static T Instance => _instance ??= new T();
+    public static T Instance 
+    {
+        get 
+        {
+            if (_instance == null)
+            {
+                _instance = new T();
+            }
+            return _instance;
+        }
+    }
 }
