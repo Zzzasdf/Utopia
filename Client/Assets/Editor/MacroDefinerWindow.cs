@@ -33,8 +33,7 @@ public class MacroDefinerWindow : EditorWindow
     // 可选
     private List<DefineNode> optionalDefines = new List<DefineNode>
     {
-        new DefineNode("POOL_RELEASES", "对象池发布模式",
-            new DefineNode("POOL_PERFORNANCE", "对象池性能模式")),
+        new DefineNode("POOL_RELEASES", "对象池发布模式"),
     };
     
     // // 开发模式

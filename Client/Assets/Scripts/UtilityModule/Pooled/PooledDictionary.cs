@@ -3,18 +3,10 @@ using System.Collections.Generic;
 
 public sealed class PooledDictionary<TKey, TValue> : Dictionary<TKey, TValue>, IDisposable
 {
-    private static readonly bool collectionCheck = true;
-    private static readonly int defaultCapacity = 10;
-    // 能够精确定位未回收的类型，有且只能通过内部池创建、回收
-    private static readonly int maxSize = 10000;
-    
     private static readonly MonitoredObjectPool.ObjectPool<PooledDictionary<TKey, TValue>, (TKey, TValue)> s_Pool = 
         new("PooledDictionary", () => new PooledDictionary<TKey, TValue>(), 
             null,
-            l => l.Clear(),
-            null,
-            collectionCheck,
-            defaultCapacity, maxSize);
+            l => l.Clear());
 
     public static UnityEngine.Pool.PooledObject<PooledDictionary<TKey, TValue>> Get(out PooledDictionary<TKey, TValue> value) => s_Pool.Get(out value);
     public static PooledDictionary<TKey, TValue> Get() => s_Pool.Get();
@@ -26,10 +18,7 @@ public sealed class PooledDictionary<TKey, TValue> : Dictionary<TKey, TValue>, I
     }
 
 #if !POOL_RELEASES
-    ~PooledDictionary()
-    {
-        UnityEngine.Debug.LogError($"pool item gc eg!! {GetType()} => 当前对象被销毁，代码中存在未回收该类型的地方");
-    }
+    ~PooledDictionary() => s_Pool.FinalizeDebug();
 #endif
 
 #if UNITY_EDITOR

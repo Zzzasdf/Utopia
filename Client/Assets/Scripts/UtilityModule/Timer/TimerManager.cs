@@ -110,11 +110,6 @@ public class TimerManager: ITimerManager
 
     private class TimerSpan: IDisposable, IComparable<TimerSpan>
     {
-        private static readonly bool collectionCheck = true; 
-        private static readonly int defaultCapacity = 10;
-        // 能够精确定位未回收的类型，有且只能通过内部池创建、回收
-        private static readonly int maxSize = 10000;
-        
         private static readonly MonitoredObjectPool.ObjectPool<TimerSpan, TimerSpan> s_Pool = 
             new(nameof(TimerSpan), () => new TimerSpan(), 
                 null,
@@ -123,10 +118,7 @@ public class TimerManager: ITimerManager
                     t.Callback = null;
                     t.Time = 0;
                     t.Id = 0;
-                },
-                null,
-                collectionCheck,
-                defaultCapacity, maxSize);
+                });
 
         public static TimerSpan Get(int id, long time, Action<bool> callback)
         {
@@ -138,16 +130,10 @@ public class TimerManager: ITimerManager
         }
         private TimerSpan() { }
 
-        void IDisposable.Dispose()
-        {
-            s_Pool.Release(this);
-        }
+        void IDisposable.Dispose() => s_Pool.Release(this);
 
 #if !POOL_RELEASES
-        ~TimerSpan()
-        {
-            UnityEngine.Debug.LogError($"pool item gc eg!! {GetType()} => 当前对象被销毁，代码中存在未回收该类型的地方");
-        }
+        ~TimerSpan() => s_Pool.FinalizeDebug();
 #endif
         
         public int Id { get; private set; }

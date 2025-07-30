@@ -3,33 +3,18 @@ using System.Collections.Generic;
 
 public sealed class PooledList<T> : List<T>, IDisposable 
 {
-    private static readonly bool collectionCheck = true; 
-    private static readonly int defaultCapacity = 10;
-    // 能够精确定位未回收的类型，有且只能通过内部池创建、回收
-    private static readonly int maxSize = 10000;
-    
     private static readonly MonitoredObjectPool.ObjectPool<PooledList<T>, T> s_Pool = 
         new("PooledList", () => new PooledList<T>(), 
             null,
-            l => l.Clear(),
-            null,
-            collectionCheck,
-            defaultCapacity, maxSize);
+            l => l.Clear());
 
     public static UnityEngine.Pool.PooledObject<PooledList<T>> Get(out PooledList<T> value) => s_Pool.Get(out value);
     public static PooledList<T> Get() => s_Pool.Get();
     private PooledList() { }
-
-    void IDisposable.Dispose()
-    {
-        s_Pool.Release(this);
-    }
+    void IDisposable.Dispose() => s_Pool.Release(this);
 
 #if !POOL_RELEASES
-    ~PooledList()
-    {
-        UnityEngine.Debug.LogError($"pool item gc eg!! {GetType()} => 当前对象被销毁，代码中存在未回收该类型的地方");
-    }
+    ~PooledList() => s_Pool.FinalizeDebug();
 #endif
 
 #if UNITY_EDITOR

@@ -3,18 +3,10 @@ using System.Collections.Generic;
 
 public sealed class PooledHashSet<T> : HashSet<T>, IDisposable
 {
-    private static readonly bool collectionCheck = true;
-    private static readonly int defaultCapacity = 10;
-    // 能够精确定位未回收的类型，有且只能通过内部池创建、回收
-    private static readonly int maxSize = 10000;
-
     private static readonly MonitoredObjectPool.ObjectPool<PooledHashSet<T>, T> s_Pool = 
         new("PooledHash", () => new PooledHashSet<T>(), 
             null,
-            l => l.Clear(),
-            null,
-            collectionCheck,
-            defaultCapacity, maxSize);
+            l => l.Clear());
 
     public static UnityEngine.Pool.PooledObject<PooledHashSet<T>> Get(out PooledHashSet<T> value) => s_Pool.Get(out value);
     public static PooledHashSet<T> Get() => s_Pool.Get();
@@ -26,10 +18,7 @@ public sealed class PooledHashSet<T> : HashSet<T>, IDisposable
     }
 
 #if !POOL_RELEASES
-    ~PooledHashSet()
-    {
-        UnityEngine.Debug.LogError($"pool item gc eg!! {GetType()} => 当前对象被销毁，代码中存在未回收该类型的地方");
-    }
+    ~PooledHashSet() => s_Pool.FinalizeDebug();
 #endif
 
 #if UNITY_EDITOR
