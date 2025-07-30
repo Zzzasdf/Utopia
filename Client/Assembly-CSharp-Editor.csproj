@@ -77,6 +77,7 @@
     <Compile Include="Assets\Editor\Window\WindowCollectorUtility.cs" />
     <Compile Include="Assets\Editor\Unit\TaskExample.cs" />
     <Compile Include="Assets\Editor\Window\AssetHandlerWindow.cs" />
+    <Compile Include="Assets\Editor\MacroDefinerWindow.cs" />
     <Compile Include="Assets\Editor\Window\TableHandlerWindow.cs" />
     <Compile Include="Assets\Editor\Utility\Utility.Copy.cs" />
     <Compile Include="Assets\Editor\Unit\WeakReferenceExample.cs" />

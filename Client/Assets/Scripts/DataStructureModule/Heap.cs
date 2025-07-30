@@ -48,7 +48,12 @@ public class Heap<T> where T : IComparable<T>
             HeapifyDown(0);
         return pop;
     }
- 
+    
+    public void Remove(T t)
+    {
+        heap.Remove(t);
+    }
+    
     private void HeapifyUp(int index)
     {
         while (index > 0)

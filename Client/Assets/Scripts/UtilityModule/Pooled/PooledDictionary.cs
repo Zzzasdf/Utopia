@@ -3,40 +3,10 @@ using System.Collections.Generic;
 
 public sealed class PooledDictionary<TKey, TValue> : Dictionary<TKey, TValue>, IDisposable
 {
-    private static readonly bool collectionCheck = true;
-    private static readonly int defaultCapacity = 10;
-    // 能够精确定位未回收的类型，有且只能通过内部池创建、回收
-    private static readonly int maxSize = 10000;
-    
-#if UNITY_EDITOR
-    private static readonly MonitoredObjectPool.ObjectPool<PooledDictionary<TKey, TValue>, (TKey, TValue)> s_Pool = 
-        new("PooledDictionary", () => new PooledDictionary<TKey, TValue>(), 
-            OnGet,
-            OnRelease,
-            null,
-            collectionCheck,
-            defaultCapacity, maxSize);
-    private static void OnGet(PooledDictionary<TKey, TValue> dict)
-    {
-        GC.ReRegisterForFinalize(dict);
-        if (s_Pool.CountAll <= maxSize) return;
-        UnityEngine.Debug.LogError($"pool maxsize eg!! {dict.GetType()} => 当前 active:{s_Pool.CountActive} + inactive:{s_Pool.CountInactive} > maxSize:{maxSize}, " +
-                                   $"当所有 active 对象回收时，将存在销毁，若前无集合重复回收报错，则请将最大容量至少提高到 {s_Pool.CountAll}");
-    }
-    private static void OnRelease(PooledDictionary<TKey, TValue> dict)
-    {
-        dict.Clear();
-        GC.SuppressFinalize(dict);
-    }
-#else
     private static readonly MonitoredObjectPool.ObjectPool<PooledDictionary<TKey, TValue>, (TKey, TValue)> s_Pool = 
         new("PooledDictionary", () => new PooledDictionary<TKey, TValue>(), 
             null,
-            l => l.Clear(),
-            null,
-            collectionCheck,
-            defaultCapacity, maxSize);
-#endif
+            l => l.Clear());
 
     public static UnityEngine.Pool.PooledObject<PooledDictionary<TKey, TValue>> Get(out PooledDictionary<TKey, TValue> value) => s_Pool.Get(out value);
     public static PooledDictionary<TKey, TValue> Get() => s_Pool.Get();
@@ -47,11 +17,8 @@ public sealed class PooledDictionary<TKey, TValue> : Dictionary<TKey, TValue>, I
         s_Pool.Release(this);
     }
 
-#if UNITY_EDITOR
-    ~PooledDictionary()
-    {
-        UnityEngine.Debug.LogError($"pool item gc eg!! {GetType()} => 当前对象被销毁，代码中存在未回收该类型的地方");
-    }
+#if !POOL_RELEASES
+    ~PooledDictionary() => s_Pool.FinalizeDebug();
 #endif
 
 #if UNITY_EDITOR
