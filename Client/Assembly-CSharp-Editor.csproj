@@ -54,7 +54,6 @@
     <Compile Include="Assets\Editor\Unit\CopyExample.cs" />
     <Compile Include="Assets\Editor\Unit\EnumFlagsExample.cs" />
     <Compile Include="Assets\Editor\Unit\DisplaySplitterExample.cs" />
-    <Compile Include="Assets\Editor\Window\MacroDefinerWindow.cs" />
     <Compile Include="Assets\Editor\Unit\ThreadExample.cs" />
     <Compile Include="Assets\Editor\Unit\ConverterExample.cs" />
     <Compile Include="Assets\Editor\Unit\UniTaskExample.cs" />

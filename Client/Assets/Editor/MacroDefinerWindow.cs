@@ -36,47 +36,57 @@ public class MacroDefinerWindow : EditorWindow
         new DefineNode("POOL_RELEASES", "对象池发布模式"),
     };
     
-    // // 开发模式
-    // private List<(string, string)> developmentDefines = new List<(string, string)>
-    // {
-    //     ("POOL_RELEASE", "对象池发布模式"),  
-    // };
-    // // 发布模式
-    // private List<(string, string)> releasesDefines = new List<(string, string)>
-    // {
-    //      
-    // };
+    // 开发模式
+    private List<DefineNode> developmentDefines = new List<DefineNode>
+    {
+    };
+    
+    // 发布模式
+    private List<DefineNode> releasesDefines = new List<DefineNode>
+    {
+        new DefineNode("POOL_RELEASES", "对象池发布模式"),
+    };
     
     public void OnGUI()
     {
         scroll = EditorGUILayout.BeginScrollView(scroll);
-        // 固定 隐藏
+        using (new EditorGUILayout.VerticalScope())
         {
-            EditorGUILayout.LabelField("固定宏");
-            GUI.enabled = false;
-            ShowDefines(fixedDefines);
-            GUI.enabled = true;
-            bool isDirtyFixed = false;
-            for (int i = 0; i < fixedDefines.Count; i++)
+            // 固定 隐藏
             {
-                if (TrySetAllNode(fixedDefines[i], true))
+                EditorGUILayout.LabelField("固定宏");
+                GUI.enabled = false;
+                ShowDefines(fixedDefines);
+                GUI.enabled = true;
+                if (TrySetAllNode(fixedDefines, true))
                 {
-                    isDirtyFixed = true;
+                    PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup, defines.ToArray());
                 }
             }
-            if (isDirtyFixed)
+            // 可选
+            {
+                EditorGUILayout.LabelField("可选宏");
+                ShowDefines(optionalDefines);
+            }
+            using (new EditorGUILayout.HorizontalScope())
+            {
+                if (GUILayout.Button("一键开发模式"))
+                {
+                    defines.Clear();
+                    TrySetAllNode(fixedDefines, true);
+                    TrySetAllNode(developmentDefines, true);
+                }
+                if (GUILayout.Button("一键发布模式"))
+                {
+                    defines.Clear();
+                    TrySetAllNode(fixedDefines, true);
+                    TrySetAllNode(releasesDefines, true);
+                }
+            }
+            if (GUILayout.Button("保存"))
             {
                 PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup, defines.ToArray());
-            }
-        }
-        // 可选
-        {
-            EditorGUILayout.LabelField("可选宏");
-            ShowDefines(optionalDefines);
-        }
-        if (GUILayout.Button("保存"))
-        {
-            PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup, defines.ToArray());
+            }   
         }
         EditorGUILayout.EndScrollView();
     }
@@ -118,19 +128,32 @@ public class MacroDefinerWindow : EditorWindow
             }
         }
     }
+
+    private bool TrySetAllNode(List<DefineNode> defineNodes, bool isSelected)
+    {
+        bool isDirty = false;
+        for (int i = 0; i < defineNodes.Count; i++)
+        {
+            if (TrySetAllNode(defineNodes[i], isSelected))
+            {
+                isDirty = true;
+            }
+        }
+        return isDirty;
+    }
     private bool TrySetAllNode(DefineNode defineNode, bool isSelected)
     {
         bool result = false;
         if (defineNode == null) return result;
-        if (!defines.Contains(defineNode.Current))
-        {
-            defines.Add(defineNode.Current);
-            result = true;
-        }
         if (isSelected)
         {
             if (TrySetAllNode(defineNode.Parent, isSelected))
             {
+                result = true;
+            }
+            if (!defines.Contains(defineNode.Current))
+            {
+                defines.Add(defineNode.Current);
                 result = true;
             }
         }
@@ -142,6 +165,11 @@ public class MacroDefinerWindow : EditorWindow
                 {
                     result = true;
                 }
+            }
+            if (defines.Contains(defineNode.Current))
+            {
+                defines.Remove(defineNode.Current);
+                result = true;
             }
         }
         return result;
