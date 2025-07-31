@@ -10,7 +10,7 @@ public class LazySingleton<T>
             if (_instance == null)
             {
                 _instance = new T();
-            }
+            } 
             return _instance;
         }
     }
