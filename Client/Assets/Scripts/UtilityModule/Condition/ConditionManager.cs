@@ -7,45 +7,49 @@ namespace ConditionModule
     {
         Test1 = 1,
     }
-    public interface IConditionTypeGroup
+    public interface ICondition<T>
+        where T: struct
     {
-        public void GetConditionTypes(in IList<EConditionType> types)
-        {
-            
-        }
+        void GetConditionTypes(in ICollection<T> types);
+        bool CheckCondition();
     }
     
     public class ConditionManager: IManager
     {
         /// 条件响应器
-        private ConditionResponder commonResponder;
-
-        // 单线程同步仅需一个缓冲队列
-        private BufferQueue bufferQueue;
+        private ConditionResponder<EConditionType> commonResponder;
+        // 单线程仅需一个缓冲器
+        private DelayBuffer<EConditionType> delayBuffer;
         
         void IInit.OnInit()
         {
-            commonResponder = new ConditionResponder();
-            bufferQueue = new BufferQueue(commonResponder.Fire, commonResponder.Fire);
+            commonResponder = new ConditionResponder<EConditionType>();
+            delayBuffer = new DelayBuffer<EConditionType>(10, commonResponder.Fire, commonResponder.Fire, commonResponder.Fire);
         }
 
         void IReset.OnReset()
         {
-            bufferQueue.Clear();
+            delayBuffer.Reset();
             commonResponder.Clear();
         }
 
         void IDestroy.OnDestroy()
         {
-            
+            delayBuffer.Destroy();
+            delayBuffer = null;
+            commonResponder.Clear();
+            commonResponder = null;
         }
 
-        public void Subscribe(IConditionTypeGroup key, Action<bool> callback) => commonResponder.Subscribe(key, callback);
-        public void Unsubscribe(IConditionTypeGroup key, Action<bool> callback) => commonResponder.Unsubscribe(key, callback);
-        public bool Status(IConditionTypeGroup key) => commonResponder.Status(key);
+        public void Subscribe(ICondition<EConditionType> types, Action<bool> callback) => commonResponder.Subscribe(types, callback);
+        public void Unsubscribe(ICondition<EConditionType> types, Action<bool> callback) => commonResponder.Unsubscribe(types, callback);
+        public bool Status(ICondition<EConditionType> types) => commonResponder.Status(types);
         
-        public void Fire() => bufferQueue.SetFireAll();
-        public void Fire(EConditionType eConditionType) => bufferQueue.AddFireType(eConditionType);
+        public void Fire(EConditionType eConditionType) => delayBuffer.FireType(eConditionType);
+        public void Fire() => delayBuffer.FireAllType();
+        
+        public void FireNow(EConditionType eConditionType) => delayBuffer.FireTypeNow(eConditionType);
+        public void FireNow() => delayBuffer.FireAllTypeNow();
     }
     
     public enum EFuncOpenId
@@ -55,7 +59,7 @@ namespace ConditionModule
     }
     public static class EFuncOpenIdExtensions
     {
-        public static IConditionTypeGroup GetCondition(this EFuncOpenId eFuncOpenId)
+        public static ICondition<EConditionType> GetCondition(this EFuncOpenId eFuncOpenId)
         {
             // TODO ZZZ
             throw new NotImplementedException();
