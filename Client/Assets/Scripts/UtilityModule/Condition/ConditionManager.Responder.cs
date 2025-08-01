@@ -57,10 +57,11 @@ namespace ConditionModule
                     {
                         continue;
                     }
-                    foreach (var item in hashSet)
-                    {
-                        wrappers.Add(item);
-                    }
+                    wrappers.AddRange(hashSet);
+                    // foreach (var item in hashSet)
+                    // {
+                        // wrappers.Add(item);
+                    // }
                 }
                 foreach (var wrapper in wrappers)
                 {
