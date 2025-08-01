@@ -104,7 +104,7 @@ public class TimerManager: ITimerManager
         do
         {
             incrementId++;
-        } while (!dict.ContainsKey(incrementId));
+        } while (dict.ContainsKey(incrementId));
         return incrementId;
     }
 

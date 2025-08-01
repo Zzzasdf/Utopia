@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 
 namespace ConditionModule
 {
@@ -58,7 +57,10 @@ namespace ConditionModule
                     {
                         continue;
                     }
-                    wrappers.AddRange(hashSet);
+                    foreach (var item in hashSet)
+                    {
+                        wrappers.Add(item);
+                    }
                 }
                 foreach (var wrapper in wrappers)
                 {

@@ -3,38 +3,39 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ConditionTest : MonoBehaviour
 {
-    public class Condition: ICondition<EConditionType>
+    public class Condition: ICondition<EConditionType> 
     {
+        public bool status;
         public void GetConditionTypes(in ICollection<EConditionType> types)
         {
             types.Add(EConditionType.Test1);
         }
-        public bool CheckCondition()
-        {
-            return true;
-        }
+        public bool CheckCondition() => status;
     }
 
     private Condition condition;
-    private ConditionManager manager;
 
     [SerializeField][Header("迭代次数")] private int Iterations = 1_000_000; // 百万次迭代
     [SerializeField][Header("性能测试 KeyCode")] private KeyCode keyCode = KeyCode.Space;
 
     private void Awake()
     {
-        manager = new ConditionManager();
-        ((IInit)manager).OnInit();
+        this.GetOrAddComponent<GameEntry>();
+    }
+
+    private void Start()
+    {
         condition = new Condition();
-        manager.Subscribe(condition, DebugLog);
+        GameEntry.ConditionManager.Subscribe(condition, DebugLog);
     }
     private void DebugLog(bool isRight)
     {
-        // Debug.LogError(isRight);
+        // Debug.LogError($"执行时间 => {Time.time}，状态 => {isRight}");
     }
 
     private void Update()
@@ -42,7 +43,7 @@ public class ConditionTest : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G))
         {
             GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced, true);
-            Debug.Log("手动触发GC");
+            // Debug.Log("手动触发GC");
         }
         if (Input.GetKeyDown(keyCode))
         {
@@ -51,6 +52,11 @@ public class ConditionTest : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.U))
         {
             UNormalTest();
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            condition.status = !condition.status;
+            // Debug.LogError($"改变状态 => {condition.status}");
         }
     }
 
@@ -61,12 +67,13 @@ public class ConditionTest : MonoBehaviour
         {
             for (int i = 0; i < Iterations; i++)
             {
-                manager.Fire(EConditionType.Test1);
+                GameEntry.ConditionManager.Fire(EConditionType.Test1);
             }
         }
         // long after = GC.GetTotalMemory(true);
-        // StringBuilder sb = new StringBuilder("PNormal");
+        // StringBuilder sb = new StringBuilder("PerformanceTest");
         // sb.AppendLine($"GC分配总量: {after - before} bytes");
+        // sb.AppendLine($"当前时间 => {Time.time}");
         // Debug.Log(sb.ToString());
     }
 

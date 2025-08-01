@@ -1,8 +1,6 @@
-using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Threading;
+using UnityEngine.Events;
 
 /// <summary>
 /// 延迟缓冲器
@@ -11,6 +9,7 @@ public class DelayBuffer<T>
 {
     /// 延迟的毫秒数
     private long delayMilliseconds;
+    
     private Action<HashSet<T>> fireBatchCallback;
     private Action fireAllCallback;
     private Action<T> fireCallback;
@@ -23,8 +22,9 @@ public class DelayBuffer<T>
     /// 延迟中的收集的类型
     private HashSet<T> uniqueHashSet;
 
-    /// 取消令牌
-    private CancellationTokenSource cts;
+    private int? timerId;
+    /// 缓存委托，直接传递方法有 gc
+    private readonly Action<bool> timerCallback;
     
     /// <summary>
     /// 注册
@@ -40,14 +40,11 @@ public class DelayBuffer<T>
         this.fireAllCallback = fireAllCallback;
         this.fireCallback = fireCallback;
         this.uniqueHashSet = new HashSet<T>();
+        timerCallback = OnCollectHandleAsync;
     }
     public void Reset()
     {
-        if (cts != null)
-        {
-            cts.Dispose();
-            cts = null;
-        }
+        timerId = null;
         uniqueHashSet.Clear();
         collecting = false;
         isPreFireAll = false;
@@ -57,14 +54,16 @@ public class DelayBuffer<T>
         fireCallback = null;
         fireAllCallback = null;
         fireBatchCallback = null;
-        if (cts != null) cts.Cancel();
+        if (timerId.HasValue) GameEntry.TimerManager.Cancel(timerId.Value);
         else Reset();
         uniqueHashSet = null;
     }
     
     public void FireType(T t)
     {
+        if (fireBatchCallback == null) return;
         if (isPreFireAll) return;
+        if (uniqueHashSet.Contains(t)) return;
         uniqueHashSet.Add(t);
         OnCollectHandle();
     }
@@ -77,29 +76,30 @@ public class DelayBuffer<T>
 
     public void FireTypeNow(T t)
     {
+        if (fireCallback == null) return;
         uniqueHashSet.Remove(t);
-        fireCallback?.Invoke(t);
+        fireCallback.Invoke(t);
     }
     public void FireAllTypeNow()
     {
-        cts?.Cancel();
-        fireAllCallback?.Invoke();
+        if (fireAllCallback == null) return;
+        if (timerId.HasValue)
+        {
+            GameEntry.TimerManager.Cancel(timerId.Value);
+        }
+        fireAllCallback.Invoke();
     }
 
     private void OnCollectHandle()
     {
         if (collecting) return;
         collecting = !collecting;
-        cts ??= new CancellationTokenSource();
-        OnCollectHandleAsync(cts.Token).Forget();
+        timerId = GameEntry.TimerManager.GetAfterMilliseconds(delayMilliseconds, timerCallback);
     }
-    
-    private async UniTaskVoid OnCollectHandleAsync(CancellationToken cancellationToken)
+    private void OnCollectHandleAsync(bool isSuccess)
     {
         // 收集延迟时间 内需要推送的数据类型，统一处理
-        bool isCanceled = await UniTask.Delay(TimeSpan.FromMilliseconds(delayMilliseconds), cancellationToken: cancellationToken)
-            .SuppressCancellationThrow();
-        if (!isCanceled)
+        if (isSuccess)
         {
             if (isPreFireAll)
             {
