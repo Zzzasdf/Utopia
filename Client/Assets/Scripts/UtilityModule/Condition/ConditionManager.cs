@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace ConditionModule
 {
-    public enum EConditionType
-    {
-        Test1 = 1,
-    }
     public interface ICondition<T>
         where T: struct
     {
@@ -14,42 +11,66 @@ namespace ConditionModule
         bool CheckCondition();
     }
     
-    public class ConditionManager: IManager
+    public partial class ConditionManager: IManager
     {
         /// 条件响应器
-        private ConditionResponder<EConditionType> commonResponder;
-        // 单线程仅需一个缓冲器
-        private DelayBuffer<EConditionType> delayBuffer;
+        private IConditionResponder<EConditionType> commonResponder;
         
         void IInit.OnInit()
         {
             commonResponder = new ConditionResponder<EConditionType>();
-            delayBuffer = new DelayBuffer<EConditionType>(10, commonResponder.Fire, commonResponder.Fire, commonResponder.Fire);
         }
-
         void IReset.OnReset()
         {
-            delayBuffer.Reset();
-            commonResponder.Clear();
+            commonResponder.Reset();
         }
-
         void IDestroy.OnDestroy()
         {
-            delayBuffer.Destroy();
-            delayBuffer = null;
-            commonResponder.Clear();
+            commonResponder.Destroy();
             commonResponder = null;
         }
-
+        
         public void Subscribe(ICondition<EConditionType> types, Action<bool> callback) => commonResponder.Subscribe(types, callback);
         public void Unsubscribe(ICondition<EConditionType> types, Action<bool> callback) => commonResponder.Unsubscribe(types, callback);
         public bool Status(ICondition<EConditionType> types) => commonResponder.Status(types);
         
-        public void Fire(EConditionType eConditionType) => delayBuffer.FireType(eConditionType);
-        public void Fire() => delayBuffer.FireAllType();
+        public void Fire(EConditionType eConditionType) => commonResponder.Fire(eConditionType);
+        public void Fire() => commonResponder.Fire();
         
-        public void FireNow(EConditionType eConditionType) => delayBuffer.FireTypeNow(eConditionType);
-        public void FireNow() => delayBuffer.FireAllTypeNow();
+        public void FireNow(EConditionType eConditionType) => commonResponder.FireNow(eConditionType);
+        public void FireNow() => commonResponder.FireNow();
+
+        public void GetConditionTypes(in ICollection<EConditionType> types, IList<uint> list)
+        {
+            int index = 0;
+            while (index < list.Count)
+            {
+                int addCount = (int)list[index];
+                if (list.Count <= index + addCount * 2)
+                {
+                    Debug.LogError($"条件 {list}，配置有问题");
+                    return;
+                }
+                for (int i = index + 1; i < index + addCount * 2; i += 2)
+                {
+                    // 只取第一个类型
+                    types.Add((EConditionType)list[i]);
+                }
+                index += 1 + addCount * 2;
+            }
+        }
+        public bool CheckCondition(IList<uint> list)
+        {
+            // TODO ZZZ
+            return true;
+        }
+    }
+    
+    public enum EConditionType
+    {
+        Test1 = 1,
+        Test2 = 2,
+        Test3 = 3,
     }
     
     public enum EFuncOpenId
@@ -61,7 +82,7 @@ namespace ConditionModule
     {
         public static ICondition<EConditionType> GetCondition(this EFuncOpenId eFuncOpenId)
         {
-            // TODO ZZZ
+            // TODO ZZZ 返回一个已存在的常驻条件
             throw new NotImplementedException();
         }
     }

@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,10 +6,19 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public abstract class LayoutNode: MonoBehaviour 
 {
-    private bool _isDirty;
-    private Coroutine _coroutine;
     [SerializeField] private LayoutNode _parentNode;
     protected abstract List<LayoutNode> _childrenNodes { get; }
+    
+    private bool _isDirty;
+    
+    private int? timerId;
+    /// 缓存委托，直接传递方法有 gc
+    private Action<bool> timerCallback;
+
+    private void Awake()
+    {
+        timerCallback = DelayLayoutAsync;
+    }
 
 #region Delay
     /// <summary>
@@ -39,16 +48,15 @@ public abstract class LayoutNode: MonoBehaviour
         }
         else
         {
-            // 在根节点执行协程
-            _coroutine = StartCoroutine(NextFrameLayout());
+            // 在根节点执行定时器
+            timerId = GameEntry.TimerManager.GetAfterMilliseconds(10, timerCallback);
         }
     }
-    private IEnumerator NextFrameLayout()
+    private void DelayLayoutAsync(bool isSuccess)
     {
-        yield return null;
         SetDirtyLayout();
         SetSelfLayoutBuiltIn();
-        _coroutine = null;
+        timerId = null;
     }
     private void SetDirtyLayout()
     {
@@ -82,7 +90,10 @@ public abstract class LayoutNode: MonoBehaviour
         SetSelfLayoutBuiltIn();
         if (_parentNode == null)
         {
-            if (_coroutine != null) StopCoroutine(_coroutine);
+            if (timerId != null)
+            {
+                GameEntry.TimerManager.Cancel(timerId.Value);
+            }
             return;
         }
         _parentNode.SetParentLayout();

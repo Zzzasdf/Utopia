@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-public partial class RedPointTreeManager: IRedPointTreeManager
+public partial class RedPointTreeManager: IRedPointTreeManager 
 {
     /// 映射节点
     private Dictionary<ERedPoint, RedPointNode> nodeMap;
