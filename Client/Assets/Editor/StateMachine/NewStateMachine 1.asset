@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaf46ac5897ad7e46881af5d4aca2a9d, type: 3}
+  m_Name: NewStateMachine 1
+  m_EditorClassIdentifier: 
+  states:
+  - uniqueId: 0
+    eNode: 1
+    name: New State (0)
+    rect:
+      serializedVersion: 2
+      x: 493
+      y: 120
+      width: 100
+      height: 50
+    isEntryState: 1
+  - uniqueId: 2
+    eNode: 0
+    name: New State (2)
+    rect:
+      serializedVersion: 2
+      x: 476
+      y: 410
+      width: 100
+      height: 50
+    isEntryState: 0
+  - uniqueId: 1
+    eNode: 0
+    name: New State (1)
+    rect:
+      serializedVersion: 2
+      x: 702
+      y: 308
+      width: 100
+      height: 50
+    isEntryState: 0
+  transitions:
+  - fromUniqueId: 1
+    toUniqueId: 0

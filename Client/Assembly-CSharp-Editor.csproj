@@ -50,12 +50,15 @@
     <Compile Include="Assets\Editor\Unit\MemoryAnalysisExample.cs" />
     <Compile Include="Assets\Editor\Utility\Utility.IO.cs" />
     <Compile Include="Assets\Editor\Unit\UIViewExample.cs" />
+    <Compile Include="Assets\Editor\StateMachine\StateMachineEditorWindow.State.cs" />
     <Compile Include="Assets\Editor\Window\WindowCollectorEntry.cs" />
     <Compile Include="Assets\Editor\Unit\CopyExample.cs" />
+    <Compile Include="Assets\Editor\Unit\PerformanceExample.cs" />
     <Compile Include="Assets\Editor\Unit\EnumFlagsExample.cs" />
     <Compile Include="Assets\Editor\Unit\DisplaySplitterExample.cs" />
     <Compile Include="Assets\Editor\Unit\ThreadExample.cs" />
     <Compile Include="Assets\Editor\Unit\ConverterExample.cs" />
+    <Compile Include="Assets\Editor\StateMachine\StateMachineEditorWindow.Menu.cs" />
     <Compile Include="Assets\Editor\Unit\UniTaskExample.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Enum\Editor\EnumModuleEditUnit.cs" />
     <Compile Include="Assets\Editor\Unit\TryFinallyExample.cs" />
@@ -64,10 +67,13 @@
     <Compile Include="Assets\Editor\Window\AssetHandlerWindow\AssetHandlerWindow2.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Pooled\Editor\MonitoredObjectPoolMemoryWindow.cs" />
     <Compile Include="Assets\Editor\Window\AssetHandlerWindow\AssetHandlerWindow3.cs" />
+    <Compile Include="Assets\Editor\StateMachine\StateMachineData.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Chat\Editor\UIChatMessageLoopScrollRectInspector.cs" />
     <Compile Include="Assets\Editor\Unit\OOPExample.cs" />
     <Compile Include="Assets\Editor\Utility\MeshCombine.cs" />
     <Compile Include="Assets\Editor\Unit\RegularExample.cs" />
+    <Compile Include="Assets\Editor\StateMachine\StateMachineEditorWindow.Transition.cs" />
+    <Compile Include="Assets\Editor\StateMachine\StateMachineEditorWindow.cs" />
     <Compile Include="Assets\Editor\Unit\LinqExample.cs" />
     <Compile Include="Assets\Editor\Window\ViewHandlerWindow.cs" />
     <Compile Include="Assets\Editor\Window\WindowLayoutAttribute.cs" />
@@ -82,6 +88,8 @@
     <Compile Include="Assets\Editor\Unit\WeakReferenceExample.cs" />
     <Compile Include="Assets\Editor\Unit\BusyDisposableExample.cs" />
     <Compile Include="Assets\Editor\Utility\Utility.Type.cs" />
+    <Compile Include="Assets\Editor\StateMachine\StateMachineEditorWindow.Grid.cs" />
+    <Compile Include="Assets\Editor\Unit\HashSetExample.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:\UnityEditor\2022.3.28f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
