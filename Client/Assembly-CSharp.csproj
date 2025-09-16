@@ -52,6 +52,7 @@
     <Compile Include="Assets\Scripts\UtilityModule\Timer\TimerManager.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\Conveter\Collections\ListLongConverter.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Int\Conveter\Bitmap\BitmapConverter.cs" />
+    <Compile Include="Assets\Scripts\EventModule\EventManager.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Condition\ConditionManager.Fire.cs" />
     <Compile Include="Assets\Scripts\GameEntry.cs" />
     <Compile Include="Assets\UIToolkitScripts\PartyDataScreen.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\Conveter\Bitmap\BitmapConverter.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Core\Driver\UIDriverBase.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\Optional\Parts\IOptionalPartsCore.cs" />
+    <Compile Include="Assets\Scripts\EventModule\EventType.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Generator\GeneratorBase.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\System\ConverterCollectorSystem.Config.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\Optional\Tween\Param\Scale\ScaleLerpDecreaseMinParam.cs" />
