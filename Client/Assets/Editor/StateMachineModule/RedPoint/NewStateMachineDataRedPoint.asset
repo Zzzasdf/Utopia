@@ -9,40 +9,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaf46ac5897ad7e46881af5d4aca2a9d, type: 3}
-  m_Name: NewStateMachine 1
+  m_Script: {fileID: 11500000, guid: ce6acc74b76c59c4d9fb31dff5c3d4e4, type: 3}
+  m_Name: NewStateMachineDataRedPoint
   m_EditorClassIdentifier: 
   states:
   - uniqueId: 0
-    eNode: 1
     name: New State (0)
+    eNode: 1
     rect:
       serializedVersion: 2
-      x: 493
-      y: 120
+      x: 533
+      y: 158
       width: 100
-      height: 50
+      height: 40
     isEntryState: 1
-  - uniqueId: 2
-    eNode: 0
-    name: New State (2)
-    rect:
-      serializedVersion: 2
-      x: 476
-      y: 410
-      width: 100
-      height: 50
-    isEntryState: 0
+    eRedPoint: 0
   - uniqueId: 1
-    eNode: 0
     name: New State (1)
+    eNode: 0
     rect:
       serializedVersion: 2
-      x: 702
-      y: 308
+      x: 336
+      y: 295
       width: 100
-      height: 50
+      height: 40
     isEntryState: 0
+    eRedPoint: 0
   transitions:
   - fromUniqueId: 1
     toUniqueId: 0

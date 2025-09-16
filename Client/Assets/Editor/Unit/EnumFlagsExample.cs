@@ -3,7 +3,7 @@ using NUnit.Framework;
 using UnityEditor;
 
 [TestFixture]
-public class EnumFlagsExample : Editor
+public class EnumFlagsExample : UnityEditor.Editor
 {
     // 1.5倍
     [Test]

@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 
 [TestFixture]
-public class PatchVersionExample : Editor
+public class PatchVersionExample : UnityEditor.Editor
 {
     [Test]
     public void Foo()

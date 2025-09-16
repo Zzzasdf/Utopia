@@ -47,7 +47,7 @@ namespace EditorModule
                 subTypes = null;
                 return;
             }
-            Utility.Type.TryGetAllClassByCustomAttribute<WindowLayoutAttribute>(Assembly.GetExecutingAssembly(), 
+            Editor.UtilityModule.Utility.Type.TryGetAllClassByCustomAttribute<WindowLayoutAttribute>(Assembly.GetExecutingAssembly(), 
                  type =>
                 {
                     WindowLayoutAttribute attribute = Generator.GetUniqueAttr(type);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace EditorModule
+namespace Editor.UtilityModule
 {
     public static partial class Utility
     {

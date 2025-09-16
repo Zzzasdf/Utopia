@@ -3,7 +3,7 @@ using UnityEditor;
 namespace ChatModule
 {
     [CustomEditor(typeof(UIChatMessageLoopScrollRect))]
-    public class UIChatMessageLoopScrollRectInspector : Editor
+    public class UIChatMessageLoopScrollRectInspector : UnityEditor.Editor
     {
         // public override void OnInspectorGUI()
         // {

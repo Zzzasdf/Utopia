@@ -95,10 +95,25 @@ public partial class HVLayoutGroup
                     TextAnchor.LowerRight => new Vector2(1f, 0f),
                     _ => Vector2.zero,
                 };
-                Func<Rect, (float axisLength, float anotherAxisLength)> rectAxisFunc = GetRectSideLength(eLayout);
-                Func<Vector2, float> anchorAxisFunc = GetAnchorAxis(eLayout);
-                Func<float, Vector2, Vector2> anchoredPositionFunc = GetAnchoredPosition(eLayout);
-                Func<EDirection, int, (int startIndex, int increaseDir)> forItemInfoFunc = GetForItemInfo(eLayout);
+                
+                Func<Rect, (float axisLength, float anotherAxisLength)> rectAxisFunc;
+                Func<Vector2, float> anchorAxisFunc;
+                Func<float, Vector2, Vector2> anchoredPositionFunc;
+                Func<EDirection, int, (int startIndex, int increaseDir)> forItemInfoFunc;
+                if (eLayout == ELayout.Horizontal)
+                {
+                    rectAxisFunc = rectSideLengthFuncH;
+                    anchorAxisFunc = anchorAxisFuncH;
+                    anchoredPositionFunc = anchoredPositionFuncH;
+                    forItemInfoFunc = forItemInfoFuncH;
+                }
+                else
+                {
+                    rectAxisFunc = rectSideLengthFuncV;
+                    anchorAxisFunc = anchorAxisFuncV;
+                    anchoredPositionFunc = anchoredPositionFuncV;
+                    forItemInfoFunc = forItemInfoFuncV;
+                }
                 
                 float totalLength = 0;
                 float anotherTotalLength = 0;
@@ -132,30 +147,15 @@ public partial class HVLayoutGroup
                 return CalculateRect(eLayout, totalLength, anotherTotalLength);
             }
         }
-        static Func<Rect, (float axisLength, float anotherAxisLength)> GetRectSideLength(ELayout eLayout)
-        {
-            if (eLayout == ELayout.Horizontal)
-                return rect => (rect.width, rect.height);
-            return rect => (rect.height, rect.width);
-        }
-        static Func<Vector2, float> GetAnchorAxis(ELayout eLayout)
-        {
-            if (eLayout == ELayout.Horizontal)
-                return anchor => anchor.x;
-            return anchor => anchor.y;
-        }
-        static Func<float, Vector2, Vector2> GetAnchoredPosition(ELayout eLayout)
-        {
-            if (eLayout == ELayout.Horizontal)
-                return (axis, paddingOffset) => new Vector2(axis + paddingOffset.x, paddingOffset.y);
-            return (axis, paddingOffset) => new Vector2(paddingOffset.x, axis + paddingOffset.y);
-        }
-        static Func<EDirection, int, (int startIndex, int increaseDir)> GetForItemInfo(ELayout eLayout)
-        {
-            if (eLayout == ELayout.Horizontal)
-                return (dir, count) => (dir == EDirection.Forward ? 0 : count - 1, (int)dir);
-            return (dir, count) => (dir == EDirection.Forward ? count - 1 : 0, -(int)dir);
-        }
+        private static Func<Rect, (float axisLength, float anotherAxisLength)> rectSideLengthFuncH = rect => (rect.width, rect.height);
+        private static Func<Rect, (float axisLength, float anotherAxisLength)> rectSideLengthFuncV = rect => (rect.height, rect.width);
+        private static Func<Vector2, float> anchorAxisFuncH = anchor => anchor.x;
+        private static Func<Vector2, float> anchorAxisFuncV = anchor => anchor.y;
+        private static Func<float, Vector2, Vector2> anchoredPositionFuncH = (axis, paddingOffset) => new Vector2(axis + paddingOffset.x, paddingOffset.y);
+        private static Func<float, Vector2, Vector2> anchoredPositionFuncV = (axis, paddingOffset) => new Vector2(paddingOffset.x, axis + paddingOffset.y);
+        private static Func<EDirection, int, (int startIndex, int increaseDir)> forItemInfoFuncH = (dir, count) => (dir == EDirection.Forward ? 0 : count - 1, (int)dir);
+        private static Func<EDirection, int, (int startIndex, int increaseDir)> forItemInfoFuncV = (dir, count) => (dir == EDirection.Forward ? count - 1 : 0, -(int)dir);
+
         static (int axisPadding, int anotherAxisPadding) GetAxisPadding(ELayout eLayout, in Padding padding)
         {
             if (eLayout == ELayout.Horizontal)

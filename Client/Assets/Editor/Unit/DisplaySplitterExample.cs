@@ -6,7 +6,7 @@ using Splitter.Mono;
 using Splitter.Core;
 using NUnit.Framework;
 
-public class DisplaySplitterExample: Editor
+public class DisplaySplitterExample: UnityEditor.Editor
 {
     /// Mono 示例
     void Mono()

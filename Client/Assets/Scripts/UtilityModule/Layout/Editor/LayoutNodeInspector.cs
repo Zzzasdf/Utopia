@@ -12,7 +12,7 @@ using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(LayoutNode), true)]
-public class LayoutNodeInspector : Editor
+public class LayoutNodeInspector : UnityEditor.Editor
 {
     public override void OnInspectorGUI()
     {

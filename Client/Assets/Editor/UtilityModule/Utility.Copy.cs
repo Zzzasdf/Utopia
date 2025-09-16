@@ -2,7 +2,7 @@ using System;
 using System.Reflection;
 using UnityEngine;
 
-namespace EditorModule
+namespace Editor.UtilityModule
 {
     public static partial class Utility
     {
