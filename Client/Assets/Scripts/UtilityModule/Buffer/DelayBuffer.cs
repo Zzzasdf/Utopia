@@ -93,7 +93,7 @@ public class DelayBuffer<T>
     {
         if (collecting) return;
         collecting = !collecting;
-        timerId = GameEntry.TimerManager.GetAfterMilliseconds(delayMilliseconds, timerCallback);
+        timerId = GameEntry.TimerManager.SetAfterMilliseconds(delayMilliseconds, timerCallback);
     }
     private void OnCollectHandleAsync(bool isSuccess)
     {

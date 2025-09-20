@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using ChatModule;
-using ConditionModule;
+using ConditionModule.Element;
 using System;
 
 public class GameEntry : MonoBehaviour

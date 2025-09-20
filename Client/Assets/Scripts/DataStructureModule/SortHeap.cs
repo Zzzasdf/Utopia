@@ -2,22 +2,19 @@ using System;
 using System.Collections.Generic;
  
 /// 堆
-public class Heap<T>
+public class SortHeap<T> where T : IComparable<T>
 {
-    private Comparison<T> comparison;
     // 比较符号
     private int compareSymbol;
     protected List<T> heap;
 
-    public Heap(int capacity, Comparison<T> comparison, bool reversalCompare = false)
+    public SortHeap(int capacity, bool reversalCompare = false)
     {
-        this.comparison = comparison;
         compareSymbol = reversalCompare ? -1 : 1;
         heap = new List<T>(capacity);
     }
-    public Heap(Comparison<T> comparison, bool reversalCompare = false)
+    public SortHeap(bool reversalCompare = false)
     {
-        this.comparison = comparison;
         compareSymbol = reversalCompare ? -1 : 1;
         heap = new List<T>();
     }
@@ -62,7 +59,7 @@ public class Heap<T>
         while (index > 0)
         {
             int parentIndex = (index - 1) / 2;
-            if (comparison.Invoke(heap[index], heap[parentIndex]) * compareSymbol >= 0)
+            if (heap[index].CompareTo(heap[parentIndex]) * compareSymbol >= 0)
                 break;
             Swap(index, parentIndex);
             index = parentIndex;
@@ -77,10 +74,10 @@ public class Heap<T>
             int rightChildIndex = 2 * index + 2;
             int smallestIndex = index;
  
-            if (leftChildIndex < heap.Count && comparison.Invoke(heap[leftChildIndex], heap[smallestIndex]) * compareSymbol < 0)
+            if (leftChildIndex < heap.Count && heap[leftChildIndex].CompareTo(heap[smallestIndex]) * compareSymbol < 0)
                 smallestIndex = leftChildIndex;
             
-            if (rightChildIndex < heap.Count && comparison.Invoke(heap[rightChildIndex], heap[smallestIndex]) * compareSymbol < 0)
+            if (rightChildIndex < heap.Count && heap[rightChildIndex].CompareTo(heap[smallestIndex]) * compareSymbol < 0)
                 smallestIndex = rightChildIndex;
             
             if (smallestIndex == index)

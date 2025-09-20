@@ -1,5 +1,6 @@
 #region 定制化 Manager
 public interface ITimerManager : IManager, IUpdate { }
+public interface ICountDownManager : IManager, IUpdate { }
 public interface IChatManager : IManager { }
 public interface IRedPointTreeManager : IManager { }
 

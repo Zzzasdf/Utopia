@@ -49,7 +49,7 @@ public abstract class LayoutNode: MonoBehaviour
         else
         {
             // 在根节点执行定时器
-            timerId = GameEntry.TimerManager.GetAfterMilliseconds(10, timerCallback);
+            timerId = GameEntry.TimerManager.SetAfterMilliseconds(10, timerCallback);
         }
     }
     private void DelayLayoutAsync(bool isSuccess)

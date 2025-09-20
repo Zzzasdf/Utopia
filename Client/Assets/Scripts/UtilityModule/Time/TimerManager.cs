@@ -2,18 +2,22 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 定时器
+/// CPU 优化点：记录一次当前时间，固定频率修正
+/// </summary>
 public class TimerManager: ITimerManager
 {
     private long CurrentTime => (long)(Time.time * 1_000); // TODO ZZZ 当前时间
     
     // 自增 id
     private int incrementId;
-    private Heap<TimerSpan> spanHeap;
+    private SortHeap<TimerSpan> spanSortHeap;
     private Dictionary<int, TimerSpan> dict;
 
     void IInit.OnInit()
     {
-        spanHeap ??= new Heap<TimerSpan>();
+        spanSortHeap ??= new SortHeap<TimerSpan>();
         dict ??= new Dictionary<int, TimerSpan>();
     }
     void IReset.OnReset()
@@ -24,7 +28,7 @@ public class TimerManager: ITimerManager
             ((IDisposable)pair.Value).Dispose();   
         }
         dict.Clear();
-        spanHeap.Clear();
+        spanSortHeap.Clear();
     }
     void IDestroy.OnDestroy()
     {
@@ -33,55 +37,44 @@ public class TimerManager: ITimerManager
             ((IDisposable)pair.Value).Dispose();   
         }
         dict.Clear();
-        spanHeap.Clear();
+        spanSortHeap.Clear();
     }
 
     void IUpdate.OnUpdate(float deltaTime)
     {
-        while (!spanHeap.IsEmpty)
+        while (!spanSortHeap.IsEmpty)
         {
-            TimerSpan timerSpan = spanHeap.Peek();
-            if (CurrentTime < timerSpan.Time) return;
-            spanHeap.Pop();
+            TimerSpan timerSpan = spanSortHeap.Peek();
+            if (CurrentTime < timerSpan.EndMilliseconds) return;
+            spanSortHeap.Pop();
             dict.Remove(timerSpan.Id);
             timerSpan.Callback.Invoke(true);
             ((IDisposable)timerSpan).Dispose();
         }
     }
-    
-    /// <summary>
-    /// 创建定时器
-    /// </summary>
-    /// <param name="seconds">当前时间经过秒数后执行</param>
-    /// <param name="callback">触发的回调 (true => 成功触发，false => 取消)</param>
-    /// <returns>唯一id</returns>
-    public int GetAfterSeconds(long seconds, Action<bool> callback)
-    {
-        long time = CurrentTime + seconds * 1_000;
-        return Get(time, callback);
-    }
+
     /// <summary>
     /// 创建定时器
     /// </summary>
     /// <param name="milliseconds">当前时间经过毫秒数后执行</param>
     /// <param name="callback">触发的回调 (true => 成功触发，false => 取消)</param>
     /// <returns>唯一id</returns>
-    public int GetAfterMilliseconds(long milliseconds, Action<bool> callback)
+    public int SetAfterMilliseconds(long milliseconds, Action<bool> callback)
     {
         long time = CurrentTime + milliseconds;
-        return Get(time, callback);
+        return SetEndMilliseconds(time, callback);
     }
     /// <summary>
     /// 创建定时器
     /// </summary>
-    /// <param name="time">触发的时点</param>
+    /// <param name="endMilliseconds">结束的时间（毫秒）</param>
     /// <param name="callback">触发的回调 (true => 成功触发，false => 取消)</param>
-    /// <returns>唯一id</returns>
-    public int Get(long time, Action<bool> callback)
+    /// <returns></returns>
+    public int SetEndMilliseconds(long endMilliseconds, Action<bool> callback)
     {
         int id = CreateUniqueId();
-        TimerSpan timerSpan = TimerSpan.Get(id, time, callback);
-        spanHeap.Push(timerSpan);
+        TimerSpan timerSpan = TimerSpan.Get(id, endMilliseconds, callback);
+        spanSortHeap.Push(timerSpan);
         dict.Add(id, timerSpan);
         return id;
     }
@@ -93,7 +86,7 @@ public class TimerManager: ITimerManager
     public void Cancel(int id)
     {
         if (!dict.Remove(id, out TimerSpan timerSpan)) return;
-        spanHeap.Remove(timerSpan);
+        spanSortHeap.Remove(timerSpan);
         timerSpan.Callback.Invoke(false);
         ((IDisposable)timerSpan).Dispose();
     }
@@ -116,15 +109,15 @@ public class TimerManager: ITimerManager
                 t =>
                 {
                     t.Callback = null;
-                    t.Time = 0;
+                    t.EndMilliseconds = 0;
                     t.Id = 0;
                 });
 
-        public static TimerSpan Get(int id, long time, Action<bool> callback)
+        public static TimerSpan Get(int id, long endMilliseconds, Action<bool> callback)
         {
             TimerSpan timerSpan = s_Pool.Get();
             timerSpan.Id = id;
-            timerSpan.Time = time;
+            timerSpan.EndMilliseconds = endMilliseconds;
             timerSpan.Callback = callback ?? throw new ArgumentNullException();
             return timerSpan;
         }
@@ -137,14 +130,14 @@ public class TimerManager: ITimerManager
 #endif
         
         public int Id { get; private set; }
-        public long Time { get; private set; }
+        public long EndMilliseconds { get; private set; }
         public Action<bool> Callback { get; private set; }
 
         public int CompareTo(TimerSpan other)
         {
             if (ReferenceEquals(this, other)) return 0;
             if (ReferenceEquals(null, other)) return 1;
-            return Time.CompareTo(other.Time);
+            return EndMilliseconds.CompareTo(other.EndMilliseconds);
         }
     }
 }

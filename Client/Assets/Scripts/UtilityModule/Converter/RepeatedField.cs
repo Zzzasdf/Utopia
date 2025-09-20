@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Google.Protobuf.Collections
 {
     [Serializable]
-    public class RepeatedField<T>: List<T>
+    public sealed class RepeatedField<T>: List<T>
     {
     
     }
