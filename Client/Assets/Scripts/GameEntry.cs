@@ -3,6 +3,7 @@ using UnityEngine;
 using ChatModule;
 using ConditionModule.Element;
 using System;
+using TimeModule;
 
 public class GameEntry : MonoBehaviour
 {

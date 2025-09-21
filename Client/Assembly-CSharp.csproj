@@ -70,9 +70,9 @@
     <Compile Include="Assets\Scripts\UtilityModule\Layout\HVLayoutGroup.Utility.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\RedPoint\RedPointNode.cs" />
     <Compile Include="Assets\Scripts\AssetModule\DataSaverModule\Binary\BinaryDataSaver.cs" />
+    <Compile Include="Assets\Scripts\UtilityModule\Condition\Element\Test\ConditionTest.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Subscriber\Subscriber`1.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Int\Conveter\DailyRedPointManager.cs" />
-    <Compile Include="Assets\Scripts\UtilityModule\Condition\Element\Test\ConditionTest.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\Conveter\Variant\TimingReset\BitmapTimingResetConverter.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\Optional\Tween\Param\Duration\DurationLerpDecreaseParam.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Splitter\Mono\DisplaySplitter.cs" />
@@ -102,7 +102,6 @@
     <Compile Include="Assets\Scripts\UtilityModule\Converter\Client\ClientDailyFirstRedPointConverter.Constant.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Chat\Verify\Tablet\ChatRoomTablet.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\Conveter\Map\MapLongBitConverter.cs" />
-    <Compile Include="Assets\Scripts\UtilityModule\Time\CountDownManager.cs" />
     <Compile Include="Assets\Scripts\ExtensionsModule\System\Collections\Generic\HashSetExtensions.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Pooled\PooledList.cs" />
     <Compile Include="Assets\Scripts\UnknownModule\Selector1\ReactiveProperty`1.cs" />
@@ -112,8 +111,8 @@
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\Optional\Tween\Param\Scale\ScaleParam.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Layout\HVLayoutGroup.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Pooled\PooledHashSet.cs" />
-    <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\Collector\ConverterCollector.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Condition\Element\ConditionManager.cs" />
+    <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\Collector\ConverterCollector.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\Optional\Tween\Selected\ZoomSelectedContainer.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\Conveter\Map\MapIntLongConverter.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Ring\Mono\Component\Component.cs" />
@@ -139,6 +138,7 @@
     <Compile Include="Assets\Scripts\UIViewModule\Chat\Model\Room\Unit\IChatRoomUnit.cs" />
     <Compile Include="Assets\Scripts\UnknownModule\Generator1\Ring\Helper\SelectedScroll\SelectedScrollHelper.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\Conveter\HashSet\HashSetIntReverseConverter.cs" />
+    <Compile Include="Assets\Scripts\UtilityModule\Time\FixedFrequencyManager.Format.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\PatchVersion\PatchVersion.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\Sealed\MapIntBitReverseConverter.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Layout\LayoutNode.cs" />
@@ -146,6 +146,7 @@
     <Compile Include="Assets\Scripts\UIViewModule\Chat\ChatManager.Spacec.cs" />
     <Compile Include="Assets\Scripts\UnknownModule\Generator1\Ring\Generator.OptionalParts.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Enum\EnumIntFlagsGroup.cs" />
+    <Compile Include="Assets\Scripts\UtilityModule\Time\UICountDown.cs" />
     <Compile Include="Assets\Scripts\UnknownModule\Generator1\Ring\Generator.Animation.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\Optional\Tween\TweenUnitCore.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\Sealed\MapIntBitConverter.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\Conveter\Bitmap\BitmapReverseConverter.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\Sealed\BitmapConverter.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\View\UIViewUnitTest.cs" />
+    <Compile Include="Assets\Scripts\UtilityModule\Time\FixedFrequencyManager.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Ring\Mono\Generator.cs" />
     <Compile Include="Assets\Scripts\AssetModule\LoaderModule\AssetLoader.cs" />
     <Compile Include="Assets\Scripts\UnknownModule\Generator1\Ring\Generator.ItemContainer.cs" />

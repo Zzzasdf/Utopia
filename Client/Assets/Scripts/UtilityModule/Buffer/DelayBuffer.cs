@@ -23,7 +23,7 @@ public class DelayBuffer<T>
 
     private int? timerId;
     /// 缓存委托，直接传递方法有 gc
-    private readonly Action<bool> timerCallback;
+    private readonly Action<int, bool> timerCallback;
     
     /// <summary>
     /// 注册
@@ -95,7 +95,7 @@ public class DelayBuffer<T>
         collecting = !collecting;
         timerId = GameEntry.TimerManager.SetAfterMilliseconds(delayMilliseconds, timerCallback);
     }
-    private void OnCollectHandleAsync(bool isSuccess)
+    private void OnCollectHandleAsync(int timerUniqueId, bool isSuccess)
     {
         // 收集延迟时间 内需要推送的数据类型，统一处理
         if (isSuccess)

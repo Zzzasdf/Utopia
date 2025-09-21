@@ -13,7 +13,7 @@ public abstract class LayoutNode: MonoBehaviour
     
     private int? timerId;
     /// 缓存委托，直接传递方法有 gc
-    private Action<bool> timerCallback;
+    private Action<int, bool> timerCallback;
 
     private void Awake()
     {
@@ -52,7 +52,7 @@ public abstract class LayoutNode: MonoBehaviour
             timerId = GameEntry.TimerManager.SetAfterMilliseconds(10, timerCallback);
         }
     }
-    private void DelayLayoutAsync(bool isSuccess)
+    private void DelayLayoutAsync(int timerUniqueId, bool isSuccess)
     {
         SetDirtyLayout();
         SetSelfLayoutBuiltIn();
