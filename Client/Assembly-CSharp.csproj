@@ -83,6 +83,7 @@
     <Compile Include="Assets\Scripts\UtilityModule\BezierUtils.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Chat\Model\Room\ChatMessageEntityBase.cs" />
     <Compile Include="Assets\Scripts\UnknownModule\Generator1\Ring\Generator.cs" />
+    <Compile Include="Assets\Scripts\UtilityModule\Singleton\MonoSingleton.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Status\Translate\TranslateStatus.cs" />
     <Compile Include="Assets\Scripts\UnknownModule\Generator1\Ring\Item.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Splitter\Mono\DisplaySplitterReverseSubscriber.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="Assets\Scripts\ExtensionsModule\System\Threading\Tasks\TasksExtensions.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Subscriber\PackMarkBit`1.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Chat\Model\House\ChatHouse.cs" />
+    <Compile Include="Assets\Scripts\UtilityModule\Singleton\ThreadSafeMonoSingleton.cs" />
     <Compile Include="Assets\Scripts\PlayerLoop.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\System\ConverterCollectorSystem.cs" />
     <Compile Include="Assets\Scripts\ExtensionsModule\UnityEngine\LogValidator.cs" />
