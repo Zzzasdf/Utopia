@@ -14,6 +14,7 @@ public class MacroDefinerWindow : EditorWindow
     {
         PlayerSettings.GetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup, out string[] _defines);
         defines = _defines.ToList();
+        Init();
         EditorApplication.update += Repaint;
     }
     private void OnDisable()
@@ -21,32 +22,68 @@ public class MacroDefinerWindow : EditorWindow
         EditorApplication.update -= Repaint;
     }
 
-    private Vector2 scroll;
+    public enum EMacroDefiner
+    {
+        DOTWEEN = 1,
+        POOL_RELEASES = 2,
+        // Test = 3,
+    }
+    private static Dictionary<EMacroDefiner, DefineNode> dict = new Dictionary<EMacroDefiner,DefineNode>
+    {
+        [EMacroDefiner.DOTWEEN] = new DefineNode(
+            "DOTWEEN", "Tween"),
+        [EMacroDefiner.POOL_RELEASES] = new DefineNode(
+            "POOL_RELEASES", "对象池发布模式"),
+        // [EMacroDefiner.Test] = new DefineNode(
+        //     "Test", "测试", new DefineNode(
+        //         "Test1", "测试1", new DefineNode(
+        //             "Test1_1", "测试1_1")), new DefineNode(
+        //         "Test2", "测试2")),
+    };
+
+    /// 固定
+    private List<EMacroDefiner> fixedDefines;
+    // 可选
+    private List<EMacroDefiner> optionalDefines;
+    
+    // 开发模式
+    private List<EMacroDefiner> developmentDefines;
+    
+    // 发布模式
+    private List<EMacroDefiner> releasesDefines;
+    
+    private void Init()
+    {
+        // 固定
+        fixedDefines = new List<EMacroDefiner>
+        {
+            EMacroDefiner.DOTWEEN,
+        };
+        // 可选
+        optionalDefines = new List<EMacroDefiner>
+        {
+            EMacroDefiner.POOL_RELEASES,
+            // EMacroDefiner.Test,
+        };
+        
+        // 开发者模式
+        developmentDefines = new List<EMacroDefiner>
+        {
+        };
+        
+        // 发布模式
+        releasesDefines = new List<EMacroDefiner>
+        {
+            EMacroDefiner.POOL_RELEASES,
+        };
+    }
 
     // 前宏定义
     private List<string> defines;
-    /// 固定
-    private List<DefineNode> fixedDefines = new List<DefineNode>
-    {
-        new DefineNode("DOTWEEN", "Tween"),
-    };
-    // 可选
-    private List<DefineNode> optionalDefines = new List<DefineNode>
-    {
-        new DefineNode("POOL_RELEASES", "对象池发布模式"),
-    };
-    
-    // 开发模式
-    private List<DefineNode> developmentDefines = new List<DefineNode>
-    {
-    };
-    
-    // 发布模式
-    private List<DefineNode> releasesDefines = new List<DefineNode>
-    {
-        new DefineNode("POOL_RELEASES", "对象池发布模式"),
-    };
-    
+
+    private Vector2 scroll;
+    private List<DefineNode> defineNodes = new List<DefineNode>();
+
     public void OnGUI()
     {
         scroll = EditorGUILayout.BeginScrollView(scroll);
@@ -55,52 +92,84 @@ public class MacroDefinerWindow : EditorWindow
             // 固定 隐藏
             {
                 EditorGUILayout.LabelField("固定宏");
-                GUI.enabled = false;
-                ShowDefines(fixedDefines);
-                GUI.enabled = true;
-                if (TrySetAllNode(fixedDefines, true))
+                defineNodes.Clear();
                 {
-                    PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup, defines.ToArray());
+                    SetDefineNodes(defineNodes, fixedDefines);
+                    GUI.enabled = false;
+                    ShowDefines(defineNodes);
+                    GUI.enabled = true;
+                    if (TrySetAllNode(defineNodes, true))
+                    {
+                        PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup, defines.ToArray());
+                    }
                 }
             }
             // 可选
             {
                 EditorGUILayout.LabelField("可选宏");
-                ShowDefines(optionalDefines);
+                defineNodes.Clear();
+                SetDefineNodes(defineNodes, optionalDefines);
+                ShowDefines(defineNodes);
             }
             using (new EditorGUILayout.HorizontalScope())
             {
                 if (GUILayout.Button("一键开发模式"))
                 {
                     defines.Clear();
-                    TrySetAllNode(fixedDefines, true);
-                    TrySetAllNode(developmentDefines, true);
+                    defineNodes.Clear();
+                    {
+                        SetDefineNodes(defineNodes, fixedDefines);
+                        TrySetAllNode(defineNodes, true);
+                    }
+                    defineNodes.Clear();
+                    {
+                        SetDefineNodes(defineNodes, developmentDefines);
+                        TrySetAllNode(defineNodes, true);
+                    }
                 }
                 if (GUILayout.Button("一键发布模式"))
                 {
                     defines.Clear();
-                    TrySetAllNode(fixedDefines, true);
-                    TrySetAllNode(releasesDefines, true);
+                    defineNodes.Clear();
+                    {
+                        SetDefineNodes(defineNodes, fixedDefines);
+                        TrySetAllNode(defineNodes, true);
+                    }
+                    defineNodes.Clear();
+                    {
+                        SetDefineNodes(defineNodes, releasesDefines);
+                        TrySetAllNode(defineNodes, true);
+                    }
                 }
             }
             if (GUILayout.Button("保存"))
             {
                 PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup, defines.ToArray());
-            }   
+            }
         }
         EditorGUILayout.EndScrollView();
+    }
+
+    private void SetDefineNodes(in List<DefineNode> defineNodes, List<EMacroDefiner> eMacroDefiners)
+    {
+        for (int i = 0; i < eMacroDefiners.Count; i++)
+        {
+            EMacroDefiner eMacroDefiner = eMacroDefiners[i];
+            DefineNode defineNode = dict[eMacroDefiner];
+            defineNodes.Add(defineNode);
+        }
     }
 
     private void ShowDefines(List<DefineNode> defineNodes)
     {
         using (new EditorGUILayout.VerticalScope())
         {
-            using (new EditorGUILayout.HorizontalScope())
+            if (defineNodes == null || defineNodes.Count == 0) return;
+            for (int i = 0; i < defineNodes.Count; i++)
             {
-                GUILayout.Space(20);
-                if (defineNodes == null || defineNodes.Count == 0) return;
-                for (int i = 0; i < defineNodes.Count; i++)
+                using (new EditorGUILayout.HorizontalScope())
                 {
+                    GUILayout.Space(20);
                     DefineNode defineNode = defineNodes[i];
                     using (new EditorGUILayout.VerticalScope())
                     {

@@ -26,6 +26,7 @@ namespace ConditionModule.Element
         bool Status(T t);
     }
     /// 条件响应器
+    /// CPU 优化点：1、永久性条件自动取消订阅
     public class Responder<T, TConditionType>: IResponder<T, TConditionType>
         where T: ICondition<TConditionType>
         where TConditionType: struct
@@ -188,7 +189,7 @@ namespace ConditionModule.Element
                 null,
                 x =>
                 {
-                    x.callback = null;
+                    x.callbacks.Clear();
                     x.status = false;
                     x.isDirty = true;
                 });
@@ -199,7 +200,11 @@ namespace ConditionModule.Element
                 result.t = t;
                 return result;
             }
-            private ConditionDataWrapper() { }
+
+            private ConditionDataWrapper()
+            {
+                callbacks = new HashSet<Action<T, bool>>();
+            }
             void IDisposable.Dispose() => s_Pool.Release(this);
             
 #if !POOL_RELEASES
@@ -210,7 +215,7 @@ namespace ConditionModule.Element
             
             private bool isDirty = true;
             private bool status;
-            private Action<T, bool> callback;
+            private HashSet<Action<T, bool>> callbacks;
             
             public void GetTypes<TCollection>(TCollection eConditionTypes)
                 where TCollection: ICollection<TConditionType>
@@ -220,19 +225,22 @@ namespace ConditionModule.Element
 
             public void Subscribe(Action<T, bool> callback)
             {
-                this.callback += callback;
+                callbacks.Add(callback);
             }
             public void Unsubscribe(Action<T, bool> callback)
             {
-                this.callback -= callback;
+                callbacks.Remove(callback);
             }
             public void Fire()
             {
                 isDirty = true;
-                if (callback == null) return;
+                if (callbacks.Count == 0) return;
                 bool lastStatus = status;
                 if (lastStatus == Status()) return;
-                callback.Invoke(t, status);
+                foreach (var callback in callbacks)
+                {
+                    callback.Invoke(t, status);
+                }
             }
             public bool Status()
             {
@@ -244,7 +252,7 @@ namespace ConditionModule.Element
                 return status;
             }
             // 检空
-            public bool CheckNull() => callback == null;
+            public bool CheckNull() => callbacks.Count == 0;
             
             public T UnWrapper() => t;
         }

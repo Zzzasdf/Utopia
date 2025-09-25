@@ -62,8 +62,7 @@ public class DelayBuffer<T>
     {
         if (fireBatchCallback == null) return;
         if (isPreFireAll) return;
-        if (uniqueHashSet.Contains(t)) return;
-        uniqueHashSet.Add(t);
+        if (!uniqueHashSet.Add(t)) return;
         OnCollectHandle();
     }
     public void FireAllType()

@@ -27,7 +27,9 @@ public class MonitoredObjectPoolMemoryWindow: EditorWindow
     
     public void OnGUI()
     {
-#if !POOL_RELEASES
+#if POOL_RELEASES
+        EditorGUILayout.LabelField("请关闭 POOL_RELEASES");
+#else
         Dictionary<string, Dictionary<Type, HashSet<MonitoredObjectPool.IMonitoredPool>>> poolGroupDict = MonitoredObjectPool.Pools;
         if (poolGroupDict == null) return;
         scroll = EditorGUILayout.BeginScrollView(scroll);
@@ -61,8 +63,6 @@ public class MonitoredObjectPoolMemoryWindow: EditorWindow
             }
         }
         EditorGUILayout.EndScrollView();
-#else
-        EditorGUILayout.LabelField("请关闭 POOL_RELEASES");
 #endif
     }
 }

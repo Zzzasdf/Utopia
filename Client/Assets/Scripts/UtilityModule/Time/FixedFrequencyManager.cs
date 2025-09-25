@@ -6,7 +6,7 @@ namespace TimeModule
 {
     /// <summary>
     /// 定频更新
-    /// CPU 优化点：记录一次当前时间，固定频率修正
+    /// CPU 优化点：1、记录一次当前时间，固定频率修正 2、定频分类
     /// GC 优化点：记录类型的显示的数字字符串
     /// </summary>
     public sealed partial class FixedFrequencyManager : IFixedFrequencyManager

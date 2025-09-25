@@ -4,9 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a967d55f-6ae8-4869-a5a9-e2ab076bd761" name="更改" comment="..">
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Singleton/MonoSingleton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Singleton/MonoSingleton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Singleton/ThreadSafeMonoSingleton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Singleton/ThreadSafeMonoSingleton.cs" afterDir="false" />
+    <list default="true" id="a967d55f-6ae8-4869-a5a9-e2ab076bd761" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Client/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assembly-CSharp-Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp-Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assembly-CSharp-firstpass.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp-firstpass.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assembly-CSharp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Editor/MacroDefinerWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Editor/MacroDefinerWindow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataStructureModule/SerializableDictionary.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DataStructureModule/SerializableDictionary.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Buffer/DelayBuffer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Buffer/DelayBuffer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Condition/Element/ConditionManager.Responder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Condition/Element/ConditionManager.Responder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Condition/Integration/ConditionManager.Responder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Condition/Integration/ConditionManager.Responder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pooled/Editor/MonitoredObjectPoolMemoryWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Pooled/Editor/MonitoredObjectPoolMemoryWindow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Time/FixedFrequencyManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UtilityModule/Time/FixedFrequencyManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp-Editor.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp-Editor.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp-firstpass.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp-firstpass.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp.csproj.AssemblyReference.cache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,8 +212,10 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9c2967a135e648bdb993c5397a44991b573620/ad/89c02595/LayoutKind.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a10241ce273948a78b604af20871bc7110400/6e/8699c9e3/_003CPrivateImplementationDetails_003E.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a675c3b64da6474b9fa5007cb5424433956000/3f/586bab37/EditorWindow.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a675c3b64da6474b9fa5007cb5424433956000/60/d50ba07a/AssetDatabase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a675c3b64da6474b9fa5007cb5424433956000/94/b89cff3b/HostView.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a675c3b64da6474b9fa5007cb5424433956000/95/dc62f139/EditorGUILayout.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a675c3b64da6474b9fa5007cb5424433956000/98/934a0db5/ImportAssetOptions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a675c3b64da6474b9fa5007cb5424433956000/e4/3b873a01/EditorSkin.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a675c3b64da6474b9fa5007cb5424433956000/f6/e2b0de98/EditorApplication.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b11ba2a8fbf24f219f7cc98532a1130446ac00/04/e845a775/Int32.cs" root0="SKIP_HIGHLIGHTING" />
@@ -285,10 +299,10 @@
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="附加到 Unity 编辑器" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="附加到 Unity 编辑器" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="27768">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="27768" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -503,7 +517,9 @@
       <workItem from="1758458896079" duration="11561000" />
       <workItem from="1758470512758" duration="438000" />
       <workItem from="1758801231017" duration="1289000" />
-      <workItem from="1758805063118" duration="1682000" />
+      <workItem from="1758805063118" duration="1855000" />
+      <workItem from="1758807051565" duration="80000" />
+      <workItem from="1758807142592" duration="4446000" />
     </task>
     <task id="LOCAL-00001" summary="..master">
       <option name="closed" value="true" />
@@ -545,7 +561,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753715201293</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="..">
+      <option name="closed" value="true" />
+      <created>1758806765298</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1758806765298</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -572,6 +596,23 @@
     <option name="LAST_COMMIT_MESSAGE" value=".." />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Editor/MacroDefinerWindow.cs</url>
+          <line>14</line>
+          <properties documentPath="C:\UnityProject\Utopia\Client\Assets\Editor\MacroDefinerWindow.cs" initialLine="14" containingFunctionPresentation="方法 'OnEnable'">
+            <startOffsets>
+              <option value="310" />
+            </startOffsets>
+            <endOffsets>
+              <option value="432" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="Type#System.Collections.Generic.LinkedListNode`1" memberName="List" />
