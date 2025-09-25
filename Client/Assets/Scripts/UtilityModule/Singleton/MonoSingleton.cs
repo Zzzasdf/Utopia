@@ -16,5 +16,5 @@ public class MonoSingleton<T> : MonoBehaviour
             return _instance;
         }
     }
-    public bool Survival() => _instance != null;
+    public static  bool Survival() => _instance != null;
 }

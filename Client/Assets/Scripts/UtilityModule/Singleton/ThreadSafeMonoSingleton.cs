@@ -20,5 +20,5 @@ public class ThreadSafeMonoSingleton<T> : MonoBehaviour
             }
         }
     }
-    public bool Survival() => _instance != null;
+    public static bool Survival() => _instance != null;
 }
