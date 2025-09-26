@@ -21,7 +21,7 @@ public class BusyDisposable : IDisposable
         s_Pool.Release(this);
     }
 
-#if !POOL_RELEASES
+#if POOLED_EXCEPTION
     ~BusyDisposable() => s_Pool.FinalizeDebug();
 #endif
     

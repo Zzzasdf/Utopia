@@ -45,7 +45,6 @@ public class ThreadExample
 
             $"Count: {count}".Log();
 
-
             void ThreadMethod()
             {
                 for (int i = 0; i < total; i++)

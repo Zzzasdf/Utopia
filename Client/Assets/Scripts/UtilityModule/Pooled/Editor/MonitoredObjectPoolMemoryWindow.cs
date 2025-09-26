@@ -27,8 +27,8 @@ public class MonitoredObjectPoolMemoryWindow: EditorWindow
     
     public void OnGUI()
     {
-#if POOL_RELEASES
-        EditorGUILayout.LabelField("请关闭 POOL_RELEASES");
+#if !POOLED_EXCEPTION
+        EditorGUILayout.LabelField("请开启 POOLED_EXCEPTION");
 #else
         Dictionary<string, Dictionary<Type, HashSet<MonitoredObjectPool.IMonitoredPool>>> poolGroupDict = MonitoredObjectPool.Pools;
         if (poolGroupDict == null) return;

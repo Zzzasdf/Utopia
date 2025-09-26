@@ -119,7 +119,7 @@ namespace TimeModule
                 s_Pool.Release(this);
             }
 
-#if !POOL_RELEASES
+#if POOLED_EXCEPTION
             ~FixedFrequencySpan() => s_Pool.FinalizeDebug();
 #endif
             

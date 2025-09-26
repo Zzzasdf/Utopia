@@ -846,7 +846,7 @@ PlayerSettings:
     PS5: DOTWEEN
     QNX: DOTWEEN
     Stadia: DOTWEEN
-    Standalone: DOTWEEN
+    Standalone: DOTWEEN;FRAME_ERROR;FRAME_WARNING;FRAME_LOG;ERROR;WARNING;LOG;POOLED_EXCEPTION
     VisionOS: DOTWEEN
     WebGL: DOTWEEN
     Windows Store Apps: DOTWEEN

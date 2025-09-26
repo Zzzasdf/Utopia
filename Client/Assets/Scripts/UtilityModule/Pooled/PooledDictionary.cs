@@ -17,7 +17,7 @@ public sealed class PooledDictionary<TKey, TValue> : Dictionary<TKey, TValue>, I
         s_Pool.Release(this);
     }
 
-#if !POOL_RELEASES
+#if POOLED_EXCEPTION
     ~PooledDictionary() => s_Pool.FinalizeDebug();
 #endif
 

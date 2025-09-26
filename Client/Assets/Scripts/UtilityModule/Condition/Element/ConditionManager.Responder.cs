@@ -207,7 +207,7 @@ namespace ConditionModule.Element
             }
             void IDisposable.Dispose() => s_Pool.Release(this);
             
-#if !POOL_RELEASES
+#if POOLED_EXCEPTION
             ~ConditionDataWrapper() => s_Pool.FinalizeDebug();
 #endif
 

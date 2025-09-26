@@ -17,7 +17,7 @@ public sealed class PooledHashSet<T> : HashSet<T>, IDisposable
         s_Pool.Release(this);
     }
 
-#if !POOL_RELEASES
+#if POOLED_EXCEPTION
     ~PooledHashSet() => s_Pool.FinalizeDebug();
 #endif
 

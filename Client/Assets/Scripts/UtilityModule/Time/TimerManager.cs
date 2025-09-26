@@ -130,7 +130,7 @@ namespace TimeModule
 
             void IDisposable.Dispose() => s_Pool.Release(this);
 
-    #if !POOL_RELEASES
+    #if POOLED_EXCEPTION
             ~TimerSpan() => s_Pool.FinalizeDebug();
     #endif
             

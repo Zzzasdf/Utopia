@@ -3,284 +3,175 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-public class MacroDefinerWindow : EditorWindow
+namespace MacroDefinerModule
 {
-    [MenuItem("Tools/设置全局宏")]
-    private static void Open()
+    public sealed partial class MacroDefinerWindow : EditorWindow
     {
-        GetWindow<MacroDefinerWindow>("设置全局宏", true);
-    }
-    private void OnEnable()
-    {
-        PlayerSettings.GetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup, out string[] _defines);
-        defines = _defines.ToList();
-        Init();
-        EditorApplication.update += Repaint;
-    }
-    private void OnDisable()
-    {
-        EditorApplication.update -= Repaint;
-    }
-
-    public enum EMacroDefiner
-    {
-        DOTWEEN = 1,
-        POOL_RELEASES = 2,
-        // Test = 3,
-    }
-    private static Dictionary<EMacroDefiner, DefineNode> dict = new Dictionary<EMacroDefiner,DefineNode>
-    {
-        [EMacroDefiner.DOTWEEN] = new DefineNode(
-            "DOTWEEN", "Tween"),
-        [EMacroDefiner.POOL_RELEASES] = new DefineNode(
-            "POOL_RELEASES", "对象池发布模式"),
-        // [EMacroDefiner.Test] = new DefineNode(
-        //     "Test", "测试", new DefineNode(
-        //         "Test1", "测试1", new DefineNode(
-        //             "Test1_1", "测试1_1")), new DefineNode(
-        //         "Test2", "测试2")),
-    };
-
-    /// 固定
-    private List<EMacroDefiner> fixedDefines;
-    // 可选
-    private List<EMacroDefiner> optionalDefines;
-    
-    // 开发模式
-    private List<EMacroDefiner> developmentDefines;
-    
-    // 发布模式
-    private List<EMacroDefiner> releasesDefines;
-    
-    private void Init()
-    {
-        // 固定
-        fixedDefines = new List<EMacroDefiner>
+        [MenuItem("Tools/设置全局宏")]
+        private static void Open()
         {
-            EMacroDefiner.DOTWEEN,
-        };
-        // 可选
-        optionalDefines = new List<EMacroDefiner>
+            GetWindow<MacroDefinerWindow>("设置全局宏", true);
+        }
+        private void OnEnable()
         {
-            EMacroDefiner.POOL_RELEASES,
-            // EMacroDefiner.Test,
-        };
+            PlayerSettings.GetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup, out string[] _defines);
+            oldDefines = _defines.ToList();
+            InitRelationshipChain();
+            EditorApplication.update += Repaint;
+        }
+        private void OnDisable()
+        {
+            EditorApplication.update -= Repaint;
+        }
         
-        // 开发者模式
-        developmentDefines = new List<EMacroDefiner>
-        {
-        };
-        
-        // 发布模式
-        releasesDefines = new List<EMacroDefiner>
-        {
-            EMacroDefiner.POOL_RELEASES,
-        };
-    }
+        // 旧宏定义
+        private List<string> oldDefines;
+        private Vector2 scroll;
 
-    // 前宏定义
-    private List<string> defines;
-
-    private Vector2 scroll;
-    private List<DefineNode> defineNodes = new List<DefineNode>();
-
-    public void OnGUI()
-    {
-        scroll = EditorGUILayout.BeginScrollView(scroll);
-        using (new EditorGUILayout.VerticalScope())
+        public void OnGUI()
         {
-            // 固定 隐藏
+            scroll = EditorGUILayout.BeginScrollView(scroll);
+            using (new EditorGUILayout.VerticalScope())
             {
-                EditorGUILayout.LabelField("固定宏");
-                defineNodes.Clear();
+                // 固定 隐藏
                 {
-                    SetDefineNodes(defineNodes, fixedDefines);
+                    EditorGUILayout.LabelField("固定宏");
                     GUI.enabled = false;
-                    ShowDefines(defineNodes);
+                    {
+                        ShowDefines(fixedDefines);
+                    }
                     GUI.enabled = true;
-                    if (TrySetAllNode(defineNodes, true))
-                    {
-                        PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup, defines.ToArray());
-                    }
                 }
-            }
-            // 可选
-            {
-                EditorGUILayout.LabelField("可选宏");
-                defineNodes.Clear();
-                SetDefineNodes(defineNodes, optionalDefines);
-                ShowDefines(defineNodes);
-            }
-            using (new EditorGUILayout.HorizontalScope())
-            {
-                if (GUILayout.Button("一键开发模式"))
+                // 可选
                 {
-                    defines.Clear();
-                    defineNodes.Clear();
-                    {
-                        SetDefineNodes(defineNodes, fixedDefines);
-                        TrySetAllNode(defineNodes, true);
-                    }
-                    defineNodes.Clear();
-                    {
-                        SetDefineNodes(defineNodes, developmentDefines);
-                        TrySetAllNode(defineNodes, true);
-                    }
+                    EditorGUILayout.LabelField("可选宏");
+                    ShowDefines(optionalDefines);
                 }
-                if (GUILayout.Button("一键发布模式"))
-                {
-                    defines.Clear();
-                    defineNodes.Clear();
-                    {
-                        SetDefineNodes(defineNodes, fixedDefines);
-                        TrySetAllNode(defineNodes, true);
-                    }
-                    defineNodes.Clear();
-                    {
-                        SetDefineNodes(defineNodes, releasesDefines);
-                        TrySetAllNode(defineNodes, true);
-                    }
-                }
-            }
-            if (GUILayout.Button("保存"))
-            {
-                PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup, defines.ToArray());
-            }
-        }
-        EditorGUILayout.EndScrollView();
-    }
-
-    private void SetDefineNodes(in List<DefineNode> defineNodes, List<EMacroDefiner> eMacroDefiners)
-    {
-        for (int i = 0; i < eMacroDefiners.Count; i++)
-        {
-            EMacroDefiner eMacroDefiner = eMacroDefiners[i];
-            DefineNode defineNode = dict[eMacroDefiner];
-            defineNodes.Add(defineNode);
-        }
-    }
-
-    private void ShowDefines(List<DefineNode> defineNodes)
-    {
-        using (new EditorGUILayout.VerticalScope())
-        {
-            if (defineNodes == null || defineNodes.Count == 0) return;
-            for (int i = 0; i < defineNodes.Count; i++)
-            {
                 using (new EditorGUILayout.HorizontalScope())
                 {
-                    GUILayout.Space(20);
-                    DefineNode defineNode = defineNodes[i];
-                    using (new EditorGUILayout.VerticalScope())
+                    foreach (var pair in modeDict)
                     {
-                        using (new EditorGUILayout.HorizontalScope())
+                        if (GUILayout.Button(pair.Value.modeName))
                         {
-                            EditorGUILayout.LabelField($"{defineNode.Current} => {defineNode.FuncIntro}", GUILayout.Width(250));
-                            GUILayout.FlexibleSpace();
-                            bool toggle = EditorGUILayout.Toggle(defines.Contains(defineNode.Current));
-                            if (toggle && !defines.Contains(defineNode.Current))
+                            oldDefines.Clear();
+                            for (int i = 0; i < pair.Value.eMacroDefiners.Count; i++)
                             {
-                                // 父节点必须是 Add 的状态
+                                EMacroDefiner eMacroDefiner = pair.Value.eMacroDefiners[i];
+                                DefineNode defineNode = NodeDict[eMacroDefiner];
                                 AddAllParentNode(defineNode);
-                                defines.Add(defineNode.Current);
-                            }
-                            else if (!toggle && defines.Contains(defineNode.Current))
-                            {
-                                // 子节点必须是 Remove 的状态
+                                AllCurrentNode(defineNode);
                                 RemoveAllChildren(defineNode);
-                                defines.Remove(defineNode.Current);
-                            }
+                            }              
                         }
-                        ShowDefines(defineNode.Children);
+                    }
+                }
+                if (GUILayout.Button("保存"))
+                {
+                    PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup, oldDefines.ToArray());
+                }
+            }
+            EditorGUILayout.EndScrollView();
+        }
+
+        private void ShowDefines(in List<EMacroDefiner> eMacroDefiners)
+        {
+            if (eMacroDefiners == null || eMacroDefiners.Count == 0) return;
+            List<DefineNode> defineNodes = new List<DefineNode>();
+            for (int i = 0; i < eMacroDefiners.Count; i++)
+            {
+                EMacroDefiner eMacroDefiner = eMacroDefiners[i];
+                DefineNode defineNode = NodeDict[eMacroDefiner];
+                defineNodes.Add(defineNode);
+            }
+            using (new EditorGUILayout.VerticalScope())
+            {
+                foreach (var defineNode in defineNodes)
+                {
+                    using (new EditorGUILayout.HorizontalScope())
+                    {
+                        GUILayout.Space(20);
+                
+                        using (new EditorGUILayout.VerticalScope())
+                        {
+                            using (new EditorGUILayout.HorizontalScope())
+                            {
+                                EditorGUILayout.LabelField($"{defineNode.Current} => {defineNode.Description}", GUILayout.Width(250));
+                                GUILayout.FlexibleSpace();
+                                bool toggle = EditorGUILayout.Toggle(oldDefines.Contains(defineNode.StrCurrent));
+                                if (toggle && !oldDefines.Contains(defineNode.StrCurrent))
+                                {
+                                    // 父节点必须是 Add 的状态
+                                    AddAllParentNode(defineNode);
+                                    oldDefines.Add(defineNode.StrCurrent);
+                                }
+                                else if (!toggle && oldDefines.Contains(defineNode.StrCurrent))
+                                {
+                                    // 子节点必须是 Remove 的状态
+                                    RemoveAllChildren(defineNode);
+                                    oldDefines.Remove(defineNode.StrCurrent);
+                                }
+                            }
+                            ShowDefines(defineNode.Children);
+                        }
                     }
                 }
             }
         }
-    }
 
-    private bool TrySetAllNode(List<DefineNode> defineNodes, bool isSelected)
-    {
-        bool isDirty = false;
-        for (int i = 0; i < defineNodes.Count; i++)
+        private void AddAllParentNode(DefineNode defineNode)
         {
-            if (TrySetAllNode(defineNodes[i], isSelected))
+            if (!defineNode.Parent.HasValue) return;
+            DefineNode parentNode = NodeDict[defineNode.Parent.Value];
+            if (!oldDefines.Contains(parentNode.StrCurrent))
             {
-                isDirty = true;
+                AddAllParentNode(parentNode);
+                oldDefines.Add(parentNode.StrCurrent);
             }
         }
-        return isDirty;
-    }
-    private bool TrySetAllNode(DefineNode defineNode, bool isSelected)
-    {
-        bool result = false;
-        if (defineNode == null) return result;
-        if (isSelected)
+        private void AllCurrentNode(DefineNode defineNode)
         {
-            if (TrySetAllNode(defineNode.Parent, isSelected))
+            if (!oldDefines.Contains(defineNode.StrCurrent))
             {
-                result = true;
-            }
-            if (!defines.Contains(defineNode.Current))
-            {
-                defines.Add(defineNode.Current);
-                result = true;
+                oldDefines.Add(defineNode.StrCurrent);
             }
         }
-        else
+        private void RemoveAllChildren(DefineNode defineNode)
         {
-            for (int i = 0; i < defineNode.Children.Count; i++)
-            { 
-                if (TrySetAllNode(defineNode.Children[i], isSelected))
+            if (defineNode.Children == null || defineNode.Children.Count == 0) return;
+            foreach (var child in defineNode.Children)
+            {
+                DefineNode childNode = NodeDict[child];
+                RemoveAllChildren(childNode);
+                if (oldDefines.Contains(childNode.StrCurrent))
                 {
-                    result = true;
+                    oldDefines.Remove(childNode.StrCurrent);
                 }
             }
-            if (defines.Contains(defineNode.Current))
-            {
-                defines.Remove(defineNode.Current);
-                result = true;
-            }
-        }
-        return result;
-    }
-    private void AddAllParentNode(DefineNode defineNode)
-    {
-        if (defineNode.Parent == null) return;
-        if (!defines.Contains(defineNode.Parent.Current))
-        {
-            AddAllParentNode(defineNode.Parent);
-            defines.Add(defineNode.Parent.Current);
         }
     }
-    private void RemoveAllChildren(DefineNode defineNode)
-    {
-        if (defineNode.Children == null || defineNode.Children.Count == 0) return;
-        for (int i = 0; i < defineNode.Children.Count; i++)
-        {
-            RemoveAllChildren(defineNode.Children[i]);
-            if (defines.Contains(defineNode.Children[i].Current))
-            {
-                defines.Remove(defineNode.Children[i].Current);
-            }
-        }
-    }
-
+    
     public class DefineNode 
     {
-        public DefineNode Parent;
-        public string Current;
-        public string FuncIntro;
-        public List<DefineNode> Children;
+        public readonly EMacroDefiner Current;
+        public string StrCurrent => Current.ToString();
+        public readonly string Description;
+            
+        public EMacroDefiner? Parent { get; private set; }
+        public List<EMacroDefiner> Children { get; private set; }
 
-        public DefineNode(string current, string funcIntro, params DefineNode[] defineNodes)
+        public DefineNode(EMacroDefiner current, string description)
         {
-            this.Current = current;
-            this.FuncIntro = funcIntro;
-            for (int i = 0; i < defineNodes.Length; i++)
-            {
-                defineNodes[i].Parent = this;
-            }
-            this.Children = defineNodes.ToList();
+            Current = current;
+            Description = description;
+        }
+        public void AddParent(EMacroDefiner parent)
+        {
+            Parent = parent;
+        }
+        public void AddChild(EMacroDefiner child)
+        {
+            Children ??= new List<EMacroDefiner>();
+            Children.Add(child);
         }
     }
 }

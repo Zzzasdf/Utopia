@@ -13,7 +13,7 @@ public sealed class PooledList<T> : List<T>, IDisposable
     private PooledList() { }
     void IDisposable.Dispose() => s_Pool.Release(this);
 
-#if !POOL_RELEASES
+#if POOLED_EXCEPTION
     ~PooledList() => s_Pool.FinalizeDebug();
 #endif
 

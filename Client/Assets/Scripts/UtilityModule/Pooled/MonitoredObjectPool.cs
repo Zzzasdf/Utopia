@@ -1,7 +1,7 @@
 using System;
 using UnityEngine.Pool;
 
-#if !POOL_RELEASES
+#if POOLED_EXCEPTION
 using System.Collections.Generic;
 
 /// 可监控的对象池
