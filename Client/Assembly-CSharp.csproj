@@ -108,6 +108,7 @@
     <Compile Include="Assets\Scripts\ExtensionsModule\System\Collections\Generic\HashSetExtensions.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Pooled\PooledList.cs" />
     <Compile Include="Assets\Scripts\UnknownModule\Selector1\ReactiveProperty`1.cs" />
+    <Compile Include="Assets\CustomRP\Examples\MeshBall.cs" />
     <Compile Include="Assets\CustomRP\Runtime\CameraRender.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Layout\LeafSizeFitter.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Core\Driver\UIViewDriver.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\Optional\Tween\Param\Position\PositionLerpDecreaseParam.cs" />
     <Compile Include="Assets\Scripts\DataStructureModule\SortBuffer.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Layout\LeafSizeFitter.Utility.cs" />
+    <Compile Include="Assets\CustomRP\Examples\PerObjectMaterialProperties.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\Optional\Tween\Enter\FlyInEnterTweenCore.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\IndexParam\CenterItemDataIndexParamCore.cs" />
     <Compile Include="Assets\Scripts\UnknownModule\Generator1\Ring\Generator.Utility.cs" />

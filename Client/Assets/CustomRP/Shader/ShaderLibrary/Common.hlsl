@@ -18,7 +18,7 @@
 #define UNITY_PREV_MATRIX_M	unity_PrevObjectToWorld
 #define UNITY_PREV_MATRIX_I_M	unity_PrevWorldToObject
 
-
+#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/UnityInstancing.hlsl"
 // 包含空间变换函数（例如GetObjectToWorldMatrix）
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/SpaceTransforms.hlsl"
 
