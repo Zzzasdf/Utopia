@@ -80,6 +80,7 @@
     <Compile Include="Assets\Editor\Window\WindowLayoutAttribute.cs" />
     <Compile Include="Assets\Editor\StateMachineModule\RedPoint\StateMachineDataRedPoint.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Layout\Editor\LayoutNodeInspector.cs" />
+    <Compile Include="Assets\CustomRP\Shader\Editor\CustomShaderGUI.cs" />
     <Compile Include="Assets\Editor\Unit\RangeExample.cs" />
     <Compile Include="Assets\Editor\Window\WindowCollectorUtility.cs" />
     <Compile Include="Assets\Editor\UtilityModule\Utility.Copy.cs" />
@@ -910,20 +911,20 @@
     <Reference Include="Unity.Performance.Profile-Analyzer.Editor">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+      <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TestTools.CodeCoverage.Editor">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Model">
-      <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Collections">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Model">
+      <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Addressables.Editor">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.Addressables.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-      <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.State.Editor">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>

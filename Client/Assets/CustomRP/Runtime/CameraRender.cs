@@ -4,6 +4,7 @@ using UnityEngine.Rendering;
 public partial class CameraRender 
 {
     private static ShaderTagId unlitShaderTagId = new ShaderTagId("SRPDefaultUnlit");
+    private static ShaderTagId litShaderTagId = new ShaderTagId("CustomLit");
     
     private const string bufferName = "Render Camera";
     private CommandBuffer buffer = new CommandBuffer
@@ -12,8 +13,9 @@ public partial class CameraRender
     };
     
     private ScriptableRenderContext context;
-
     private Camera camera;
+
+    private Lighting lighting = new Lighting();
 
     public void Render(ScriptableRenderContext context, Camera camera,
         bool useDynamicBatching, bool useGPUInstancing)
@@ -30,6 +32,7 @@ public partial class CameraRender
         }
 
         Setup();
+        lighting.SetUp(context, cullingResults);
         // 绘制几何体
         DrawVisibleGeometry(useDynamicBatching, useGPUInstancing);
         // 绘制 SRP 不支持的着色器类型
@@ -82,6 +85,8 @@ public partial class CameraRender
             enableDynamicBatching = useDynamicBatching,
             enableInstancing = useGPUInstancing,
         };
+        // 渲染 CustomLit 表示的 Pass 块
+        drawingSettings.SetShaderPassName(1, litShaderTagId);
         // 只绘制 RenderQueue 为 opaque 不透明的物体
         var filteringSettings = new FilteringSettings(RenderQueueRange.opaque);
         // 1、绘制不透明物体

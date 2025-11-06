@@ -108,8 +108,8 @@
     <Compile Include="Assets\Scripts\ExtensionsModule\System\Collections\Generic\HashSetExtensions.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Pooled\PooledList.cs" />
     <Compile Include="Assets\Scripts\UnknownModule\Selector1\ReactiveProperty`1.cs" />
-    <Compile Include="Assets\CustomRP\Examples\MeshBall.cs" />
     <Compile Include="Assets\CustomRP\Runtime\CameraRender.cs" />
+    <Compile Include="Assets\CustomRP\Examples\MeshBall.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Layout\LeafSizeFitter.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Core\Driver\UIViewDriver.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\RedPoint\RedPointTreeManager.cs" />
@@ -121,9 +121,9 @@
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\Optional\Tween\Selected\ZoomSelectedContainer.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\Conveter\Map\MapIntLongConverter.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Ring\Mono\Component\Component.cs" />
-    <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\Optional\Tween\Param\Position\PositionLerpDecreaseParam.cs" />
     <Compile Include="Assets\Scripts\DataStructureModule\SortBuffer.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Layout\LeafSizeFitter.Utility.cs" />
+    <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\Optional\Tween\Param\Position\PositionLerpDecreaseParam.cs" />
     <Compile Include="Assets\CustomRP\Examples\PerObjectMaterialProperties.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\Optional\Tween\Enter\FlyInEnterTweenCore.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\IndexParam\CenterItemDataIndexParamCore.cs" />
@@ -142,6 +142,7 @@
     <Compile Include="Assets\Scripts\AssetModule\Helper\IOHelper.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Coroutine\WaitForSecondsValue.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Chat\ChatMessage.cs" />
+    <Compile Include="Assets\CustomRP\Runtime\Lighting.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Chat\Model\Room\Unit\IChatRoomUnit.cs" />
     <Compile Include="Assets\Scripts\UnknownModule\Generator1\Ring\Helper\SelectedScroll\SelectedScrollHelper.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\Conveter\HashSet\HashSetIntReverseConverter.cs" />
@@ -184,9 +185,9 @@
     <Compile Include="Assets\Scripts\UIViewModule\Chat\ChatManager.ChannelConfigure.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\RepeatedField.cs" />
     <Compile Include="Assets\Scripts\ExtensionsModule\System\Threading\Tasks\TasksExtensions.cs" />
-    <Compile Include="Assets\Scripts\UtilityModule\Subscriber\PackMarkBit`1.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Chat\Model\House\ChatHouse.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Singleton\ThreadSafeMonoSingleton.cs" />
+    <Compile Include="Assets\Scripts\UtilityModule\Subscriber\PackMarkBit`1.cs" />
     <Compile Include="Assets\Scripts\PlayerLoop.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\System\ConverterCollectorSystem.cs" />
     <Compile Include="Assets\Scripts\ExtensionsModule\UnityEngine\LogValidator.cs" />
@@ -228,8 +229,8 @@
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\Item\LinearSelectorItemCore.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\LinearGenerator.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\Sealed\MapIntLongConverter.cs" />
-    <Compile Include="Assets\Scripts\UIViewModule\Chat\Verify\Gate\ChatHouseGate.cs" />
     <Compile Include="Assets\Scripts\UnknownModule\Generator1\Ring\Generator.Direction.cs" />
+    <Compile Include="Assets\Scripts\UIViewModule\Chat\Verify\Gate\ChatHouseGate.cs" />
     <Compile Include="Assets\Scripts\ExtensionsModule\System\Collections\Generic\IListExtensions.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Chat\Model\Room\Unit\EditContentStorage.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Core\UIManager.Config.cs" />
@@ -263,12 +264,18 @@
     <Compile Include="Assets\Scripts\UIViewModule\Chat\ChatManager.Parser.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\Collector\IConverterCollector.cs" />
     <None Include="Assets\CustomRP\Shader\Unlit.shader" />
+    <None Include="Assets\CustomRP\Shader\LitPass.hlsl" />
     <None Include="Assets\Data\UIDocuments\PartyDataScreen.uxml" />
+    <None Include="Assets\CustomRP\Shader\ShaderLibrary\BRDF.hlsl" />
     <None Include="Assets\CustomRP\Shader\UnlitPass.hlsl" />
     <None Include="Assets\ReadMe.txt" />
     <None Include="Assets\Data\UIDocuments\StyleSheets\PartyDataScreen.uss" />
+    <None Include="Assets\CustomRP\Shader\Lit.shader" />
+    <None Include="Assets\CustomRP\Shader\ShaderLibrary\Surface.hlsl" />
     <None Include="Assets\CustomRP\Shader\ShaderLibrary\UnityInput.hlsl" />
+    <None Include="Assets\CustomRP\Shader\ShaderLibrary\Lighting.hlsl" />
     <None Include="Assets\CustomRP\Shader\ShaderLibrary\Common.hlsl" />
+    <None Include="Assets\CustomRP\Shader\ShaderLibrary\Light.hlsl" />
     <Reference Include="UnityEngine">
       <HintPath>C:\UnityEditor\2022.3.28f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -1022,20 +1029,20 @@
     <Reference Include="Unity.Performance.Profile-Analyzer.Editor">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+      <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TestTools.CodeCoverage.Editor">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Model">
-      <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Collections">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Model">
+      <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Addressables.Editor">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.Addressables.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-      <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.State.Editor">
       <HintPath>C:\UnityProject\Utopia\Client\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
