@@ -1,0 +1,69 @@
+using System;
+using UnityEngine;
+
+// 阴影属性设置
+[Serializable]
+public class ShadowSettings
+{
+    // 阴影最大距离
+    [Min(0.001f)]
+    public float maxDistance = 100f;
+    // 阴影过度距离
+    [Range(0.001f, 1f)] 
+    public float distanceFade = 0.1f;
+    // 级联淡入值
+    [Range(0.001f, 1f)] 
+    public float cascadeFade;
+    
+    // 阴影贴图大小
+    public enum MapSize 
+    {
+        _256 = 256, _512 = 512, _1024 = 1024,
+        _2048 = 2048, _4096 = 4096, _8192 = 8192,
+    }
+    
+    // PCF 滤波模式
+    public enum FilterMode
+    {
+        PCF2x2, PCF3x3, PCF5x5, PCF7x7,
+    }
+
+    // 方向光的阴影配置
+    [Serializable]
+    public struct Directional 
+    {
+        public MapSize atlasSize;
+        public FilterMode filter;
+        // 级联数量
+        [Range(1, 4)]
+        public int cascadeCount;
+        // 级联比例
+        [Range(0f, 1f)]
+        public float cascadeRatio1, cascadeRatio2, cascadeRatio3;
+        // 级联淡入值
+        [Range(0.001f, 1f)] 
+        public float cascadeFade;
+        public CascadeBlendMode cascadeBlend;
+        
+        public Vector3 CascadeRatios => new Vector3(cascadeRatio1, cascadeRatio2, cascadeRatio3);
+        
+        // 级联混合模式 
+        public enum CascadeBlendMode
+        {
+            Hard, Soft, Dither,
+        }
+    }
+    
+    // 默认尺寸为 1024
+    public Directional directional = new Directional
+    {
+        atlasSize = MapSize._1024,
+        filter = FilterMode.PCF2x2,
+        cascadeCount = 4,
+        cascadeRatio1 = 0.1f,
+        cascadeRatio2 = 0.25f,
+        cascadeRatio3 = 0.5f,
+        cascadeFade = 0.1f,
+        cascadeBlend = Directional.CascadeBlendMode.Hard,
+    };
+}

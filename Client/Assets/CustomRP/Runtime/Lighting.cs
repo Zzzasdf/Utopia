@@ -1,6 +1,7 @@
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
+using Vector2 = System.Numerics.Vector2;
 
 public class Lighting 
 {
@@ -10,11 +11,15 @@ public class Lighting
     private static int dirLightCountId = Shader.PropertyToID("_DirectionalLightCount");
     private static int dirLightColorsId = Shader.PropertyToID("_DirectionalLightColors");
     private static int dirLightDirectionsId = Shader.PropertyToID("_DirectionalLightDirections");
-    
+    private static int dirLightShadowDataId = Shader.PropertyToID("_DirectionalLightShadowData");
+
     // 存储可见光的颜色和方向
     private Vector4[] dirLightColors = new Vector4[maxDirLightCount];
     private Vector4[] dirLightDirections = new Vector4[maxDirLightCount];
     
+    // 存储阴影数据
+    private static Vector4[] dirLightShadowData = new Vector4[maxDirLightCount];
+
     private const string bufferName = "Lighting";
     
     CommandBuffer buffer = new CommandBuffer
@@ -24,14 +29,17 @@ public class Lighting
     
     // 存储相机踢除后的结果
     private CullingResults cullingResults;
-
-    public void SetUp(ScriptableRenderContext context, CullingResults cullingResults)
+    private Shadows shadows = new Shadows();
+    
+    public void SetUp(ScriptableRenderContext context, CullingResults cullingResults, ShadowSettings shadowSettings)
     {
         this.cullingResults = cullingResults;
         buffer.BeginSample(bufferName);
-        // // 发送光源数据
-        // SetupDirectionalLight();
+        // 传递阴影数据
+        shadows.SetUp(context, cullingResults, shadowSettings);
+        // 发送光源数据
         SetupLights();
+        shadows.Render();
         buffer.EndSample(bufferName);
         context.ExecuteCommandBuffer(buffer);
         buffer.Clear();
@@ -61,6 +69,7 @@ public class Lighting
         buffer.SetGlobalInt(dirLightCountId, dirLightCount);
         buffer.SetGlobalVectorArray(dirLightColorsId, dirLightColors);
         buffer.SetGlobalVectorArray(dirLightDirectionsId, dirLightDirections);
+        buffer.SetGlobalVectorArray(dirLightShadowDataId, dirLightShadowData);
     }
     
     /// 将可见光的光照颜色和方向存储到数组
@@ -68,5 +77,13 @@ public class Lighting
     {
         dirLightColors[index] = visibleLight.finalColor;
         dirLightDirections[index] = -visibleLight.localToWorldMatrix.GetColumn(2);
+        // 存储阴影数据
+        dirLightShadowData[index] = shadows.ReserveDirectionalShadows(visibleLight.light, index);
+    }
+
+    /// 释放阴影贴图 RT 内存
+    public void Cleanup()
+    {
+        shadows.Cleanup();
     }
 }

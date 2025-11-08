@@ -5,7 +5,6 @@
 CBUFFER_START(UnityPerDraw)
     float4x4 unity_ObjectToWorld;
     float4x4 unity_WorldToObject;
-    float4x4 unity_MatrixV;
     // 这个矩阵包含一些在这里我们不需要的转换信息
     real4 unity_WorldTransformParams;
 
@@ -15,6 +14,7 @@ CBUFFER_START(UnityPerDraw)
     float4x4 unity_PrevWorldToObject;
 CBUFFER_END
 
+float4x4 unity_MatrixV;
 float4x4 unity_MatrixVP;
 // 相机位置
 float3 _WorldSpaceCameraPos;

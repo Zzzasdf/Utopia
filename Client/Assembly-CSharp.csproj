@@ -102,6 +102,7 @@
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Linear\Core\Optional\Tween\Param\Scale\ScaleLerpDecreaseMinParam.cs" />
     <Compile Include="Assets\Resources\Performance\PerformanceTest.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Condition\Element\Test\DisplayConditionTest.cs" />
+    <Compile Include="Assets\CustomRP\Settings\ShadowSettings.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\Client\ClientDailyFirstRedPointConverter.Constant.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Chat\Verify\Tablet\ChatRoomTablet.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\Conveter\Map\MapLongBitConverter.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\Conveter\HashSet\HashSetIntConverter.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Long\Conveter\Map\MapIntIntConverter.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Generator\CommonGenerator.cs" />
+    <Compile Include="Assets\CustomRP\Runtime\Shadows.cs" />
     <Compile Include="Assets\Scripts\UtilityModule\Converter\SourceCode\List\Int\Conveter\Bitmap\BitmapReverseConverter.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\Selector\Ring\Mono\Component\SelectedScroll\SelectedScroll.cs" />
     <Compile Include="Assets\Scripts\UIViewModule\RedPoint\RedPointTreeManager.Configure.cs" />
@@ -272,7 +274,9 @@
     <None Include="Assets\Data\UIDocuments\StyleSheets\PartyDataScreen.uss" />
     <None Include="Assets\CustomRP\Shader\Lit.shader" />
     <None Include="Assets\CustomRP\Shader\ShaderLibrary\Surface.hlsl" />
+    <None Include="Assets\CustomRP\Shader\ShaderLibrary\Shadows.hlsl" />
     <None Include="Assets\CustomRP\Shader\ShaderLibrary\UnityInput.hlsl" />
+    <None Include="Assets\CustomRP\Shader\ShadowCasterPass.hlsl" />
     <None Include="Assets\CustomRP\Shader\ShaderLibrary\Lighting.hlsl" />
     <None Include="Assets\CustomRP\Shader\ShaderLibrary\Common.hlsl" />
     <None Include="Assets\CustomRP\Shader\ShaderLibrary\Light.hlsl" />

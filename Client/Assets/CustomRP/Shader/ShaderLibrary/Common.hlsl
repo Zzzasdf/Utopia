@@ -10,8 +10,8 @@
 // 将自定义矩阵映射到Unity SRP预期的宏
 #define UNITY_MATRIX_M      unity_ObjectToWorld
 #define UNITY_MATRIX_I_M    unity_WorldToObject
-#define UNITY_MATRIX_V      unity_MatrixV
 
+#define UNITY_MATRIX_V      unity_MatrixV
 #define UNITY_MATRIX_VP     unity_MatrixVP
 #define UNITY_MATRIX_I_V	unity_MatrixIV
 #define UNITY_MATRIX_P      glstate_matrix_projection
@@ -25,6 +25,12 @@
 float Square(float v)
 {
 	return v * v;
+}
+
+// 计算两点间距离的平方
+float DistanceSquared(float3 pA, float3 pB)
+{
+	return dot(pA - pB, pA - pB);
 }
 
 #endif
